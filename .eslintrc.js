@@ -1,6 +1,8 @@
 module.exports = {
   extends: ['react-app', 'airbnb', 'plugin:jsx-a11y/recommended', 'prettier'],
   plugins: ['jsx-a11y', 'prettier'],
+  ignorePatterns: ['build/**', 'node_modules/**'],
+
   rules: {
     quotes: [2, 'single', { avoidEscape: true }],
     'import/prefer-default-export': 0,

@@ -1,16 +1,23 @@
 import './App.css';
 import React from 'react';
-import { CenterContainer, DashboardContainer, LeftDrawer, MainContainer, Navbar, RightDrawer } from './AppElements';
+import {
+  CenterContainer,
+  DashboardContainer,
+  LeftDrawer,
+  MainContainer,
+  Navbar,
+  RightDrawer,
+} from './AppElements';
 
 function App() {
   return (
     <DashboardContainer>
-      <LeftDrawer></LeftDrawer>
+      <LeftDrawer />
       <CenterContainer>
-      <Navbar></Navbar>
-      <MainContainer></MainContainer>
+        <Navbar />
+        <MainContainer />
       </CenterContainer>
-      <RightDrawer></RightDrawer>
+      <RightDrawer />
     </DashboardContainer>
   );
 }
