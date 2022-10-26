@@ -1,0 +1,21 @@
+:root {
+    --primary-dark : #352446;
+    --primary-light: #CFBEFF;
+    --neutral-purple: #F6F4FF;
+    --neutral-yellow: #F9F3E9;
+    --neutral-grey: #BDB9C0;
+    --white: #FFFFFF;
+    --accent-purple: #8247FF;
+    --accent-yellow: #FFBB36;
+
+    --border-style: 1px solid;
+    --outer-radius: 15px;
+    --inner-radius: 7.5px;
+
+    --gradient-horizontal: linear-gradient(91.3deg, #9747FF -7.99%, #FFBB36 96.77%);
+
+    --basic-text: 1rem;
+    --small-text: 0.875rem;
+    --medium-text: 1.5rem;
+    --large-text: 2rem;
+}
