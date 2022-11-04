@@ -9,10 +9,11 @@
     --accent-yellow: #FFBB36;
 
     --border-style: 1px solid;
+    --button-style: 2px solid;
     --outer-radius: 15px;
     --inner-radius: 7.5px;
 
-    --gradient-horizontal: linear-gradient(91.3deg, #9747FF -7.99%, #FFBB36 96.77%);
+    --gradient-horizontal: linear-gradient(91.26deg, #8247FF 2.15%, #FFBB36 100%);
 
     --basic-text: 1rem;
     --small-text: 0.875rem;
