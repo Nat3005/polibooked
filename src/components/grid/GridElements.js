@@ -4,7 +4,7 @@ export const GridContainer = styled.div`
     display: grid;
     grid-template-columns: repeat(12,1fr);
     column-gap: 1.25rem;
-    padding: 0rem 1.875rem;
+    padding: 0rem 1.25rem;
     background-color ${(props) => props.background};
 
     @media screen and (max-width: 768px) {
