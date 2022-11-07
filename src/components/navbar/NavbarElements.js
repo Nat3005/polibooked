@@ -9,4 +9,7 @@ export const NavbarContainer = styled.div`
   display: flex;
   flex-direction: row;
   row-gap: 2rem;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0rem 2rem;
 `;

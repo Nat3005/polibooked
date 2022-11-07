@@ -19,4 +19,6 @@
     --small-text: 0.875rem;
     --medium-text: 1.5rem;
     --large-text: 2rem;
+    --bold: 700;
+    --regular: 400;
 }

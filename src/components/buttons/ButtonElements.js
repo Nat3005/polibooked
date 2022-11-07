@@ -24,6 +24,7 @@ export const PrimaryButton = styled.button`
   border: none;
   cursor: pointer;
   font-size: var(--basic-tex);
+  max-height: 55px;
   @media screen and (max-width: 768px) {
     font-size: var(--small-text);
   }
