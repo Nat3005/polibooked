@@ -9,10 +9,7 @@ import {
 import { Chip } from '../chips/ChipsElements';
 
 function EventCard({ variant, title, time, description, tags }) {
-  const addHashtag = (tag) => {
-    const hashtag = '';
-    return hashtag.concat(`#${tag}`);
-  };
+  const addHashtag = (tag) => `#${tag}`;
 
   const chooseType = (type) => {
     if (type === 'tutoring') return 'purpleGreyish';
