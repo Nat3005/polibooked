@@ -13,25 +13,25 @@ export const LeftSidebarContainer = styled.div`
 `;
 
 export const ProfilePictureContainer = styled.div`
-    height: 100px;
-    width: 100px;
-    background-image: url(${profileBackgroundPicture});
-    background-position: center;
-    background-size: 100px 100px;
-    background-repeat: no-repeat;
-    background-color: transparent;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    align-self: center;
-`
+  height: 100px;
+  width: 100px;
+  background-image: url(${profileBackgroundPicture});
+  background-position: center;
+  background-size: 100px 100px;
+  background-repeat: no-repeat;
+  background-color: transparent;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  align-self: center;
+`;
 export const ProfilePicutre = styled.img`
   border-radius: 100%;
   height: 80px;
   width: 80px;
   object-fit: cover;
-`
+`;
 
 export const ChipsContainer = styled.div`
   display: flex;
@@ -39,11 +39,11 @@ export const ChipsContainer = styled.div`
   row-gap: 0.5rem;
   column-gap: 0.5rem;
   flex-wrap: wrap;
-`
+`;
 
-export const Logo =  styled.img`
+export const Logo = styled.img`
   align-self: flex-start;
   width: 70%;
   height: auto;
   margin-left: -20px;
-`
+`;

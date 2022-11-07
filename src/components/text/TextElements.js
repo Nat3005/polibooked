@@ -16,10 +16,10 @@ const handleAlignment = (variant) =>
   }[variant]);
 
 const paragraph = styled.p`
-    color: ${(props) => handleColor(props.variant)};
-    text-align: ${(props) => handleAlignment(props.alignment)};
-    font-weight: ${(props) =>
-        props.weight === 'bold' ? 'var(--bold)' : 'var(--regular)'};
+  color: ${(props) => handleColor(props.variant)};
+  text-align: ${(props) => handleAlignment(props.alignment)};
+  font-weight: ${(props) =>
+    props.weight === 'bold' ? 'var(--bold)' : 'var(--regular)'};
 `;
 
 export const SmallText = styled(paragraph)`
@@ -29,5 +29,5 @@ export const MediumText = styled(paragraph)`
   font-size: var(--medium-text);
 `;
 export const LargeText = styled(paragraph)`
-    font-size: var(--large-text);
+  font-size: var(--large-text);
 `;
