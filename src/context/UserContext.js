@@ -8,11 +8,13 @@ import {
 } from 'firebase/auth';
 
 import { auth } from '../firebase/init';
+import { initUser } from '../firebase/userData';
 
 const UserContext = createContext();
 
 export function UserContextProvider({ children }) {
   const [user, setUser] = useState({});
+  const [loading, setLoading] = useState(true);
 
   const googleLogIn = () => {
     const googleProvider = new GoogleAuthProvider();
@@ -25,7 +27,10 @@ export function UserContextProvider({ children }) {
 
   useEffect(() => {
     const stateChange = onAuthStateChanged(auth, (currentUser) => {
-      setUser(currentUser);
+      initUser(currentUser).then((myUser) => {
+        setUser(myUser);
+        setLoading(false);
+      });
     });
     return () => {
       stateChange();
@@ -34,14 +39,14 @@ export function UserContextProvider({ children }) {
 
   return (
     // eslint-disable-next-line react/jsx-no-constructed-context-values
-    <UserContext.Provider value={{ googleLogIn, logOut, user }}>
+    <UserContext.Provider value={{ googleLogIn, logOut, user, loading }}>
       {children}
     </UserContext.Provider>
   );
 }
 
 UserContextProvider.propTypes = {
-  children: PropTypes.objectOf(PropTypes.object),
+  children: PropTypes.objectOf(PropTypes.any),
 };
 
 UserContextProvider.defaultProps = {

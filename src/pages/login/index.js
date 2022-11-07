@@ -20,12 +20,12 @@ function LoginPage() {
     try {
       await googleLogIn();
     } catch (error) {
-      error.log(error);
+      console.warn(error);
     }
   };
 
   useEffect(() => {
-    if (user != null) {
+    if (user !== null) {
       navigate('/dashboard');
     }
   }, [user, navigate]);
