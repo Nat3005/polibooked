@@ -11,7 +11,12 @@ export const initUser = async (user) => {
       displayName: user.displayName,
       authProvider: 'google',
       email: user.email,
-      roles: ['admin', 'jedi'],
+      picture: user.photoURL,
+      faculty: 'Wydział Informatyki i Telekomunikacji',
+      major: 'Informatyka Techniczna',
+      cost: 'free',
+      description: 'I am like the water when your ship rolled in that night. Rough on the surface, but you cut through like a knife. I never would have known from that look on you.',
+      tags: ['React.js', 'Design', 'Front-end', 'HTML', 'CSS','Figma','JavaScript'],
       uid: user.uid,
     };
     await setDoc(docRef, defaultData);

@@ -7,6 +7,8 @@
     --white: #FFFFFF;
     --accent-purple: #8247FF;
     --accent-yellow: #FFBB36;
+    --greyish-purple: #7869A5;
+    --greyish-yellow: #9E6900;
 
     --border-style: 1px solid;
     --button-style: 2px solid;
@@ -15,10 +17,10 @@
 
     --gradient-horizontal: linear-gradient(91.26deg, #8247FF 2.15%, #FFBB36 100%);
 
-    --basic-text: 1rem;
-    --small-text: 0.875rem;
-    --medium-text: 1.5rem;
-    --large-text: 2rem;
+    --basic-text: 0.875rem;
+    --small-text: 0.75rem;
+    --medium-text: 1.25rem;
+    --large-text: 1.75rem;
     --bold: 700;
     --regular: 400;
 }

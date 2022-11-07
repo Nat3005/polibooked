@@ -8,10 +8,16 @@ const handleColor = (variant) =>
     yellowAccent: 'var(--accent-yellow)',
   }[variant]);
 
+const handleAlignment = (variant) =>
+  ({
+    center: 'center',
+    left: 'left',
+    justify: 'justify',
+  }[variant]);
+
 const paragraph = styled.p`
     color: ${(props) => handleColor(props.variant)};
-    text-align: ${(props) =>
-        props.alignment === 'centered' ? 'center' : 'left'};
+    text-align: ${(props) => handleAlignment(props.alignment)};
     font-weight: ${(props) =>
         props.weight === 'bold' ? 'var(--bold)' : 'var(--regular)'};
 `;
