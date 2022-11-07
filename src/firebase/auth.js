@@ -6,6 +6,6 @@ export const logInWithGoogle = async () => {
   try {
     await googleLogIn();
   } catch (error) {
-    error.log(error);
+    console.warn(error);
   }
 };
