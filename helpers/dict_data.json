@@ -1,0 +1,20 @@
+{
+    "tomek": {
+        "name": "Romek",
+        "surname": "Gienek",
+        "age": 15,
+        "roles": ["master", "vizard", "jedi"]
+    },
+    "natalia": {
+        "name": "Kinga",
+        "surname": "Rusin",
+        "age": 22,
+        "roles": ["slave", "sorceress", "sexy lady"]
+    },
+    "atena": {
+        "name": "Star",
+        "surname": "border collie",
+        "age": 2,
+        "roles": ["dog"]
+    }
+}
