@@ -1,25 +1,27 @@
 import React from 'react';
 import { NavbarContainer } from './NavbarElements';
 import { UserAuth } from '../../context/UserContext';
-import { PrimaryButton } from '../buttons/ButtonElements';
+import { LargeText } from '../text/TextElements';
 
 function Navbar() {
-  const { user, logOut } = UserAuth();
+  const { user } = UserAuth();
 
-  const handleLogOut = async () => {
-    try {
-      await logOut();
-    } catch (error) {
-      console.warn(error);
+  const getName = (fullName) => {
+    if (fullName) {
+      const names = fullName.split(' ');
+      return names[0];
     }
+    return '';
   };
 
   return (
     <NavbarContainer>
-      <div>Welcome {user?.displayName}</div>
-      <PrimaryButton variant="purpleAccent" onClick={handleLogOut}>
-        Log out
-      </PrimaryButton>
+      <LargeText varint="dark" alignment="left" weight="bold">
+        Witaj{' '}
+        <em style={{ color: 'var(--accent-purple)', fontStyle: 'normal' }}>
+          {getName(user?.displayName)}!
+        </em>{' '}
+      </LargeText>
     </NavbarContainer>
   );
 }
