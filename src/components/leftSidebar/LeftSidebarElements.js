@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import profileBackgroundPicture from '../../images/profile_image_background.svg';
+import { SmallText } from '../text/TextElements';
 
 export const LeftSidebarContainer = styled.div`
   height: 100vh;
@@ -10,6 +11,17 @@ export const LeftSidebarContainer = styled.div`
   align-items: left;
   justify-content: space-between;
   padding-top: 2rem;
+
+  @media screen and (max-width: 768px) {
+    grid-column: 1/9;
+    grid-row: 3/4;
+    height: 100vh;
+    width: 100vw;
+    background-color: transparent;
+    display: flex;
+    position: fixed;
+    justify-content: end;
+  }
 `;
 
 export const ProfilePictureContainer = styled.div`
@@ -25,6 +37,10 @@ export const ProfilePictureContainer = styled.div`
   align-items: center;
   justify-content: center;
   align-self: center;
+
+  @media screen and (max-width: 768px) {
+    display: none;
+  }
 `;
 export const ProfilePicutre = styled.img`
   border-radius: 100%;
@@ -39,6 +55,10 @@ export const ChipsContainer = styled.div`
   row-gap: 0.5rem;
   column-gap: 0.5rem;
   flex-wrap: wrap;
+
+  @media screen and (max-width: 768px) {
+    display: none;
+  }
 `;
 
 export const Logo = styled.img`
@@ -46,4 +66,14 @@ export const Logo = styled.img`
   width: 70%;
   height: auto;
   margin-left: -20px;
+
+  @media screen and (max-width: 768px) {
+    display: none;
+  }
+`;
+
+export const LeftPanelText = styled(SmallText)`
+  @media screen and (max-width: 768px) {
+    display: none;
+  }
 `;

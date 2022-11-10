@@ -9,6 +9,11 @@ export const DashboardContainer = styled(GridContainer)`
 export const MainContainer = styled.div`
   height: 90vh;
   background: var(--neutral-purple);
+
+  @media screen and (max-width: 768px) {
+    grid-column: 1/9;
+    grid-row: 2/3;
+  }
 `;
 
 export const CenterContainer = styled.div`
@@ -18,4 +23,9 @@ export const CenterContainer = styled.div`
   border-right: var(--border-style);
   border-left: var(--border-style);
   border-color: var(--primary-light);
+
+  @media screen and (max-width: 768px) {
+    grid-column: 1/9;
+    grid-row: 1/3;
+  }
 `;

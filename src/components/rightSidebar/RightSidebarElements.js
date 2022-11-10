@@ -9,4 +9,8 @@ export const RightSidebarContainer = styled.div`
   padding-top: 2rem;
   align-items: center;
   row-gap: 1rem;
+
+  @media screen and (max-width: 768px) {
+    display: none;
+  }
 `;

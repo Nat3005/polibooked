@@ -11,6 +11,8 @@ export const MenuContainer = styled.div`
     flex-direction: row;
     justify-content: space-around;
     background-color: white;
+    height: 7vh;
+    align-items: center;
   }
 `;
 
@@ -29,5 +31,9 @@ export const IconButton = styled.button`
   :hover {
     color: var(--accent-purple);
     transition: all 0.2s ease-in-out;
+  }
+
+  @media screen and (max-width: 768px) {
+    flex-direction: column;
   }
 `;

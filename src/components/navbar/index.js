@@ -1,5 +1,10 @@
 import React from 'react';
-import { NavbarContainer } from './NavbarElements';
+import MenuRoundedIcon from '@mui/icons-material/MenuRounded';
+import {
+  DropDownButton,
+  NavbarContainer,
+  SidebarButton,
+} from './NavbarElements';
 import { UserAuth } from '../../context/UserContext';
 import { LargeText } from '../text/TextElements';
 
@@ -22,6 +27,12 @@ function Navbar() {
           {getName(user?.displayName)}!
         </em>{' '}
       </LargeText>
+      <DropDownButton>
+        <MenuRoundedIcon />
+      </DropDownButton>
+      <SidebarButton>
+        <MenuRoundedIcon />
+      </SidebarButton>
     </NavbarContainer>
   );
 }
