@@ -5,9 +5,9 @@ import {
   ProfilePictureContainer,
   ProfilePicutre,
   Logo,
+  LeftPanelText,
 } from './LeftSidebarElements';
 import { UserAuth } from '../../context/UserContext';
-import { SmallText } from '../text/TextElements';
 import { Chip } from '../chips/ChipsElements';
 import Menu from '../menu';
 import horizontalLogo from '../../images/logo_horizontal.svg';
@@ -20,17 +20,21 @@ function LeftSidebar() {
       <ProfilePictureContainer>
         <ProfilePicutre src={user?.picture} />
       </ProfilePictureContainer>
-      <SmallText style={{ alignSelf: 'center' }} weight="bold" variant="dark">
+      <LeftPanelText
+        style={{ alignSelf: 'center' }}
+        weight="bold"
+        variant="dark"
+      >
         {user?.displayName}
-      </SmallText>
-      <SmallText varint="dark" alignment="left" weight="bold">
+      </LeftPanelText>
+      <LeftPanelText varint="dark" alignment="left" weight="bold">
         {user?.major}
         {' | '}
         <em style={{ color: 'var(--accent-purple)', fontStyle: 'normal' }}>
           {user?.faculty}
         </em>
-      </SmallText>
-      <SmallText varint="dark">
+      </LeftPanelText>
+      <LeftPanelText varint="dark">
         <em
           style={{
             color: 'var(--dark)',
@@ -41,10 +45,10 @@ function LeftSidebar() {
           Cost:{' '}
         </em>
         {user?.cost}
-      </SmallText>
-      <SmallText varint="dark" alignment="justify">
+      </LeftPanelText>
+      <LeftPanelText varint="dark" alignment="justify">
         {user?.description}
-      </SmallText>
+      </LeftPanelText>
       <ChipsContainer>
         {user?.tags.map((item) => (
           <Chip variant="light">{item}</Chip>

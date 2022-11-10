@@ -9,6 +9,8 @@ export const GridContainer = styled.div`
 
     @media screen and (max-width: 768px) {
         grid-template-columns: repeat(8,1fr);
+        grid-template-rows: 10vh auto 10vh;
+        padding: 0rem 0rem;
     }
 
     @media screen and (max-width: 456px) {
