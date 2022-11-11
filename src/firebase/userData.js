@@ -2,7 +2,7 @@ import { doc, getDoc, setDoc } from 'firebase/firestore';
 import { firestore } from './init';
 
 export const initUser = async (user) => {
-  if (user == null) return null;
+  if (user === null) return null;
 
   const docRef = doc(firestore, 'users', user.uid);
   const document = await getDoc(docRef);
@@ -11,7 +11,7 @@ export const initUser = async (user) => {
       displayName: user.displayName,
       authProvider: 'google',
       email: user.email,
-      picture: user.photoURL,
+      photoURL: user.photoURL,
       faculty: 'Wydział Informatyki i Telekomunikacji',
       major: 'Informatyka Techniczna',
       cost: 'free',
