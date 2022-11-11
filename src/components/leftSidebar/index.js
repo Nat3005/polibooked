@@ -18,7 +18,7 @@ function LeftSidebar() {
   return (
     <LeftSidebarContainer>
       <ProfilePictureContainer>
-        <ProfilePicutre src={user?.picture} />
+        <ProfilePicutre src={user?.photoURL} />
       </ProfilePictureContainer>
       <LeftPanelText
         style={{ alignSelf: 'center' }}
