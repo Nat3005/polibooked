@@ -23,7 +23,6 @@ export const InputContainer = styled.div`
   flex-direction: column;
   justify-content: flex-start;
   row-gap: 0.5rem;
-  width: 100%;
 `;
 export const InputLabel = styled.label`
   color: ${(props) => handleColor(props.variant)};
