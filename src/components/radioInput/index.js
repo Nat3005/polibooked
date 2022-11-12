@@ -2,9 +2,7 @@ import { React, useState, useRef } from 'react';
 import {
   RadioButtonsContainer,
   RadioInputContainer,
-  Input,
   RadioContainerLabel,
-  ButtonLabel,
   RadioButton,
   RangeContainer,
 } from './RadioInputElements';
@@ -24,7 +22,7 @@ function RadioInput({ label, refs, placeholder, variant }) {
     if (costFromRef.current?.value) selection.push(costFromRef.current.value);
     if (costToRef.current?.value) selection.push(costToRef.current.value);
     if (costOtherRef.current?.value) selection.push(costOtherRef.current.value);
-    // console.log(selection);
+
     refs(selection);
   };
 
@@ -36,7 +34,9 @@ function RadioInput({ label, refs, placeholder, variant }) {
     <RangeContainer>
       od
       <TextInput
-        refs={(ref) => (costFromRef.current = ref)}
+        refs={(ref) => {
+          costFromRef.current = ref;
+        }}
         type="text"
         name="costFrom"
         placeholder="np.: 10"
@@ -45,7 +45,9 @@ function RadioInput({ label, refs, placeholder, variant }) {
       />{' '}
       zł do
       <TextInput
-        refs={(ref) => (costToRef.current = ref)}
+        refs={(ref) => {
+          costToRef.current = ref;
+        }}
         type="text"
         name="costTo"
         placeholder="np.: 30"
@@ -58,7 +60,9 @@ function RadioInput({ label, refs, placeholder, variant }) {
 
   const displayOther = () => (
     <TextInput
-      refs={(ref) => (costOtherRef.current = ref)}
+      refs={(ref) => {
+        costOtherRef.current = ref;
+      }}
       type="text"
       name="costOther"
       placeholder={placeholder}
@@ -72,34 +76,43 @@ function RadioInput({ label, refs, placeholder, variant }) {
       <RadioContainerLabel variant={variant}>{label}</RadioContainerLabel>
       <RadioButtonsContainer>
         <RadioButton>
-          <input
-            type="radio"
-            value="free"
-            name="cost"
-            checked={selected === 0}
-            onChange={() => handleSelection(0)}
-          />
-          <label>bezpłatne</label>
+          <label htmlFor="cost">
+            <input
+              id="one"
+              type="radio"
+              value="free"
+              name="cost"
+              checked={selected === 0}
+              onChange={() => handleSelection(0)}
+            />
+            bezpłatne
+          </label>
         </RadioButton>
         <RadioButton>
-          <input
-            type="radio"
-            value="range"
-            name="cost"
-            checked={selected === 1}
-            onChange={() => handleSelection(1)}
-          />
-          <label>przedział</label>
+          <label htmlFor="two">
+            <input
+              id="two"
+              type="radio"
+              value="range"
+              name="cost2"
+              checked={selected === 1}
+              onChange={() => handleSelection(1)}
+            />
+            przedział
+          </label>
         </RadioButton>
         <RadioButton>
-          <input
-            type="radio"
-            value="other"
-            name="cost"
-            checked={selected === 2}
-            onChange={() => handleSelection(2)}
-          />
-          <label>inne</label>
+          <label htmlFor="free">
+            <input
+              id="free"
+              type="radio"
+              value="other"
+              name="cost3"
+              checked={selected === 2}
+              onChange={() => handleSelection(2)}
+            />
+            inne
+          </label>
         </RadioButton>
       </RadioButtonsContainer>
       {selected === 1 && displayRange()}

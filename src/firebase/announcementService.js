@@ -17,15 +17,15 @@ export const addAnnouncement = async (announcement) => {
   });
 };
 
-export const getAnnouncements = async (type = null) => {
+export const getAnnouncements = async () => {
   const announcementsRef = query(
     collection(firestore, 'announcements'),
     orderBy('date')
   );
-
+  const announcements = [];
   getDocs(announcementsRef).then((snapshot) => {
     snapshot.forEach((doc) => {
-      console.log(doc.data());
+      announcements.push(doc.data());
     });
   });
 };

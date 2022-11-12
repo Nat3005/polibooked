@@ -1,4 +1,4 @@
-import { React, useRef, useState } from 'react';
+import { React, useRef } from 'react';
 import SchoolRoundedIcon from '@mui/icons-material/SchoolRounded';
 import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
 import ChevronRightRoundedIcon from '@mui/icons-material/ChevronRightRounded';
@@ -19,18 +19,12 @@ import modalData from './modalData';
 import { addAnnouncement } from '../../firebase/announcementService';
 
 function Modal({ showModal, setShowModal, announcementType }) {
-  let placeholderData;
-  if (announcementType.includes('tutor')) {
-    placeholderData = modalData[0];
-  } else {
-    placeholderData = modalData[1];
-  }
-
+  const formItem = useRef({});
   if (!showModal) return null;
 
-  const { user } = UserAuth();
+  const placeholderData = modalData[announcementType.includes('tutor') ? 0 : 1];
 
-  const formItem = useRef({});
+  const { user } = UserAuth();
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -54,7 +48,7 @@ function Modal({ showModal, setShowModal, announcementType }) {
       };
 
       addAnnouncement(newPost).then((result) =>
-        console.log('I should be a toast')
+        console.warn(`I should be a toast: ${result}`)
       );
       formItem.current.title.value = '';
       formItem.current.description.value = '';
@@ -85,7 +79,9 @@ function Modal({ showModal, setShowModal, announcementType }) {
         </BreadcrumbsContainer>
         <TextInput
           variant={announcementType}
-          refs={(ref) => (formItem.current.title = ref)}
+          refs={(ref) => {
+            formItem.current.title = ref;
+          }}
           label="Tytuł Ogłoszenia*"
           type="text"
           name="title"
@@ -93,7 +89,9 @@ function Modal({ showModal, setShowModal, announcementType }) {
         />
         <TextInput
           variant={announcementType}
-          refs={(ref) => (formItem.current.description = ref)}
+          refs={(ref) => {
+            formItem.current.description = ref;
+          }}
           label="Opis*"
           type="textarea"
           name="description"
@@ -102,13 +100,17 @@ function Modal({ showModal, setShowModal, announcementType }) {
         />
         <RadioInput
           variant={announcementType}
-          refs={(ref) => (formItem.current.price = ref)}
+          refs={(ref) => {
+            formItem.current.price = ref;
+          }}
           label="Cena*"
           placeholder={placeholderData.pricePlaceholder}
         />
         <TextInput
           variant={announcementType}
-          refs={(ref) => (formItem.current.tags = ref)}
+          refs={(ref) => {
+            formItem.current.tags = ref;
+          }}
           label="Tagi*"
           type="text"
           name="tags"

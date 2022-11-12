@@ -1,4 +1,4 @@
-import { useState, React } from 'react';
+import React from 'react';
 import MenuRoundedIcon from '@mui/icons-material/MenuRounded';
 import {
   DropDownButton,
@@ -7,7 +7,6 @@ import {
 } from './NavbarElements';
 import { UserAuth } from '../../context/UserContext';
 import { LargeText } from '../text/TextElements';
-import Modal from '../modal';
 
 function Navbar({ showModal, setShowModal }) {
   const { user } = UserAuth();
@@ -21,7 +20,7 @@ function Navbar({ showModal, setShowModal }) {
   };
 
   const openModal = () => {
-    setShowModal((prev) => !prev);
+    setShowModal(!showModal);
   };
 
   return (
