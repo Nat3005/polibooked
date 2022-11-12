@@ -7,49 +7,38 @@ import TextInput from '../textInput';
 import RadioInput from '../radioInput';
 import { PrimaryButton,TertiaryButton } from '../buttons/ButtonElements';
 import { UserAuth } from '../../context/UserContext';
-function Modal({showModal, setShowModal,announcementType}) {
-    if(!showModal) return null;
 
+
+function Modal({showModal, setShowModal,announcementType}) {
+
+    if(!showModal) return null;
 
     const {user} = UserAuth();
 
-    const [_,setAnnouncement] =  useState({
-        uid: user.uid,
-        type: announcementType,
-        title: '',
-        description: '',
-        price:'',
-        tags:''
-    });
-
     const formItem =  useRef({});
-    //     {
-    //     title: '',
-    //     description: '',
-    //     price:'',
-    //     tags:''
-    // });
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        const x = formItem;
-        console.log({x})
-        if(formItem.current.title !== "" && formItem.current.description !==""  && formItem.current.tags !==""){
 
-            const separatedTags = formItem.current.tags.split(',');
-            console.log(separatedTags);
+        if(formItem.current.title.value !== "" &&
+            formItem.current.description.value !== "" &&
+            formItem.current.tags.value !== ""){
 
-            setAnnouncement({
+            const separatedTags = formItem.current.tags.value.split(',').map(s => s.trim());
+
+            const newPost = {
                 uid: user.uid,
                 type: announcementType,
-                title: formItem.title.current.value,
-                description: formItem.description.current.value,
-                price:formItem.price.current.value,
+                title: formItem.current.title.value,
+                description: formItem.current.description.value,
+                price:formItem.current.price,
                 tags: separatedTags
-            })
+            };
+            console.log({newPost});
         }
     }
-  return (
+
+    return (
     <ModalOverlay>
         <ModalContainer>
             <HeadlineContainer>
@@ -57,15 +46,15 @@ function Modal({showModal, setShowModal,announcementType}) {
                 <SchoolRoundedIcon/>
                 Zostań korepetytorem
                 </TitleContainer>
-                <CloseRoundedIcon style={{cursor:'pointer'}} onClick={()=>setShowModal(prev => !prev)}/>
+                <CloseRoundedIcon style={{cursor:'pointer'}} onClick={()=>setShowModal(!showModal)}/>
             </HeadlineContainer>
             <BreadcrumbsContainer>Publikujesz ogłoszenie w W4 <ChevronRightRoundedIcon />Informatyka Techniczna</BreadcrumbsContainer>
             <TextInput  refs={ref => formItem.current.title = ref} label="Tytuł Ogłoszenia*" type="text" name="title" placeholder={"np.: Poznaj tajnijki Logiki Układów Cyfrowych"} />
             <TextInput refs={ref => formItem.current.description = ref} label="Opis*" type="textarea" name="description" wrap="soft" placeholder={"np.: Od wielu lat zajmuje się programowaniem niskopoziomowym, dlatego pisanie programów w Assemblerze przychodzi mi z łatwością. Podczas zajęć pomogę Ci zrozumieć podstawy działania rejestrów oraz pokarzę w jaki sposób pisać i debugować programy. "} />
-            <RadioInput label="Cena*"></RadioInput>
+            <RadioInput refs={ref => formItem.current.price = ref} label="Cena*"></RadioInput>
             <TextInput  refs={ref => formItem.current.tags = ref} label="Tagi*" type="text" name="tags" placeholder={"np.: JavaScript, React.js, Programowanie Interfejsów Mobilnych"} />
             <SubmitButtons onSubmit={handleSubmit}>
-                <TertiaryButton variant="dark" onClick={()=>setShowModal(prev => !prev)}>Anuluj</TertiaryButton>
+                <TertiaryButton variant="dark" onClick={()=>setShowModal(!showModal)}>Anuluj</TertiaryButton>
                 <PrimaryButton variant="purpleAccent">Dodaj ogłoszenie</PrimaryButton>
             </SubmitButtons>
         </ModalContainer>
