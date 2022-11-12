@@ -8,7 +8,7 @@ import {
 import { UserAuth } from '../../context/UserContext';
 import { LargeText } from '../text/TextElements';
 
-function Navbar() {
+function Navbar({ showModal, setShowModal }) {
   const { user } = UserAuth();
 
   const getName = (fullName) => {
@@ -19,6 +19,10 @@ function Navbar() {
     return '';
   };
 
+  const openModal = () => {
+    setShowModal(!showModal);
+  };
+
   return (
     <NavbarContainer>
       <LargeText varint="dark" alignment="left" weight="bold">
@@ -27,10 +31,10 @@ function Navbar() {
           {getName(user?.displayName)}!
         </em>{' '}
       </LargeText>
-      <DropDownButton>
+      <DropDownButton onClick={openModal}>
         <MenuRoundedIcon />
       </DropDownButton>
-      <SidebarButton>
+      <SidebarButton onClick={openModal}>
         <MenuRoundedIcon />
       </SidebarButton>
     </NavbarContainer>

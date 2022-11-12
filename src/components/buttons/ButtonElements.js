@@ -3,9 +3,17 @@ import styled from 'styled-components';
 const handleColor = (variant) =>
   ({
     dark: 'var(--primary-dark)',
-    light: 'var--primary-light)',
+    light: 'var(--primary-light)',
     purpleAccent: 'var(--accent-purple)',
     yellowAccent: 'var(--accent-yellow)',
+  }[variant]);
+
+const handleHoverColor = (variant) =>
+  ({
+    dark: 'var(--primary-light))',
+    light: 'var(--primary-dark)',
+    purpleAccent: 'var(--accent-yellow)',
+    yellowAccent: 'var(--accent-purple)',
   }[variant]);
 
 const handleFont = (variant) =>
@@ -14,6 +22,14 @@ const handleFont = (variant) =>
     light: 'var(--primary-dark)',
     purpleAccent: 'var(--white)',
     yellowAccent: 'var(--primary-dark)',
+  }[variant]);
+
+const handleHoverFont = (variant) =>
+  ({
+    dark: 'var(--primary-dark)',
+    light: 'var(--white)',
+    purpleAccent: 'var(--primary-dark)',
+    yellowAccent: 'var(--white)',
   }[variant]);
 
 export const PrimaryButton = styled.button`
@@ -30,8 +46,8 @@ export const PrimaryButton = styled.button`
   }
 
   :hover {
-    background-color: var(--accent-purple);
-    color: var(--white);
+    background-color: ${(props) => handleHoverColor(props.variant)};
+    color: ${(props) => handleHoverFont(props.variant)};
     transition: all 0.2s ease-in-out;
   }
 `;
@@ -59,5 +75,10 @@ export const TertiaryButton = styled.button`
   font-size: var(--basic-tex);
   @media screen and (max-width: 768px) {
     font-size: var(--small-text);
+  }
+
+  :hover {
+    font-weight: var(--bold);
+    transition: all 0.2s ease-in-out;
   }
 `;

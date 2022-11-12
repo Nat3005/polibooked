@@ -8,7 +8,7 @@ import {
 } from 'firebase/auth';
 
 import { auth } from '../firebase/init';
-import { initUser } from '../firebase/userData';
+import { initUser } from '../firebase/userService';
 
 const UserContext = createContext();
 
