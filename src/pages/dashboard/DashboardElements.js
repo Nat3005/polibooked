@@ -14,6 +14,11 @@ export const MainContainer = styled.div`
     grid-column: 1/9;
     grid-row: 2/3;
   }
+
+  @media screen and (max-width: 456px) {
+    grid-column: 1/5;
+    grid-row: 2/3;
+  }
 `;
 
 export const CenterContainer = styled.div`
@@ -26,6 +31,10 @@ export const CenterContainer = styled.div`
 
   @media screen and (max-width: 768px) {
     grid-column: 1/9;
+    grid-row: 1/3;
+  }
+  @media screen and (max-width: 456px) {
+    grid-column: 1/5;
     grid-row: 1/3;
   }
 `;

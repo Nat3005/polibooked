@@ -1,48 +1,45 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 const handleColor = (variant) =>
   ({
-    dark: 'var(--primary-dark)',
-    light: 'var--primary-light)',
-    purpleAccent: 'var(--accent-purple)',
-    yellowAccent: 'var(--accent-yellow)',
+    tutor: 'var(--accent-purple)',
+    student: 'var(--accent-yellow)',
   }[variant]);
 
 export const RadioInputContainer = styled.div`
-display: flex;
-flex-direction: column;
-justify-content: flex-start;
-row-gap: 0.5rem;
-`
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  row-gap: 0.5rem;
+`;
 export const RadioButtonsContainer = styled.div`
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
-    color: var(--primary-dark);
-
-`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  color: var(--primary-dark);
+`;
 export const RadioContainerLabel = styled.p`
-color: ${(props) => handleColor(props.variant)};
-font-size: var(--basic-text);
-font-weight: var(--bold);
-`
+  color: ${(props) => handleColor(props.variant)};
+  font-size: var(--basic-text);
+  font-weight: var(--bold);
+`;
 
 export const RadioButton = styled.div`
   display: inline-block;
   > input {
     opacity: 1;
   }
-  > input + label{
-    color: var(--primary-dark);
+  > input + label {
+    color: ${(props) => handleColor(props.variant)};
     padding: 0.5rem;
     font-size: var(--basic-text);
   }
   > input:checked + label {
-    color: var(--accent-purple);
+    color: ${(props) => handleColor(props.variant)};
     font-weight: var(--bold);
   }
-`
+`;
 
 export const RangeContainer = styled.div`
   display: flex;
@@ -54,4 +51,12 @@ export const RangeContainer = styled.div`
   font-weight: var(--bold);
   align-self: center;
   width: 80%;
-`
+
+  @media screen and (max-width: 456px) {
+    width: 100%;
+
+    > div {
+      max-width: 30vw;
+    }
+  }
+`;

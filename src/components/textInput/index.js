@@ -1,21 +1,30 @@
-import React from "react";
+import React from 'react';
 import {
   InputContainer,
   InputLabel,
   Input,
   TextAreaInput,
-} from "./TextInputElements";
+} from './TextInputElements';
 
-function TextInput({ label, type, name, placeholder, refs, onChange }) {
-  if (type === "textarea") {
+function TextInput({
+  label,
+  type,
+  name,
+  placeholder,
+  refs,
+  onChange,
+  variant,
+}) {
+  if (type === 'textarea') {
     return (
       <InputContainer>
-        <InputLabel variant="purpleAccent">{label}</InputLabel>
+        <InputLabel variant={variant}>{label}</InputLabel>
         <TextAreaInput
           ref={refs}
           onChange={onChange}
           name={name}
           placeholder={placeholder}
+          variant={variant}
         />
       </InputContainer>
     );
@@ -23,14 +32,15 @@ function TextInput({ label, type, name, placeholder, refs, onChange }) {
 
   return (
     <InputContainer>
-      <InputLabel variant="purpleAccent">{label}</InputLabel>
+      <InputLabel variant={variant}>{label}</InputLabel>
       <Input
         ref={refs}
         type={type}
         name={name}
         onChange={onChange}
         placeholder={placeholder}
-      ></Input>
+        variant={variant}
+      />
     </InputContainer>
   );
 }

@@ -1,4 +1,4 @@
-import { React, useState, useRef } from "react";
+import { React, useState, useRef } from 'react';
 import {
   RadioButtonsContainer,
   RadioInputContainer,
@@ -7,17 +7,18 @@ import {
   ButtonLabel,
   RadioButton,
   RangeContainer,
-} from "./RadioInputElements";
-import TextInput from "../textInput";
+} from './RadioInputElements';
+import TextInput from '../textInput';
 
-function RadioInput({ label, refs }) {
+function RadioInput({ label, refs, placeholder, variant }) {
   const [selected, setSelected] = useState(0);
   const [costOtherRef, costFromRef, costToRef] = [
-    useRef(""),
-    useRef(""),
-    useRef(""),
+    useRef(''),
+    useRef(''),
+    useRef(''),
   ];
 
+  refs([]);
   const handleInsert = () => {
     const selection = [];
     if (costFromRef.current?.value) selection.push(costFromRef.current.value);
@@ -25,53 +26,50 @@ function RadioInput({ label, refs }) {
     if (costOtherRef.current?.value) selection.push(costOtherRef.current.value);
     // console.log(selection);
     refs(selection);
-  }
+  };
 
   const handleSelection = (s) => {
     setSelected(s);
   };
 
-  const displayRange = () => {
-    return (
-      <RangeContainer>
-        od
-        <TextInput
-          refs={(ref) => (costFromRef.current = ref)}
-          type="text"
-          name="costFrom"
-          placeholder={"np.: 10"}
-          onChange={handleInsert}
-        />{" "}
-        zł do
-        <TextInput
-          refs={(ref) => (costToRef.current = ref)}
-          type="text"
-          name="costTo"
-          placeholder={"np.: 30"}
-          onChange={handleInsert}
-        />{" "}
-        zł
-      </RangeContainer>
-    );
-  };
-
-  const displayOther = () => {
-    return (
+  const displayRange = () => (
+    <RangeContainer>
+      od
       <TextInput
-        refs={(ref) => (costOtherRef.current = ref)}
+        refs={(ref) => (costFromRef.current = ref)}
         type="text"
-        name="costOther"
-        placeholder={
-          "np.: Pierwsze godzinne spotkanie jest bezpłatne. Koszt następnych to 25zł/h."
-        }
+        name="costFrom"
+        placeholder="np.: 10"
         onChange={handleInsert}
-      />
-    );
-  };
+        variant={variant}
+      />{' '}
+      zł do
+      <TextInput
+        refs={(ref) => (costToRef.current = ref)}
+        type="text"
+        name="costTo"
+        placeholder="np.: 30"
+        onChange={handleInsert}
+        variant={variant}
+      />{' '}
+      zł
+    </RangeContainer>
+  );
+
+  const displayOther = () => (
+    <TextInput
+      refs={(ref) => (costOtherRef.current = ref)}
+      type="text"
+      name="costOther"
+      placeholder={placeholder}
+      variant={variant}
+      onChange={handleInsert}
+    />
+  );
 
   return (
     <RadioInputContainer>
-      <RadioContainerLabel variant="purpleAccent">{label}</RadioContainerLabel>
+      <RadioContainerLabel variant={variant}>{label}</RadioContainerLabel>
       <RadioButtonsContainer>
         <RadioButton>
           <input
