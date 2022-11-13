@@ -1,15 +1,24 @@
-import React from 'react';
+import { React, useState } from 'react';
 import MenuRoundedIcon from '@mui/icons-material/MenuRounded';
 import {
   DropDownButton,
   NavbarContainer,
   SidebarButton,
+  DropdownToggle,
+  MobileDropdownToggle,
 } from './NavbarElements';
 import { UserAuth } from '../../context/UserContext';
 import { LargeText } from '../text/TextElements';
+import Drowpdown from '../dropdown';
 
-function Navbar({ showModal, setShowModal }) {
+function Navbar({
+  showTutoringModal,
+  setShowTutoringModal,
+  showStudentModal,
+  setShowStudentModal,
+}) {
   const { user } = UserAuth();
+  const [showDropdown, setShowDropdown] = useState(false);
 
   const getName = (fullName) => {
     if (fullName) {
@@ -19,8 +28,8 @@ function Navbar({ showModal, setShowModal }) {
     return '';
   };
 
-  const openModal = () => {
-    setShowModal(!showModal);
+  const openDropDown = () => {
+    setShowDropdown(!showDropdown);
   };
 
   return (
@@ -31,12 +40,34 @@ function Navbar({ showModal, setShowModal }) {
           {getName(user?.displayName)}!
         </em>{' '}
       </LargeText>
-      <DropDownButton onClick={openModal}>
-        <MenuRoundedIcon />
-      </DropDownButton>
-      <SidebarButton onClick={openModal}>
-        <MenuRoundedIcon />
-      </SidebarButton>
+      <DropdownToggle>
+        <DropDownButton onClick={openDropDown}>
+          <MenuRoundedIcon />
+        </DropDownButton>
+        <Drowpdown
+          type="modalDropdown"
+          showDropdown={showDropdown}
+          setShowDropdown={setShowDropdown}
+          showTutoringModal={showTutoringModal}
+          setShowTutoringModal={setShowTutoringModal}
+          showStudentModal={showStudentModal}
+          setShowStudentModal={setShowStudentModal}
+        />
+      </DropdownToggle>
+      <MobileDropdownToggle>
+        <SidebarButton onClick={openDropDown}>
+          <MenuRoundedIcon />
+        </SidebarButton>
+        <Drowpdown
+          type="modalDropdown"
+          showDropdown={showDropdown}
+          setShowDropdown={setShowDropdown}
+          showTutoringModal={showTutoringModal}
+          setShowTutoringModal={setShowTutoringModal}
+          showStudentModal={showStudentModal}
+          setShowStudentModal={setShowStudentModal}
+        />
+      </MobileDropdownToggle>
     </NavbarContainer>
   );
 }

@@ -35,11 +35,14 @@ const handleHoverFont = (variant) =>
 export const PrimaryButton = styled.button`
   background-color: ${(props) => handleColor(props.variant)};
   color: ${(props) => handleFont(props.variant)};
-  padding: 1rem 2rem;
+  padding: 1rem 1.5rem;
   border-radius: var(--outer-radius);
   border: none;
   cursor: pointer;
   font-size: var(--basic-tex);
+  align-items: center;
+  display: flex;
+  column-gap: 0.5rem;
   max-height: 55px;
   @media screen and (max-width: 768px) {
     font-size: var(--small-text);
