@@ -26,7 +26,7 @@ export const LeftSidebarContainer = styled.div`
 
 export const PanelProfilePicture = styled(ProfilePicture)`
   // TODO: display none nie bangla
-
+  // https://styled-components.com/docs/basics#styling-any-component
   @media screen and (max-width: 768px) {
     display: none;
   }
