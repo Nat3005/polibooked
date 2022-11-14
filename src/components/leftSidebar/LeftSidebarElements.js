@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import profileBackgroundPicture from '../../images/profile_image_background.svg';
 import { SmallText } from '../text/TextElements';
+import ProfilePicture from '../profilePicture';
 
 export const LeftSidebarContainer = styled.div`
   height: 100vh;
@@ -24,29 +24,12 @@ export const LeftSidebarContainer = styled.div`
   }
 `;
 
-export const ProfilePictureContainer = styled.div`
-  height: 100px;
-  width: 100px;
-  background-image: url(${profileBackgroundPicture});
-  background-position: center;
-  background-size: 100px 100px;
-  background-repeat: no-repeat;
-  background-color: transparent;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  align-self: center;
+export const PanelProfilePicture = styled(ProfilePicture)`
+  // TODO: display none nie bangla
 
   @media screen and (max-width: 768px) {
     display: none;
   }
-`;
-export const ProfilePicutre = styled.img`
-  border-radius: 100%;
-  height: 80px;
-  width: 80px;
-  object-fit: cover;
 `;
 
 export const ChipsContainer = styled.div`

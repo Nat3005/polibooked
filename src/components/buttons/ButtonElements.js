@@ -44,9 +44,6 @@ export const PrimaryButton = styled.button`
   display: flex;
   column-gap: 0.5rem;
   max-height: 55px;
-  @media screen and (max-width: 768px) {
-    font-size: var(--small-text);
-  }
 
   :hover {
     background-color: ${(props) => handleHoverColor(props.variant)};
@@ -64,21 +61,21 @@ export const SecondaryButton = styled.button`
   border-color: ${(props) => handleColor(props.variant)};
   cursor: pointer;
   font-size: var(--basic-tex);
-  @media screen and (max-width: 768px) {
-    font-size: var(--small-text);
-  }
+  align-items: center;
+  display: flex;
+  column-gap: 0.5rem;
 `;
 
 export const TertiaryButton = styled.button`
   background-color: transparent;
   color: ${(props) => handleColor(props.variant)};
-  padding: 1rem 2rem;
+  padding: 0.5rem 1rem;
   cursor: pointer;
   border: none;
   font-size: var(--basic-tex);
-  @media screen and (max-width: 768px) {
-    font-size: var(--small-text);
-  }
+  align-items: center;
+  display: flex;
+  column-gap: 0.5rem;
 
   :hover {
     font-weight: var(--bold);

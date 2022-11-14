@@ -12,7 +12,7 @@ export const ModalOverlay = styled(GridContainer)`
   width: 100%;
   background: rgba(63, 36, 70, 0.5);
   position: absolute;
-  z-index: 10;
+  z-index: 200;
   justify-content: center;
   align-items: center;
 

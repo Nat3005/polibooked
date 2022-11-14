@@ -9,10 +9,12 @@ import RightSidebar from '../../components/rightSidebar';
 import Navbar from '../../components/navbar';
 import Modal from '../../components/modal';
 import { getAnnouncements } from '../../firebase/announcementService';
+import MobileSidebar from '../../components/mobileSidebar';
 
 function Dashboard() {
   const [showTutoringModal, setShowTutoringModal] = useState(false);
   const [showStudentModal, setShowStudentModal] = useState(false);
+  const [showSidebar, setShowSidebar] = useState(false);
   getAnnouncements();
   return (
     <>
@@ -26,6 +28,14 @@ function Dashboard() {
         setShowModal={setShowStudentModal}
         announcementType="student"
       />
+      <MobileSidebar
+        showSidebar={showSidebar}
+        setShowSidebar={setShowSidebar}
+        showTutoringModal={showTutoringModal}
+        setShowTutoringModal={setShowTutoringModal}
+        showStudentModal={showStudentModal}
+        setShowStudentModal={setShowStudentModal}
+      />
       <DashboardContainer>
         <LeftSidebar />
         <CenterContainer>
@@ -34,6 +44,8 @@ function Dashboard() {
             setShowTutoringModal={setShowTutoringModal}
             showStudentModal={showStudentModal}
             setShowStudentModal={setShowStudentModal}
+            showSidebar={showSidebar}
+            setShowSidebar={setShowSidebar}
           />
           <MainContainer />
         </CenterContainer>

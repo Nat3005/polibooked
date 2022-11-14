@@ -2,8 +2,7 @@ import React from 'react';
 import {
   ChipsContainer,
   LeftSidebarContainer,
-  ProfilePictureContainer,
-  ProfilePicutre,
+  PanelProfilePicture,
   Logo,
   LeftPanelText,
 } from './LeftSidebarElements';
@@ -17,9 +16,7 @@ function LeftSidebar() {
 
   return (
     <LeftSidebarContainer>
-      <ProfilePictureContainer>
-        <ProfilePicutre src={user?.photoURL} />
-      </ProfilePictureContainer>
+      <PanelProfilePicture />
       <LeftPanelText
         style={{ alignSelf: 'center' }}
         weight="bold"
@@ -34,7 +31,7 @@ function LeftSidebar() {
           {user?.faculty}
         </em>
       </LeftPanelText>
-      <LeftPanelText varint="dark">
+      {/* <LeftPanelText varint="dark">
         <em
           style={{
             color: 'var(--dark)',
@@ -45,7 +42,7 @@ function LeftSidebar() {
           Cost:{' '}
         </em>
         {user?.cost}
-      </LeftPanelText>
+      </LeftPanelText> */}
       <LeftPanelText varint="dark" alignment="justify">
         {user?.description}
       </LeftPanelText>

@@ -16,6 +16,8 @@ function Navbar({
   setShowTutoringModal,
   showStudentModal,
   setShowStudentModal,
+  showSidebar,
+  setShowSidebar,
 }) {
   const { user } = UserAuth();
   const [showDropdown, setShowDropdown] = useState(false);
@@ -32,6 +34,9 @@ function Navbar({
     setShowDropdown(!showDropdown);
   };
 
+  const openSidebar = () => {
+    setShowSidebar(!showSidebar);
+  };
   return (
     <NavbarContainer>
       <LargeText varint="dark" alignment="left" weight="bold">
@@ -55,18 +60,9 @@ function Navbar({
         />
       </DropdownToggle>
       <MobileDropdownToggle>
-        <SidebarButton onClick={openDropDown}>
+        <SidebarButton onClick={openSidebar}>
           <MenuRoundedIcon />
         </SidebarButton>
-        <Drowpdown
-          type="modalDropdown"
-          showDropdown={showDropdown}
-          setShowDropdown={setShowDropdown}
-          showTutoringModal={showTutoringModal}
-          setShowTutoringModal={setShowTutoringModal}
-          showStudentModal={showStudentModal}
-          setShowStudentModal={setShowStudentModal}
-        />
       </MobileDropdownToggle>
     </NavbarContainer>
   );
