@@ -16,6 +16,7 @@ const handleAlignment = (variant) =>
   }[variant]);
 
 const paragraph = styled.p`
+  line-height: 25px;
   color: ${(props) => handleColor(props.variant)};
   text-align: ${(props) => handleAlignment(props.alignment)};
   font-weight: ${(props) =>

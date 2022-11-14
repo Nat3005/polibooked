@@ -8,14 +8,17 @@ import LeftSidebar from '../../components/leftSidebar';
 import RightSidebar from '../../components/rightSidebar';
 import Navbar from '../../components/navbar';
 import Modal from '../../components/modal';
-import { getAnnouncements } from '../../firebase/announcementService';
 import MobileSidebar from '../../components/mobileSidebar';
+import AnnouncementCard from '../../components/announcementCard';
+import { useAnnouncements } from '../../dataManagement';
 
 function Dashboard() {
   const [showTutoringModal, setShowTutoringModal] = useState(false);
   const [showStudentModal, setShowStudentModal] = useState(false);
   const [showSidebar, setShowSidebar] = useState(false);
-  getAnnouncements();
+
+  const [announcements] = useAnnouncements();
+
   return (
     <>
       <Modal
@@ -47,7 +50,11 @@ function Dashboard() {
             showSidebar={showSidebar}
             setShowSidebar={setShowSidebar}
           />
-          <MainContainer />
+          <MainContainer>
+            {announcements?.map((item) => (
+              <AnnouncementCard announcement={item} />
+            ))}
+          </MainContainer>
         </CenterContainer>
         <RightSidebar />
       </DashboardContainer>

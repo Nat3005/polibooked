@@ -4,11 +4,17 @@ import { GridContainer } from '../../components/grid/GridElements';
 export const DashboardContainer = styled(GridContainer)`
   height: 100vh;
   background: var(--white);
+  overflow: hidden;
 `;
 
 export const MainContainer = styled.div`
   height: 90vh;
   background: var(--neutral-purple);
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  row-gap: 1rem;
+  overflow-y: scroll;
 
   @media screen and (max-width: 768px) {
     grid-column: 1/9;

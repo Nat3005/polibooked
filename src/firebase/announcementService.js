@@ -28,4 +28,5 @@ export const getAnnouncements = async () => {
       announcements.push(doc.data());
     });
   });
+  return announcements;
 };

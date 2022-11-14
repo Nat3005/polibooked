@@ -33,12 +33,20 @@ function Drowpdown({
           style={{ cursor: 'pointer', alignSelf: 'flex-end' }}
           onClick={() => setShowDropdown(!showDropdown)}
         />
-        <PrimaryButton onClick={openTutoringModal} variant="purpleAccent">
+        <PrimaryButton
+          size="big"
+          onClick={openTutoringModal}
+          variant="purpleAccent"
+        >
           {' '}
           <SchoolRoundedIcon />
           Zostań korepetytorem{' '}
         </PrimaryButton>
-        <PrimaryButton onClick={openStudentModal} variant="yellowAccent">
+        <PrimaryButton
+          size="big"
+          onClick={openStudentModal}
+          variant="yellowAccent"
+        >
           {' '}
           <EmojiPeopleRoundedIcon />
           Znajdź korepetytora{' '}

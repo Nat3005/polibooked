@@ -1,5 +1,17 @@
 import styled from 'styled-components';
 
+const handleSize = (variant) =>
+  ({
+    big: '1rem 1.5rem',
+    small: '0.375rem 0.5rem',
+  }[variant]);
+
+const handleRadius = (variant) =>
+  ({
+    big: 'var(--outer-radius)',
+    small: 'var(--inner-radius)',
+  }[variant]);
+
 const handleColor = (variant) =>
   ({
     dark: 'var(--primary-dark)',
@@ -35,11 +47,11 @@ const handleHoverFont = (variant) =>
 export const PrimaryButton = styled.button`
   background-color: ${(props) => handleColor(props.variant)};
   color: ${(props) => handleFont(props.variant)};
-  padding: 1rem 1.5rem;
-  border-radius: var(--outer-radius);
+  padding: ${(props) => handleSize(props.size)};
+  border-radius: ${(props) => handleRadius(props.size)};
   border: none;
   cursor: pointer;
-  font-size: var(--basic-tex);
+  font-size: var(--basic-text);
   align-items: center;
   display: flex;
   column-gap: 0.5rem;
@@ -60,7 +72,7 @@ export const SecondaryButton = styled.button`
   border: var(--button-style);
   border-color: ${(props) => handleColor(props.variant)};
   cursor: pointer;
-  font-size: var(--basic-tex);
+  font-size: var(--basic-text);
   align-items: center;
   display: flex;
   column-gap: 0.5rem;
@@ -72,7 +84,7 @@ export const TertiaryButton = styled.button`
   padding: 0.5rem 1rem;
   cursor: pointer;
   border: none;
-  font-size: var(--basic-tex);
+  font-size: var(--basic-text);
   align-items: center;
   display: flex;
   column-gap: 0.5rem;
