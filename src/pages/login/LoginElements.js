@@ -18,6 +18,7 @@ export const LoginImageContainer = styled.div`
   flex-grow: 1 1 0;
   height: 100vh;
   grid-column: 6/13;
+  grid-row: 1/4;
   margin-right: -20px;
 
   @media screen and (max-width: 768px) {
@@ -35,6 +36,7 @@ export const LoginFormContainer = styled.div`
   flex-direction: column;
   height: 70vh;
   grid-column: 2/6;
+  grid-row: 1/4;
   justify-content: center;
   align-items: center;
   row-gap: 2rem;
