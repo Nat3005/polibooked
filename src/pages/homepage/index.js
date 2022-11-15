@@ -4,7 +4,7 @@ import AnnouncementCard from '../../components/announcementCard'
 import { HomepageContainer } from './HomepageElements';
 import FacultyCard from '../../components/facultyCard';
 function Homepage() {
-  // const [announcements] = useAnnouncements();
+  const [announcements] = useAnnouncements();
   const [faculties] = useFaculties();
   return (
     <HomepageContainer>
@@ -13,9 +13,9 @@ function Homepage() {
           <FacultyCard item={item} />
         ))
       }
-                {/* {announcements?.map((item) => (
-              <AnnouncementCard announcement={item} />
-            ))} */}
+                {announcements?.map((item) => (
+              <AnnouncementCard announcement={item} key={item.id} />
+            ))}
     </HomepageContainer>
   )
 }

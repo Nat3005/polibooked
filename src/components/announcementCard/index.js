@@ -23,13 +23,12 @@ function AnnouncementCard({ announcement }) {
   const { user } = UserAuth();
 
   const handlePrice = (price) => {
-    if (price.length === 0) return 'bezpłatne';
+    if (price.length === null) return 'bezpłatne';
     if (price.length === 1) return price[0];
     if (price.length === 2) return price[0].concat(' - ', price[1]);
 
     return '';
   };
-
   return (
     <AnnouncementContainer variant={announcement.type}>
       <HeaderContainer>
@@ -58,8 +57,8 @@ function AnnouncementCard({ announcement }) {
         <AttachMoneyRoundedIcon /> {handlePrice(announcement.price)}
       </PriceContainer>
       <ChipsContainer variant={announcement.type}>
-        {announcement.tags?.map((key, item) => (
-          <SmallText>{'#'.concat(announcement.tags[item])}</SmallText>
+        {announcement.tags?.map((item) => (
+          <SmallText key={item}>{`#${item}`}</SmallText>
         ))}
       </ChipsContainer>
       <ButtonsContainer>
