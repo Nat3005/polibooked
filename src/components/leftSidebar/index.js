@@ -10,6 +10,7 @@ import { UserAuth } from '../../context/UserContext';
 import { Chip } from '../chips/ChipsElements';
 import Menu from '../menu';
 import horizontalLogo from '../../images/logo_horizontal.svg';
+import { MyIcon } from '../../utils/icons';
 
 function LeftSidebar() {
   const { user } = UserAuth();
@@ -23,6 +24,7 @@ function LeftSidebar() {
         variant="dark"
       >
         {user?.displayName}
+        <MyIcon name="Pets" />
       </LeftPanelText>
       <LeftPanelText varint="dark" alignment="left" weight="bold">
         {user?.major}
