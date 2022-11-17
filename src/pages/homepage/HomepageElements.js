@@ -1,10 +1,9 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
-export const GridContainer = styled.div`
+export const HomepageContainer = styled.div`
     display: grid;
-    grid-template-columns: repeat(12,1fr);
+    grid-template-columns: repeat(9,1fr);
     column-gap: 1.25rem;
-    padding: 0rem 0rem 0rem 1.25rem;
     background-color ${(props) => props.background};
 
     @media screen and (max-width: 768px) {
@@ -16,5 +15,4 @@ export const GridContainer = styled.div`
     @media screen and (max-width: 456px) {
         grid-template-columns: repeat(4,1fr);
     }
-
-`;
+`

@@ -1,27 +1,19 @@
-import { React, useState } from 'react';
-import {
-  CenterContainer,
-  DashboardContainer,
-  MainContainer,
-} from './DashboardElements';
+import {React,useState} from 'react'
+import { Outlet } from 'react-router-dom';
 import LeftSidebar from '../../components/leftSidebar';
-import RightSidebar from '../../components/rightSidebar';
 import Navbar from '../../components/navbar';
+import { CenterContainer, DashboardContainer, MainContainer } from './DashboardElements';
+import DashboardRouting from './DashboardRouting';
 import Modal from '../../components/modal';
 import MobileSidebar from '../../components/mobileSidebar';
-import AnnouncementCard from '../../components/announcementCard';
-import { useAnnouncements } from '../../dataManagement';
-
 function Dashboard() {
   const [showTutoringModal, setShowTutoringModal] = useState(false);
   const [showStudentModal, setShowStudentModal] = useState(false);
   const [showSidebar, setShowSidebar] = useState(false);
-
-  const [announcements] = useAnnouncements();
-
+  
   return (
     <>
-      <Modal
+          <Modal
         showModal={showTutoringModal}
         setShowModal={setShowTutoringModal}
         announcementType="tutor"
@@ -39,10 +31,10 @@ function Dashboard() {
         showStudentModal={showStudentModal}
         setShowStudentModal={setShowStudentModal}
       />
-      <DashboardContainer>
-        <LeftSidebar />
-        <CenterContainer>
-          <Navbar
+    <DashboardContainer>
+      <LeftSidebar />
+      <CenterContainer>
+      <Navbar
             showTutoringModal={showTutoringModal}
             setShowTutoringModal={setShowTutoringModal}
             showStudentModal={showStudentModal}
@@ -50,16 +42,13 @@ function Dashboard() {
             showSidebar={showSidebar}
             setShowSidebar={setShowSidebar}
           />
-          <MainContainer>
-            {announcements?.map((item) => (
-              <AnnouncementCard announcement={item} />
-            ))}
-          </MainContainer>
-        </CenterContainer>
-        <RightSidebar />
-      </DashboardContainer>
+        <MainContainer>
+          <DashboardRouting />
+        </MainContainer>
+      </CenterContainer>
+    </DashboardContainer>
     </>
-  );
+  )
 }
 
 export default Dashboard;

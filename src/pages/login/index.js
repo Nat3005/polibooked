@@ -26,7 +26,7 @@ function LoginPage() {
 
   useEffect(() => {
     if (user !== null) {
-      navigate('/dashboard');
+      navigate("/homepage");
     }
   }, [user, navigate]);
 

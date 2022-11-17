@@ -17,6 +17,7 @@ import { Chip } from '../chips/ChipsElements';
 import ProfilePicture from '../profilePicture';
 import horizontalLogo from '../../images/logo_horizontal.svg';
 import { TertiaryButton } from '../buttons/ButtonElements';
+import Menu from '../menu';
 
 function MobileSidebar({
   showSidebar,
@@ -58,14 +59,6 @@ function MobileSidebar({
             {user?.faculty}
           </em>
         </SmallText>
-        <SmallText varint="dark" alignment="center">
-          {user?.description}
-        </SmallText>
-        <ChipsContainer>
-          {user?.tags.map((item) => (
-            <Chip variant="light">{item}</Chip>
-          ))}
-        </ChipsContainer>
         <ButtonsContainer>
           <TertiaryButton onClick={openTutoringModal} variant="purpleAccent">
             {' '}
@@ -78,6 +71,7 @@ function MobileSidebar({
             Znajdź korepetytora{' '}
           </TertiaryButton>
         </ButtonsContainer>
+        <Menu style={{alignSelf: 'flex-start'}}/>
       </SidebarContent>
       <LogoContainer>
         <Logo src={horizontalLogo} />

@@ -11,7 +11,7 @@ function ProtectedRoute({ children }) {
   if (loading) return <ReactSpinner />;
 
   if (!user) {
-    return <Navigate to="/" />;
+    return <Navigate to="/login" />;
   }
   return children;
 }

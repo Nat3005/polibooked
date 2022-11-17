@@ -5,7 +5,7 @@ import ProfilePicture from '../profilePicture';
 export const LeftSidebarContainer = styled.div`
   height: 100vh;
   background: var(--white);
-  grid-column: 1/3;
+  grid-column: 1/4;
   display: flex;
   flex-direction: column;
   align-items: left;
@@ -13,14 +13,7 @@ export const LeftSidebarContainer = styled.div`
   padding-top: 2rem;
 
   @media screen and (max-width: 768px) {
-    grid-column: 1/9;
-    grid-row: 3/4;
-    height: 100vh;
-    width: 100vw;
-    background-color: transparent;
-    display: flex;
-    position: fixed;
-    justify-content: end;
+    display: none;
   }
 `;
 
@@ -39,9 +32,6 @@ export const ChipsContainer = styled.div`
   column-gap: 0.5rem;
   flex-wrap: wrap;
 
-  @media screen and (max-width: 768px) {
-    display: none;
-  }
 `;
 
 export const Logo = styled.img`
@@ -50,13 +40,6 @@ export const Logo = styled.img`
   height: auto;
   margin-left: -20px;
 
-  @media screen and (max-width: 768px) {
-    display: none;
-  }
 `;
 
-export const LeftPanelText = styled(SmallText)`
-  @media screen and (max-width: 768px) {
-    display: none;
-  }
-`;
+

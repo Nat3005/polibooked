@@ -5,6 +5,7 @@ import fullScreenImage from '../../images/homepage_full_screen.svg';
 export const LoginContainer = styled(GridContainer)`
   background-color: var(--neutral-purple);
   height: 100vh;
+  overflow: hidden;
   @media screen and (max-width: 768px) {
     background-image: url(${fullScreenImage});
     background-position: center;

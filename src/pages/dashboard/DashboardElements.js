@@ -10,7 +10,6 @@ export const DashboardContainer = styled(GridContainer)`
 export const MainContainer = styled.div`
   height: 90vh;
   background: var(--neutral-purple);
-  padding: 1rem;
   display: flex;
   flex-direction: column;
   row-gap: 1rem;
@@ -30,7 +29,7 @@ export const MainContainer = styled.div`
 export const CenterContainer = styled.div`
   display: flex;
   flex-direction: column;
-  grid-column: 3/10;
+  grid-column: 4/13;
   border-right: var(--border-style);
   border-left: var(--border-style);
   border-color: var(--primary-light);

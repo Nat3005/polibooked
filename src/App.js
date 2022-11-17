@@ -5,22 +5,14 @@ import Dashboard from './pages/dashboard';
 import LoginPage from './pages/login';
 import { UserContextProvider } from './context/UserContext';
 import ProtectedRoute from './components/protectedRoute';
-
 function App() {
   return (
     <UserContextProvider>
       <BrowserRouter>
-        <Routes>
-          <Route path="/" exact element={<LoginPage />} />
-          <Route
-            path="/dashboard"
-            element={
-              <ProtectedRoute>
-                <Dashboard />
-              </ProtectedRoute>
-            }
-          />
-        </Routes>
+      <Routes>
+        <Route path="login" exact element={<LoginPage />} />
+        <Route path="/*" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
+      </Routes>
       </BrowserRouter>
     </UserContextProvider>
   );
