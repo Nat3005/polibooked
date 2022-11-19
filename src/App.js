@@ -11,7 +11,7 @@ function App() {
     <UserContextProvider>
       <BrowserRouter>
         <Routes>
-          <Route path="login" exact element={<LoginPage />} />
+          <Route path="login" element={<LoginPage />} />
           <Route
             path="/*"
             element={

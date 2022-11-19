@@ -65,6 +65,7 @@ export const BreadcrumbsContainer = styled.div`
   align-items: center;
   padding-bottom: 0.5rem;
   font-size: var(--basic-text);
+  column-gap: 0.5rem;
 `;
 
 export const SubmitButtons = styled.form`

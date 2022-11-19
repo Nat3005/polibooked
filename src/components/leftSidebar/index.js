@@ -22,9 +22,6 @@ function LeftSidebar() {
         {user?.displayName}
       </SmallText>
       <SmallText varint="dark" alignment="left" weight="bold">
-        <MyIcon name="Pets" />
-      </SmallText>
-      <SmallText varint="dark" alignment="left" weight="bold">
         {user?.major}
         {' | '}
         <em style={{ color: 'var(--accent-purple)', fontStyle: 'normal' }}>

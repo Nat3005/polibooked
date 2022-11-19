@@ -6,11 +6,12 @@ import {
   SidebarButton,
   DropdownToggle,
   MobileDropdownToggle,
+  BreadcrumbsContainer,
 } from './NavbarElements';
 import { UserAuth } from '../../context/UserContext';
 import { LargeText } from '../text/TextElements';
 import Drowpdown from '../dropdown';
-
+import BreadcrumbsBar from '../breadcrumbs';
 function Navbar({
   showTutoringModal,
   setShowTutoringModal,
@@ -39,12 +40,15 @@ function Navbar({
   };
   return (
     <NavbarContainer>
+      <BreadcrumbsContainer>
       <LargeText varint="dark" alignment="left" weight="bold">
         Witaj{' '}
         <em style={{ color: 'var(--accent-purple)', fontStyle: 'normal' }}>
           {getName(user?.displayName)}!
         </em>{' '}
       </LargeText>
+      <BreadcrumbsBar />
+      </BreadcrumbsContainer>
       <DropdownToggle>
         <DropDownButton onClick={openDropDown}>
           <MenuRoundedIcon />

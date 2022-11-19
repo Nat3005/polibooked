@@ -17,6 +17,8 @@ import { PrimaryButton, TertiaryButton } from '../buttons/ButtonElements';
 import { UserAuth } from '../../context/UserContext';
 import modalData from './modalData';
 import { addAnnouncement } from '../../firebase/announcementService';
+import BreadcrumbsBar from '../breadcrumbs';
+import { SmallText } from '../text/TextElements';
 
 function Modal({ showModal, setShowModal, announcementType }) {
   const formItem = useRef({});
@@ -74,8 +76,7 @@ function Modal({ showModal, setShowModal, announcementType }) {
           />
         </HeadlineContainer>
         <BreadcrumbsContainer>
-          Publikujesz ogłoszenie w W4 <ChevronRightRoundedIcon />
-          Informatyka Techniczna
+          <SmallText>Publikujesz ogłoszenie w </SmallText> <BreadcrumbsBar variant="disabled"/>
         </BreadcrumbsContainer>
         <TextInput
           variant={announcementType}
