@@ -1,8 +1,8 @@
 import { React, useRef } from 'react';
 import SchoolRoundedIcon from '@mui/icons-material/SchoolRounded';
 import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
-import ChevronRightRoundedIcon from '@mui/icons-material/ChevronRightRounded';
 import EmojiPeopleRoundedIcon from '@mui/icons-material/EmojiPeopleRounded';
+import { matchPath, useLocation } from 'react-router-dom';
 import {
   ModalContainer,
   ModalOverlay,
@@ -22,6 +22,10 @@ import { SmallText } from '../text/TextElements';
 
 function Modal({ showModal, setShowModal, announcementType }) {
   const formItem = useRef({});
+  const { pathname } = useLocation();
+  const { params: urlParams } =
+    matchPath(':dupa/:abbreviation/:major', pathname) ?? {};
+
   if (!showModal) return null;
 
   const placeholderData = modalData[announcementType.includes('tutor') ? 0 : 1];
@@ -47,6 +51,8 @@ function Modal({ showModal, setShowModal, announcementType }) {
         description: formItem.current.description.value,
         price: formItem.current.price,
         tags: separatedTags,
+        abbreviation: urlParams.abbreviation,
+        major: urlParams.major,
       };
 
       addAnnouncement(newPost).then((result) =>
@@ -76,7 +82,8 @@ function Modal({ showModal, setShowModal, announcementType }) {
           />
         </HeadlineContainer>
         <BreadcrumbsContainer>
-          <SmallText>Publikujesz ogłoszenie w </SmallText> <BreadcrumbsBar variant="disabled"/>
+          <SmallText>Publikujesz ogłoszenie w </SmallText>{' '}
+          <BreadcrumbsBar variant="disabled" />
         </BreadcrumbsContainer>
         <TextInput
           variant={announcementType}
