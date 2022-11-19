@@ -1,7 +1,8 @@
-import React from 'react';
+import {React} from 'react';
+import Conversation from '../conversation';
 
 function Chat() {
-  return <div>Chat</div>;
+  return <Conversation />
 }
 
 export default Chat;
