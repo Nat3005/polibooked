@@ -21,14 +21,14 @@ export const useAnnouncements = () => {
 export const useFaculties = () => {
   const [faculties, setFaculties] = useState([]);
 
-  useEffect(()=> {
-    getFaculties().then((documents)=> {
+  useEffect(() => {
+    getFaculties().then((documents) => {
       const documentsList = [];
-      documents.forEach((doc)=> {
-        documentsList.push({id: doc.id, ...doc.data() });
+      documents.forEach((doc) => {
+        documentsList.push({ id: doc.id, ...doc.data() });
       });
       setFaculties(documentsList);
     });
-  },[]);
+  }, []);
   return [faculties];
 };

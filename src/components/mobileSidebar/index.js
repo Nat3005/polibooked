@@ -10,10 +10,8 @@ import {
   LogoContainer,
   CloseContainer,
   SidebarContent,
-  ChipsContainer,
 } from './MobileSidebarElements';
 import { SmallText } from '../text/TextElements';
-import { Chip } from '../chips/ChipsElements';
 import ProfilePicture from '../profilePicture';
 import horizontalLogo from '../../images/logo_horizontal.svg';
 import { TertiaryButton } from '../buttons/ButtonElements';
@@ -71,7 +69,7 @@ function MobileSidebar({
             Znajdź korepetytora{' '}
           </TertiaryButton>
         </ButtonsContainer>
-        <Menu style={{alignSelf: 'flex-start'}}/>
+        <Menu style={{ alignSelf: 'flex-start' }} />
       </SidebarContent>
       <LogoContainer>
         <Logo src={horizontalLogo} />

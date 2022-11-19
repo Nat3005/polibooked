@@ -1,7 +1,11 @@
-import {React,useState} from 'react'
+import { React, useState } from 'react';
 import LeftSidebar from '../../components/leftSidebar';
 import Navbar from '../../components/navbar';
-import { CenterContainer, DashboardContainer, MainContainer } from './DashboardElements';
+import {
+  CenterContainer,
+  DashboardContainer,
+  MainContainer,
+} from './DashboardElements';
 import DashboardRouting from './DashboardRouting';
 import Modal from '../../components/modal';
 import MobileSidebar from '../../components/mobileSidebar';
@@ -13,7 +17,7 @@ function Dashboard() {
 
   return (
     <>
-          <Modal
+      <Modal
         showModal={showTutoringModal}
         setShowModal={setShowTutoringModal}
         announcementType="tutor"
@@ -31,10 +35,10 @@ function Dashboard() {
         showStudentModal={showStudentModal}
         setShowStudentModal={setShowStudentModal}
       />
-    <DashboardContainer>
-      <LeftSidebar />
-      <CenterContainer>
-      <Navbar
+      <DashboardContainer>
+        <LeftSidebar />
+        <CenterContainer>
+          <Navbar
             showTutoringModal={showTutoringModal}
             setShowTutoringModal={setShowTutoringModal}
             showStudentModal={showStudentModal}
@@ -42,13 +46,13 @@ function Dashboard() {
             showSidebar={showSidebar}
             setShowSidebar={setShowSidebar}
           />
-        <MainContainer>
-          <DashboardRouting />
-        </MainContainer>
-      </CenterContainer>
-    </DashboardContainer>
+          <MainContainer>
+            <DashboardRouting />
+          </MainContainer>
+        </CenterContainer>
+      </DashboardContainer>
     </>
-  )
+  );
 }
 
 export default Dashboard;

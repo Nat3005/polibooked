@@ -1,9 +1,7 @@
-import React from 'react'
+import React from 'react';
 
 function Majors() {
-  return (
-    <div>Majors</div>
-  )
+  return <div>Majors</div>;
 }
 
 export default Majors;

@@ -2,7 +2,6 @@ import React from 'react';
 import {
   ChipsContainer,
   LeftSidebarContainer,
-  PanelProfilePicture,
   Logo,
 } from './LeftSidebarElements';
 import { UserAuth } from '../../context/UserContext';
@@ -11,18 +10,15 @@ import Menu from '../menu';
 import horizontalLogo from '../../images/logo_horizontal.svg';
 import { SmallText } from '../text/TextElements';
 import { MyIcon } from '../../utils/icons';
+import ProfilePicture from '../profilePicture';
 
 function LeftSidebar() {
   const { user } = UserAuth();
 
   return (
     <LeftSidebarContainer>
-      <PanelProfilePicture />
-      <SmallText
-        style={{ alignSelf: 'center' }}
-        weight="bold"
-        variant="dark"
-      >
+      <ProfilePicture />
+      <SmallText style={{ alignSelf: 'center' }} weight="bold" variant="dark">
         {user?.displayName}
       </SmallText>
       <SmallText varint="dark" alignment="left" weight="bold">

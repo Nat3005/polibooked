@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const HomepageContainer = styled.div`
     display: grid;
@@ -15,4 +15,4 @@ export const HomepageContainer = styled.div`
     @media screen and (max-width: 456px) {
         grid-template-columns: repeat(4,1fr);
     }
-`
+`;
