@@ -4,7 +4,6 @@ import {
   LeftSidebarContainer,
   PanelProfilePicture,
   Logo,
-  LeftPanelText,
 } from './LeftSidebarElements';
 import { UserAuth } from '../../context/UserContext';
 import { Chip } from '../chips/ChipsElements';
@@ -28,8 +27,8 @@ function LeftSidebar() {
       </SmallText>
       <SmallText varint="dark" alignment="left" weight="bold">
         <MyIcon name="Pets" />
-      </LeftPanelText>
-      <LeftPanelText varint="dark" alignment="left" weight="bold">
+      </SmallText>
+      <SmallText varint="dark" alignment="left" weight="bold">
         {user?.major}
         {' | '}
         <em style={{ color: 'var(--accent-purple)', fontStyle: 'normal' }}>
