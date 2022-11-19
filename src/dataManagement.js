@@ -7,7 +7,13 @@ export const useAnnouncements = () => {
   const [announcements, setAnnouncements] = useState([]);
 
   useEffect(() => {
-    getAnnouncements().then((data) => setAnnouncements(data));
+    getAnnouncements().then((documents) => {
+      const documentsList = [];
+      documents.forEach((doc) => {
+        documentsList.push({ id: doc.id, ...doc.data() });
+      });
+      setAnnouncements(documentsList);
+    });
   }, []);
   return [announcements];
 };
