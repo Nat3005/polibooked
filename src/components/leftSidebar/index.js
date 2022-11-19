@@ -9,7 +9,6 @@ import { Chip } from '../chips/ChipsElements';
 import Menu from '../menu';
 import horizontalLogo from '../../images/logo_horizontal.svg';
 import { SmallText } from '../text/TextElements';
-import { MyIcon } from '../../utils/icons';
 import ProfilePicture from '../profilePicture';
 
 function LeftSidebar() {
