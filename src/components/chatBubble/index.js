@@ -1,13 +1,17 @@
-import React from 'react'
-import { ChatBubbleContainer, MessageContainer, NameContainer } from './ChatBubbleElements';
+import React from 'react';
+import {
+  ChatBubbleContainer,
+  MessageContainer,
+  NameContainer,
+} from './ChatBubbleElements';
 
-function ChatBubble({type}) {
+function ChatBubble({ type, sender, content }) {
   return (
     <ChatBubbleContainer type={type}>
-        <NameContainer type={type} >Natalia</NameContainer>
-        <MessageContainer type={type}>Best believe I am still bejeweled</MessageContainer>
+      <NameContainer type={type}>{sender}</NameContainer>
+      <MessageContainer type={type}>{content}</MessageContainer>
     </ChatBubbleContainer>
-  )
+  );
 }
 
 export default ChatBubble;

@@ -5,4 +5,5 @@ export const AnnouncementsContainer = styled.div`
   flex-direction: column;
   flex-wrap: wrap;
   row-gap: 1rem;
+  padding: 1.25rem;
 `;
