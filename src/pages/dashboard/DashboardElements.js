@@ -4,11 +4,16 @@ import { GridContainer } from '../../components/grid/GridElements';
 export const DashboardContainer = styled(GridContainer)`
   height: 100vh;
   background: var(--white);
+  overflow: hidden;
 `;
 
 export const MainContainer = styled.div`
   height: 90vh;
   background: var(--neutral-purple);
+  display: flex;
+  flex-direction: column;
+  row-gap: 1rem;
+  overflow-y: scroll;
 
   @media screen and (max-width: 768px) {
     grid-column: 1/9;
@@ -24,7 +29,7 @@ export const MainContainer = styled.div`
 export const CenterContainer = styled.div`
   display: flex;
   flex-direction: column;
-  grid-column: 3/10;
+  grid-column: 4/13;
   border-right: var(--border-style);
   border-left: var(--border-style);
   border-color: var(--primary-light);

@@ -26,7 +26,7 @@ function LoginPage() {
 
   useEffect(() => {
     if (user !== null) {
-      navigate('/dashboard');
+      navigate('/homepage');
     }
   }, [user, navigate]);
 
@@ -34,7 +34,7 @@ function LoginPage() {
     <LoginContainer>
       <LoginFormContainer>
         <LogoImage src={logoVertical} />
-        <PrimaryButton variant="yellowAccent" onClick={handleLogIn}>
+        <PrimaryButton size="big" variant="yellowAccent" onClick={handleLogIn}>
           Login with PWR Google account
         </PrimaryButton>
       </LoginFormContainer>

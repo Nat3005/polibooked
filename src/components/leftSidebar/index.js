@@ -2,55 +2,40 @@ import React from 'react';
 import {
   ChipsContainer,
   LeftSidebarContainer,
-  ProfilePictureContainer,
-  ProfilePicutre,
   Logo,
-  LeftPanelText,
 } from './LeftSidebarElements';
 import { UserAuth } from '../../context/UserContext';
 import { Chip } from '../chips/ChipsElements';
 import Menu from '../menu';
 import horizontalLogo from '../../images/logo_horizontal.svg';
+import { SmallText } from '../text/TextElements';
+import { MyIcon } from '../../utils/icons';
+import ProfilePicture from '../profilePicture';
 
 function LeftSidebar() {
   const { user } = UserAuth();
 
   return (
     <LeftSidebarContainer>
-      <ProfilePictureContainer>
-        <ProfilePicutre src={user?.photoURL} />
-      </ProfilePictureContainer>
-      <LeftPanelText
-        style={{ alignSelf: 'center' }}
-        weight="bold"
-        variant="dark"
-      >
+      <ProfilePicture />
+      <SmallText style={{ alignSelf: 'center' }} weight="bold" variant="dark">
         {user?.displayName}
-      </LeftPanelText>
-      <LeftPanelText varint="dark" alignment="left" weight="bold">
+      </SmallText>
+      <SmallText varint="dark" alignment="left" weight="bold">
+        <MyIcon name="Pets" />
+      </SmallText>
+      <SmallText varint="dark" alignment="left" weight="bold">
         {user?.major}
         {' | '}
         <em style={{ color: 'var(--accent-purple)', fontStyle: 'normal' }}>
           {user?.faculty}
         </em>
-      </LeftPanelText>
-      <LeftPanelText varint="dark">
-        <em
-          style={{
-            color: 'var(--dark)',
-            fontStyle: 'normal',
-            fontWeight: 'var(--bold)',
-          }}
-        >
-          Cost:{' '}
-        </em>
-        {user?.cost}
-      </LeftPanelText>
-      <LeftPanelText varint="dark" alignment="justify">
+      </SmallText>
+      <SmallText varint="dark" alignment="justify">
         {user?.description}
-      </LeftPanelText>
+      </SmallText>
       <ChipsContainer>
-        {user?.tags.map((item) => (
+        {user?.tags?.map((item) => (
           <Chip variant="light">{item}</Chip>
         ))}
       </ChipsContainer>

@@ -22,10 +22,6 @@ export const getAnnouncements = async () => {
     collection(firestore, 'announcements'),
     orderBy('date')
   );
-  const announcements = [];
-  getDocs(announcementsRef).then((snapshot) => {
-    snapshot.forEach((doc) => {
-      announcements.push(doc.data());
-    });
-  });
+
+  return getDocs(announcementsRef);
 };

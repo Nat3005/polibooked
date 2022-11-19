@@ -124,11 +124,11 @@ function Modal({ showModal, setShowModal, announcementType }) {
             Anuluj
           </TertiaryButton>
           {announcementType.includes('tutor') ? (
-            <PrimaryButton variant="purpleAccent">
+            <PrimaryButton size="big" variant="purpleAccent">
               Dodaj ogłoszenie
             </PrimaryButton>
           ) : (
-            <PrimaryButton variant="yellowAccent">
+            <PrimaryButton size="big" variant="yellowAccent">
               Dodaj ogłoszenie
             </PrimaryButton>
           )}

@@ -47,3 +47,19 @@ export const SidebarButton = styled(IconButton)`
     display: inline-block;
   }
 `;
+
+export const DropdownToggle = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  @media screen and (max-width: 768px) {
+    display: none;
+  }
+`;
+
+export const MobileDropdownToggle = styled(DropdownToggle)`
+  display: none;
+  @media screen and (max-width: 768px) {
+    display: flex;
+  }
+`;

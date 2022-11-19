@@ -11,9 +11,9 @@ function App() {
     <UserContextProvider>
       <BrowserRouter>
         <Routes>
-          <Route path="/" exact element={<LoginPage />} />
+          <Route path="login" exact element={<LoginPage />} />
           <Route
-            path="/dashboard"
+            path="/*"
             element={
               <ProtectedRoute>
                 <Dashboard />

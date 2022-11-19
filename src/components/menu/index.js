@@ -4,6 +4,7 @@ import MailOutlineRoundedIcon from '@mui/icons-material/MailOutlineRounded';
 import CalendarMonthRoundedIcon from '@mui/icons-material/CalendarMonthRounded';
 import FavoriteBorderRoundedIcon from '@mui/icons-material/FavoriteBorderRounded';
 import LogoutRoundedIcon from '@mui/icons-material/LogoutRounded';
+import ApartmentRoundedIcon from '@mui/icons-material/ApartmentRounded';
 import { IconButton, MenuContainer } from './MenuElements';
 import { UserAuth } from '../../context/UserContext';
 
@@ -19,16 +20,19 @@ function Menu() {
   };
   return (
     <MenuContainer>
-      <IconButton>
+      <IconButton to="/homepage">
+        <ApartmentRoundedIcon /> strona główna
+      </IconButton>
+      <IconButton to="/profile">
         <PersonOutlineRoundedIcon /> profil
       </IconButton>
-      <IconButton>
+      <IconButton to="/chat">
         <MailOutlineRoundedIcon /> chat
       </IconButton>
-      <IconButton>
+      <IconButton to="/calendar">
         <CalendarMonthRoundedIcon /> kalendarz
       </IconButton>
-      <IconButton>
+      <IconButton to="/favourites">
         <FavoriteBorderRoundedIcon /> ulubione
       </IconButton>
       <IconButton onClick={handleLogOut}>

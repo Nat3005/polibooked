@@ -1,0 +1,237 @@
+{
+    "W1":{
+       "name":"Wydział Architektury",
+       "abbreviation:": "W1",
+       "order": 1,
+       "majors_first_grade":[
+          "Architektura",
+          "Gospodarka Przestrzenna"
+       ],
+       "majors_second_grade":[
+          "Architektura",
+          "Gospodarka Przestrzenna",
+          "Architektura w języku angielskim"
+       ]
+    },
+    "W2":{
+       "name":"Wydział Budownictwa Lądowego i Wodnego",
+       "abbreviation:": "W2",
+       "order": 2,
+       "majors_first_grade":[
+          "Budownictwo"
+       ],
+       "majors_second_grade":[
+          "Budownictwo",
+          "Budownictwo w języku angielskim"
+       ]
+    },
+    "W3":{
+       "name":"Wydział Chemiczny",
+       "abbreviation:": "W3",
+       "order": 3,
+       "majors_first_grade":[
+          "Biotechnologia",
+          "Chemia i analityka przemysłowa",
+          "Chemia i inżynieria materiałów",
+          "Inżynieria chemiczna i procesowa",
+          "Technologia chemiczna"
+       ],
+       "majors_second_grade":[
+          "Biotechnologia",
+          "Biotechnologia w języku angielskim",
+          "Chemia",
+          "Chemia w języku angielskim",
+          "Chemia i inżynieria materiałów",
+          "Chemia i inżynieria materiałów w języku angielskim",
+          "Inżynieria chemiczna i procesowa",
+          "Inżynieria chemiczna i procesowa w języku angielskim",
+          "Technologia chemiczna",
+          "Technologia chemiczna w języku angielskim"
+       ]
+    },
+    "W4":{
+       "name":"Wydział Informatyki i telekomunikacji",
+       "abbreviation:": "W4",
+       "order": 4,
+       "majors_first_grade":[
+          "Cyberbezpieczeństwo",
+          "Informatyczne systemy automatyki",
+          "Informatyka algorytmiczna",
+          "Informatyka stosowana",
+          "Informatyka stosowana w j. angielskim",
+          "Informatyka techniczna",
+          "Inżynieria systemów",
+          "Teleinformatyka",
+          "Telekomunikacja"
+       ],
+       "majors_second_grade":[
+          "Cyberbezpieczeństwo",
+          "Informatyczne systemy automatyki",
+          "Informatyka algorytmiczna",
+          "Informatyka stosowana",
+          "Informatyka stosowana w j. angielskim",
+          "Informatyka techniczna",
+          "Inżynieria systemów",
+          "Teleinformatyka",
+          "Telekomunikacja",
+          "Sztuczna inteligencja",
+          "Zaufane systemy sztucznej Inteligencji"
+       ]
+    },
+    "W5":{
+       "name":"Wydział Elektryczny",
+       "abbreviation:": "W5",
+       "order": 5,
+       "majors_first_grade":[
+          "Automatyka przemysłowa",
+          "Elektromechatronika",
+          "Elektromobilność",
+          "Elektrotechnika"
+       ],
+       "majors_second_grade":[
+          "Automatyka przemysłowa",
+          "Elektrotechnika"
+       ]
+    },
+    "W6":{
+       "name":"Wydział Geoinżynierii, Górnictwa i Geologii",
+       "abbreviation:": "W6",
+       "order": 6,
+       "majors_first_grade":[
+          "Geodezja i kartografia",
+          "Geoenergetyka",
+          "Geoinformatyka",
+          "Górnictwo i geologia",
+          "Inżynieria surowców mineralnych"
+       ],
+       "majors_second_grade":[
+          "Geodezja i kartografia",
+          "Geodezja i kartografia w języku angielskim",
+          "Górnictwo i geologia w języku angielskim",
+          "Górnictwo i geologia",
+          "Bezpieczeństwo i higiena pracy"
+       ]
+    },
+    "W7":{
+       "name":"Wydział Inżynierii Środowiska",
+       "abbreviation:": "W7",
+       "order": 7,
+       "majors_first_grade":[
+          "Gospodarka o obiegu zamkniętym i ochrona klimatu",
+          "Inżynieria środowiska"
+       ],
+       "majors_second_grade":[
+          "Gospodarka o obiegu zamkniętym i ochrona klimatu",
+          "Inżynieria środowiska",
+          "Inżynieria środowiska w języku angielskim"
+       ]
+    },
+    "W8":{
+       "name":"Wydział Zarządzania",
+       "abbreviation:": "W8",
+       "order": 8,
+       "majors_first_grade":[
+          "Inżynieria zarządzania",
+          "Zarządzanie",
+          "Zarządzanie w języku angielskim"
+       ],
+       "majors_second_grade":[
+          "Inżynieria zarządzania",
+          "Zarządzanie",
+          "Inżynieria zarządzania w języku angielskim"
+       ]
+    },
+    "W9":{
+       "name":"Wydział Mechaniczno-Energetyczny",
+       "abbreviation:": "W9",
+       "order": 9,
+       "majors_first_grade":[
+          "Energetyka",
+          "Lotnictwo i kosmonautyka",
+          "Mechanika i budowa maszyn energetycznych",
+          "Odnawialne źródła energii"
+       ],
+       "majors_second_grade":[
+          "Energetyka",
+          "Energetyka w języku angielskim",
+          "Mechanika i budowa maszyn energetycznych",
+          "Mechanika i budowa maszyn  energetycznych w języku angielskim"
+       ]
+    },
+    "W10":{
+       "name":"Wydział Mechaniczny",
+       "abbreviation:": "W10",
+       "order": 10,
+       "majors_first_grade":[
+          "Biomechanika inżynierska",
+          "Mechanika i budowa maszyn",
+          "Mechanika i budowa maszyn w języku angielskim",
+          "Mechatronika",
+          "Robotyka i automatyzacja procesów",
+          "Transport",
+          "Zarządzanie i inżynieria produkcji"
+       ],
+       "majors_second_grade":[
+          "Biomechanika inżynierska",
+          "Mechanika i budowa maszyn",
+          "Mechanika i budowa maszyn w języku angielskim",
+          "Mechatronika",
+          "Robotyka i automatyzacja procesów",
+          "Transport",
+          "Zarządzanie i inżynieria produkcji",
+          "Zarządzanie i inżynieria produkcji w języku angielskim"
+       ]
+    },
+    "W11":{
+       "name":"Wydział Podstawowych Problemów Techniki",
+       "abbreviation:": "W1",
+       "order": 11,
+       "majors_first_grade":[
+          "Fizyka techniczna",
+          "Inżynieria biomedyczna",
+          "Inżynieria biomedyczna w j. angielskim",
+          "Inżynieria kwantowa",
+          "Optyka"
+       ],
+       "majors_second_grade":[
+          "Fizyka techniczna",
+          "Inżynieria biomedyczna",
+          "Big Data Analytics",
+          "Inżynieria kwantowa",
+          "Optyka"
+       ]
+    },
+    "W12":{
+       "name":"Wydział Elektroniki, Fotoniki i Mikrosystemów",
+       "abbreviation:": "W12",
+       "order": 12,
+       "majors_first_grade":[
+          "Automatyka i robotyka",
+          "Electronic and Computer Engineering",
+          "Elektronika",
+          "Elektronika i telekomunikacja",
+          "Inteligentna elektronika",
+          "Inżynieria mikrosystemów mechatronicznych"
+       ],
+       "majors_second_grade":[
+          "Automatyka i robotyka",
+          "Automatyka i robotyka w języku angielskim",
+          "Elektronika",
+          "Elektronika i telekomunikacja",
+          "Elektronika w języku angielskim",
+          "Inżynieria mikrosystemów mechatronicznych"
+       ]
+    },
+    "W13":{
+       "name":"Wydział Matematyki",
+       "abbreviation:": "W13",
+       "order": 13,
+       "majors_first_grade":[
+          "Matematyka",
+          "Matematyka stosowana"
+       ],
+       "majors_second_grade":[
+          "Applied Mathematics"
+       ]
+    }
+ }

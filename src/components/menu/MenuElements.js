@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { NavLink as Link } from 'react-router-dom';
 
 export const MenuContainer = styled.div`
   display: flex;
@@ -8,15 +9,12 @@ export const MenuContainer = styled.div`
   align-items: flex-start;
 
   @media screen and (max-width: 768px) {
-    flex-direction: row;
-    justify-content: space-around;
-    background-color: white;
-    height: 7vh;
     align-items: center;
   }
 `;
 
-export const IconButton = styled.button`
+export const IconButton = styled(Link)`
+  text-decoration: none;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -31,9 +29,5 @@ export const IconButton = styled.button`
   :hover {
     color: var(--accent-purple);
     transition: all 0.2s ease-in-out;
-  }
-
-  @media screen and (max-width: 768px) {
-    flex-direction: column;
   }
 `;

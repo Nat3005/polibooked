@@ -24,7 +24,7 @@ firebase_admin.initialize_app(cred)
 
 db = firestore.client()
 
-with open(data_file) as f:
+with open(data_file, encoding='utf-8') as f:
     data = json.load(f)
     if type(data) == list:
         for it in data:
