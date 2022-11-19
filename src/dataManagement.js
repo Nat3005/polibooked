@@ -3,18 +3,18 @@ import { useState, useEffect } from 'react';
 import { getAnnouncements } from './firebase/announcementService';
 import { getFaculties } from './firebase/facultiesService';
 
-export const useAnnouncements = () => {
+export const useAnnouncements = (abbreviation = null, major = null) => {
   const [announcements, setAnnouncements] = useState([]);
 
   useEffect(() => {
-    getAnnouncements().then((documents) => {
+    getAnnouncements(abbreviation, major).then((documents) => {
       const documentsList = [];
       documents.forEach((doc) => {
         documentsList.push({ id: doc.id, ...doc.data() });
       });
       setAnnouncements(documentsList);
     });
-  }, []);
+  }, [abbreviation, major]);
   return [announcements];
 };
 
