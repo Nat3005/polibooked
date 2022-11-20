@@ -5,8 +5,7 @@ import {
   NameContainer,
 } from './ChatBubbleElements';
 
-function ChatBubble({ key, type, sender, content }) {
-  console.log("chat");
+function ChatBubble({ type, sender, content }) {
   return (
     <ChatBubbleContainer type={type}>
       <NameContainer type={type}>{sender}</NameContainer>

@@ -1,11 +1,10 @@
 import { useState, useEffect } from 'react';
-import { collection, orderBy, query, onSnapshot, addDoc, serverTimestamp } from 'firebase/firestore';
+import { collection, orderBy, query, onSnapshot } from 'firebase/firestore';
 import { getAnnouncements } from './firebase/announcementService';
 import { getFaculties } from './firebase/facultiesService';
 import { getUser } from './firebase/userService';
 
 import { firestore } from './firebase/init';
-
 
 export const useAnnouncements = (abbreviation = null, major = null) => {
   const [announcements, setAnnouncements] = useState([]);
@@ -43,11 +42,11 @@ export const useFaculties = () => {
 };
 
 export const useMessages = () => {
-  const [messages, setMessages] =  useState([]);
+  const [messages, setMessages] = useState([]);
 
   useEffect(() => {
     const q = query(collection(firestore, 'messages'), orderBy('timestamp'));
-    const getMessages = onSnapshot(q, (querySnapshot) => {
+    onSnapshot(q, (querySnapshot) => {
       const chatMessages = [];
       querySnapshot.forEach((doc) => {
         chatMessages.push({ ...doc.data(), id: doc.id });
@@ -55,5 +54,5 @@ export const useMessages = () => {
       setMessages(chatMessages);
     });
   }, []);
-  return [messages]
-}
+  return [messages];
+};
