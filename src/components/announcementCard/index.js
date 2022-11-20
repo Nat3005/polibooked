@@ -22,7 +22,7 @@ import { UserAuth } from '../../context/UserContext';
 function AnnouncementCard({ announcement }) {
   const { user } = UserAuth();
 
-  console.log({announcement})
+  console.log({ announcement }); // eslint-disable-line no-console
   const handlePrice = (price) => {
     if (price.length === null) return 'bezpłatne';
     if (price.length === 1) return price[0];

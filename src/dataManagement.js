@@ -15,12 +15,13 @@ export const useAnnouncements = (abbreviation = null, major = null) => {
         getUser(document.userRef).then((u) => {
           document.user = u.data();
         });
+        console.warn({ document }); // eslint-disable-line no-console
         documentsList.push(document);
       });
       setAnnouncements(documentsList);
-      console.log({announcements})
     });
   }, [abbreviation, major]);
+  console.log({ announcements }); // eslint-disable-line no-console
   return [announcements];
 };
 
