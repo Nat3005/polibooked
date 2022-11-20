@@ -8,7 +8,7 @@ import Announcements from '../announcements';
 import Chat from '../chat';
 import Favourites from '../favourites';
 
-function DashboardRouting() {
+function DashboardRouting({ openEditModal }) {
   return (
     <Routes>
       <Route path="homepage" element={<Homepage />} />
@@ -19,7 +19,7 @@ function DashboardRouting() {
       <Route path="/homepage/:abbreviation" element={<Majors />} />
       <Route
         path="/homepage/:abbreviation/:major"
-        element={<Announcements />}
+        element={<Announcements openEditModal={openEditModal} />}
       />
       <Route exact path="/" element={<Navigate to="homepage" />} />
       {/* <Route path = "*" element={no page found} /> */}

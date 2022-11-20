@@ -14,13 +14,15 @@ import {
 import TextInput from '../textInput';
 import RadioInput from '../radioInput';
 import { PrimaryButton, TertiaryButton } from '../buttons/ButtonElements';
-import { UserAuth } from '../../context/UserContext';
 import modalData from './modalData';
-import { addAnnouncement } from '../../firebase/announcementService';
+import {
+  addAnnouncement,
+  editAnnouncement,
+} from '../../firebase/announcementService';
 import BreadcrumbsBar from '../breadcrumbs';
 import { SmallText } from '../text/TextElements';
 
-function Modal({ showModal, setShowModal, announcementType }) {
+function Modal({ showModal, setShowModal, announcementType, announcement }) {
   const formItem = useRef({});
   const { pathname } = useLocation();
   const { params: urlParams } =
@@ -28,9 +30,7 @@ function Modal({ showModal, setShowModal, announcementType }) {
 
   if (!showModal) return null;
 
-  const placeholderData = modalData[announcementType.includes('tutor') ? 0 : 1];
-
-  const { user } = UserAuth();
+  const placeholderData = modalData[announcementType];
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -45,19 +45,25 @@ function Modal({ showModal, setShowModal, announcementType }) {
         .map((s) => s.trim());
 
       const newPost = {
-        uid: user.uid,
-        type: announcementType,
+        type: announcementType.includes('tutor') ? 'tutor' : 'student',
         title: formItem.current.title.value,
         description: formItem.current.description.value,
         price: formItem.current.price,
         tags: separatedTags,
         abbreviation: urlParams.abbreviation,
         major: urlParams.major,
+        ...(!!announcement && { id: announcement.id }),
       };
 
-      addAnnouncement(newPost).then((result) =>
-        console.warn(`I should be a toast: ${result}`)
-      );
+      if (announcementType.includes('Edit')) {
+        editAnnouncement(newPost).then((result) =>
+          console.warn(`I should be a tołst: ${result}`)
+        );
+      } else {
+        addAnnouncement(newPost).then((result) =>
+          console.warn(`I should be a toast: ${result}`)
+        );
+      }
       formItem.current.title.value = '';
       formItem.current.description.value = '';
       formItem.current.tags.value = '';
@@ -93,6 +99,7 @@ function Modal({ showModal, setShowModal, announcementType }) {
           label="Tytuł Ogłoszenia*"
           type="text"
           name="title"
+          value={announcement.title}
           placeholder={placeholderData.titlePlaceholder}
         />
         <TextInput
@@ -104,6 +111,7 @@ function Modal({ showModal, setShowModal, announcementType }) {
           type="textarea"
           name="description"
           wrap="soft"
+          value={announcement.description}
           placeholder={placeholderData.descriptionPlaceholder}
         />
         <RadioInput
@@ -122,6 +130,7 @@ function Modal({ showModal, setShowModal, announcementType }) {
           label="Tagi*"
           type="text"
           name="tags"
+          value={announcement.tags}
           placeholder={placeholderData.tagsPlaceholder}
         />
         <SubmitButtons onSubmit={handleSubmit}>

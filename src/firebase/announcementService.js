@@ -7,6 +7,7 @@ import {
   getDocs,
   where,
   doc,
+  updateDoc,
 } from 'firebase/firestore';
 import { firestore, auth } from './init';
 
@@ -17,6 +18,17 @@ export const addAnnouncement = async (announcement) => {
     ...announcement,
     userRef: doc(firestore, 'users', auth.currentUser.uid),
     date: serverTimestamp(),
+  });
+};
+
+export const editAnnouncement = async (announcement) => {
+  if (announcement === null) return null;
+
+  const announcementRef = doc(firestore, 'announcements', announcement.id);
+
+  return updateDoc(announcementRef, {
+    date: serverTimestamp(),
+    ...announcement,
   });
 };
 
