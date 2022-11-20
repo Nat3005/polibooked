@@ -1,6 +1,5 @@
 import React from 'react';
 import Breadcrumbs from '@mui/material/Breadcrumbs';
-import ApartmentRoundedIcon from '@mui/icons-material/ApartmentRounded';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { SmallText } from '../text/TextElements';
 import { BreadcrumbLink, ChevronRight } from './breadcrumbsElements';
@@ -10,7 +9,7 @@ function BreadcrumbsBar({ variant }) {
   const navigate = useNavigate();
   const pathnames = decodeURI(location.pathname)
     .split('/')
-    .filter((x) => x)
+    .filter((x) => x);
 
   if (variant === 'disabled') {
     return (

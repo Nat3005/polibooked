@@ -17,7 +17,7 @@ export const MessagesContainer = styled.div`
   flex-direction: column;
   padding: 1.25rem;
   row-gap: 0.5rem;
-`
+`;
 
 export const SendMessageContainer = styled.form`
   height: 10vh;
@@ -30,12 +30,11 @@ export const SendMessageContainer = styled.form`
   justify-content: space-between;
   align-items: center;
   column-gap: 1rem;
-
-`
+`;
 
 export const MessageInput = styled.textarea`
   width: 100%;
-  padding: 0.5rem ;
+  padding: 0.5rem;
   border: none;
   height: 5vh;
   &:focus {
@@ -45,4 +44,4 @@ export const MessageInput = styled.textarea`
   ::placeholder {
     color: var(--greyish-yellow);
   }
-`
+`;

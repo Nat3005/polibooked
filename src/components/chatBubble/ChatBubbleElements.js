@@ -23,7 +23,7 @@ export const ChatBubbleContainer = styled.div`
   flex-direction: column;
   align-items: ${(props) => handleAlignment(props.type)};
   align-self: ${(props) => handleAlignment(props.type)};
-  
+
   row-gap: 0.25rem;
   width: 45%;
 `;

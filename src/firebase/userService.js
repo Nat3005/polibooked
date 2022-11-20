@@ -34,3 +34,5 @@ export const initUser = async (user) => {
   }
   return document.data();
 };
+
+export const getUser = (userRef) => getDoc(userRef);

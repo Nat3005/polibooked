@@ -9,7 +9,7 @@ import Chat from '../chat';
 import Favourites from '../favourites';
 import Conversation from '../conversation';
 
-function DashboardRouting() {
+function DashboardRouting({ openEditModal }) {
   return (
     <Routes>
       <Route path="home" element={<Homepage />} />
@@ -20,7 +20,7 @@ function DashboardRouting() {
       <Route path="/home/:abbreviation" element={<Majors />} />
       <Route
         path="/home/:abbreviation/:major"
-        element={<Announcements />}
+        element={<Announcements openEditModal={openEditModal} />}
       />
       <Route path="/chat/conversation" element={<Conversation />} />
       <Route exact path="/" element={<Navigate to="home" />} />

@@ -1,9 +1,9 @@
 // export const useMessages = () => {
 //     const [messages, setMessages] =  useState([]);
 
-import { onSnapshot,query,collection,orderBy } from "firebase/firestore";
-import {firestore} from './init';
-  
+import { onSnapshot, query, collection, orderBy } from 'firebase/firestore';
+import { firestore } from './init';
+
 //     useEffect(() => {
 //       const q = query(collection(firestore, 'messages'), orderBy('timestamp'));
 //       const getMessages = onSnapshot(q, (querySnapshot) => {
@@ -18,6 +18,9 @@ import {firestore} from './init';
 //   }
 
 export const getMessages = async () => {
-    const messageRef = query(collection(firestore, 'messages'), orderBy('timestamp'));
-    return onSnapshot(messageRef);
-}
+  const messageRef = query(
+    collection(firestore, 'messages'),
+    orderBy('timestamp')
+  );
+  return onSnapshot(messageRef);
+};

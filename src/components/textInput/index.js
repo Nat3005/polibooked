@@ -14,6 +14,7 @@ function TextInput({
   refs,
   onChange,
   variant,
+  value,
 }) {
   if (type === 'textarea') {
     return (
@@ -25,6 +26,7 @@ function TextInput({
           name={name}
           placeholder={placeholder}
           variant={variant}
+          defaultValue={value}
         />
       </InputContainer>
     );
@@ -40,6 +42,7 @@ function TextInput({
         onChange={onChange}
         placeholder={placeholder}
         variant={variant}
+        defaultValue={value}
       />
     </InputContainer>
   );
