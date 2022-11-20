@@ -22,7 +22,6 @@ import { UserAuth } from '../../context/UserContext';
 function AnnouncementCard({ announcement }) {
   const { user } = UserAuth();
 
-  console.log({ announcement }); // eslint-disable-line no-console
   const handlePrice = (price) => {
     if (price.length === null) return 'bezpłatne';
     if (price.length === 1) return price[0];
@@ -39,10 +38,10 @@ function AnnouncementCard({ announcement }) {
           </PictureContainer>
           <UserDataContainer>
             <MediumText weight="bold" variant="dark">
-              {announcement.user.displayName}
+              {announcement.user?.displayName}
             </MediumText>
             <SmallText>
-              {/* {`${announcement.user.faculty} | ${announcement.user.major}`} */}
+              {`${announcement.user.faculty} | ${announcement.user.major}`}
             </SmallText>
           </UserDataContainer>
         </ProfileContainer>
