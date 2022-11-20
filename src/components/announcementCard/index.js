@@ -22,6 +22,7 @@ import { UserAuth } from '../../context/UserContext';
 function AnnouncementCard({ announcement }) {
   const { user } = UserAuth();
 
+  console.log({announcement})
   const handlePrice = (price) => {
     if (price.length === null) return 'bezpłatne';
     if (price.length === 1) return price[0];
@@ -41,7 +42,7 @@ function AnnouncementCard({ announcement }) {
               {announcement.user.displayName}
             </MediumText>
             <SmallText>
-              {`${announcement.user.faculty} | ${announcement.user.major}`}
+              {/* {`${announcement.user.faculty} | ${announcement.user.major}`} */}
             </SmallText>
           </UserDataContainer>
         </ProfileContainer>

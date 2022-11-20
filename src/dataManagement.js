@@ -18,6 +18,7 @@ export const useAnnouncements = (abbreviation = null, major = null) => {
         documentsList.push(document);
       });
       setAnnouncements(documentsList);
+      console.log({announcements})
     });
   }, [abbreviation, major]);
   return [announcements];
