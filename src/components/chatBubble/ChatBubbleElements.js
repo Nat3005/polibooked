@@ -23,6 +23,7 @@ export const ChatBubbleContainer = styled.div`
   flex-direction: column;
   align-items: ${(props) => handleAlignment(props.type)};
   align-self: ${(props) => handleAlignment(props.type)};
+  
   row-gap: 0.25rem;
   width: 45%;
 `;
@@ -34,6 +35,7 @@ export const NameContainer = styled.p`
 export const MessageContainer = styled.p`
   background-color: var(--white);
   padding: 0.75rem;
+  font-size: var(--basic-text);
   border-left: ${(props) => handleLeftBorder(props.type)};
   border-right: ${(props) => handleRightBoder(props.type)};
   line-height: 1.5rem;
