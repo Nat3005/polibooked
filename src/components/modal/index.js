@@ -67,6 +67,7 @@ function Modal({ showModal, setShowModal, announcementType, announcement }) {
       formItem.current.title.value = '';
       formItem.current.description.value = '';
       formItem.current.tags.value = '';
+      setShowModal(false);
     }
   };
 
@@ -99,7 +100,7 @@ function Modal({ showModal, setShowModal, announcementType, announcement }) {
           label="Tytuł Ogłoszenia*"
           type="text"
           name="title"
-          value={announcement.title}
+          value={announcement?.title}
           placeholder={placeholderData.titlePlaceholder}
         />
         <TextInput
@@ -111,7 +112,7 @@ function Modal({ showModal, setShowModal, announcementType, announcement }) {
           type="textarea"
           name="description"
           wrap="soft"
-          value={announcement.description}
+          value={announcement?.description}
           placeholder={placeholderData.descriptionPlaceholder}
         />
         <RadioInput
@@ -130,7 +131,7 @@ function Modal({ showModal, setShowModal, announcementType, announcement }) {
           label="Tagi*"
           type="text"
           name="tags"
-          value={announcement.tags}
+          value={announcement?.tags}
           placeholder={placeholderData.tagsPlaceholder}
         />
         <SubmitButtons onSubmit={handleSubmit}>
