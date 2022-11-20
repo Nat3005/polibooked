@@ -6,14 +6,16 @@ import {
   query,
   getDocs,
   where,
+  doc,
 } from 'firebase/firestore';
-import { firestore } from './init';
+import { firestore, auth } from './init';
 
 export const addAnnouncement = async (announcement) => {
   if (announcement === null) return null;
 
   return addDoc(collection(firestore, 'announcements'), {
     ...announcement,
+    userRef: doc(firestore, 'users', auth.currentUser.uid),
     date: serverTimestamp(),
   });
 };

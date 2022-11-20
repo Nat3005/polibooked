@@ -25,7 +25,7 @@ function AnnouncementCard({ announcement }) {
   const handlePrice = (price) => {
     if (price.length === null) return 'bezpłatne';
     if (price.length === 1) return price[0];
-    if (price.length === 2) return price[0].concat(' - ', price[1]);
+    if (price.length === 2) return `${price[0]} - ${price[1]}`;
 
     return '';
   };
@@ -38,10 +38,10 @@ function AnnouncementCard({ announcement }) {
           </PictureContainer>
           <UserDataContainer>
             <MediumText weight="bold" variant="dark">
-              Natalia Rusin
+              {announcement.user.displayName}
             </MediumText>
             <SmallText>
-              Informatyka Techniczna | Wydział Informatyki i Telekomunikacji
+              {`${announcement.user.faculty} | ${announcement.user.major}`}
             </SmallText>
           </UserDataContainer>
         </ProfileContainer>
