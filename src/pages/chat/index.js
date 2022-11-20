@@ -1,48 +1,71 @@
-// import { Tabs, Tab, TabPanel } from '@mui/material';
-import { React } from 'react';
-// import { useNavigate } from 'react-router-dom';
-// import HourglassEmptyRoundedIcon from '@mui/icons-material/HourglassEmptyRounded';
-// import PeopleAltRoundedIcon from '@mui/icons-material/PeopleAltRounded';
-// import PersonSearchRoundedIcon from '@mui/icons-material/PersonSearchRounded';
-import { ChatContainer } from './ChatElements';
-// import UserChatCard from '../../components/userChatCard';
-
+import { Tabs, Tab } from '@mui/material';
+import { React, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import HourglassEmptyRoundedIcon from '@mui/icons-material/HourglassEmptyRounded';
+import PeopleAltRoundedIcon from '@mui/icons-material/PeopleAltRounded';
+import PersonSearchRoundedIcon from '@mui/icons-material/PersonSearchRounded';
+import { ChatContainer,ChatTabs } from './ChatElements';
+import UserChatCard from '../../components/userChatCard';
+import TabPanel from './tabPanel';
+import {firestore} from '../../firebase/init';
+import { collection,getDocs,query,where} from 'firebase/firestore';
 function Chat() {
-  // const [value, setValue] = useState(0);
+  const [value, setValue] = useState(0);
+  
+  const [username, setUsername] =  useState("")
+  const [user,setUser] = useState(null)
+  const [error, setError] = useState(false)
 
-  // const handleChange = (event, newValue) => {
-  //   setValue(newValue);
-  // };
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
+
+  const handleSearch = async() => {
+    console.log("here");
+    const q = query(collection(firestore, 'users'),where("displayName", "==",username ))
+
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach((doc)=> {
+      console.log(doc);
+      setUser(doc.data());
+    })
+  }
+
+  const handleKey = (e) => {
+    e.code ==='Enter' && handleSearch ();
+  }
+
+
   return (
     <ChatContainer>
-      {/* <ChatTabs>
+      <ChatTabs>
         <Tabs value={value} onChange={handleChange}>
           <Tab
             icon={<HourglassEmptyRoundedIcon />}
             label="Ostatnie rozmowy"
-            {...a11yProps(0)}
           />
           <Tab
             icon={<PeopleAltRoundedIcon />}
             label="Wszyscy użytkownicy"
-            {...a11yProps(1)}
           />
           <Tab
             icon={<PersonSearchRoundedIcon />}
             label="Znajdź osobę"
-            {...a11yProps(2)}
           />
         </Tabs>
       </ChatTabs>
       <TabPanel value={value} index={0}>
-        <UserChatCard />
+        
       </TabPanel>
       <TabPanel value={value} index={1}>
-        all <UserChatCard />{' '}
+        all 
       </TabPanel>
       <TabPanel value={value} index={2}>
-        search <UserChatCard />
-      </TabPanel> */}
+        <div>
+          <input type="text" placeholder='znajdź osobę' onKeyDown={handleKey} onChange={e=> setUsername(e.target.value)}/>
+        </div>
+        {user && <UserChatCard user={user} />}
+      </TabPanel>
     </ChatContainer>
   );
 }
