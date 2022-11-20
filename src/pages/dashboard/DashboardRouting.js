@@ -11,17 +11,17 @@ import Favourites from '../favourites';
 function DashboardRouting() {
   return (
     <Routes>
-      <Route path="homepage" element={<Homepage />} />
-      <Route path="profile" element={<Profile />} />
-      <Route path="calendar" element={<Calendar />} />
+      <Route path="home" element={<Homepage />} />
+      <Route path="profil" element={<Profile />} />
+      <Route path="kalendarz" element={<Calendar />} />
       <Route path="chat" element={<Chat />} />
-      <Route path="favourites" element={<Favourites />} />
-      <Route path="/homepage/:abbreviation" element={<Majors />} />
+      <Route path="ulubione" element={<Favourites />} />
+      <Route path="/home/:abbreviation" element={<Majors />} />
       <Route
-        path="/homepage/:abbreviation/:major"
+        path="/home/:abbreviation/:major"
         element={<Announcements />}
       />
-      <Route exact path="/" element={<Navigate to="homepage" />} />
+      <Route exact path="/" element={<Navigate to="home" />} />
       {/* <Route path = "*" element={no page found} /> */}
     </Routes>
   );

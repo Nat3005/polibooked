@@ -25,7 +25,7 @@ function Navbar({
   const { user } = UserAuth();
   const [showDropdown, setShowDropdown] = useState(false);
   const { pathname } = useLocation();
-  const inMajorPath = !!matchPath('homepage/:abbreviation/:major', pathname);
+  const inMajorPath = !!matchPath('home/:abbreviation/:major', pathname);
 
   const getName = (fullName) => {
     if (fullName) {
