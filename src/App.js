@@ -5,10 +5,12 @@ import Dashboard from './pages/dashboard';
 import LoginPage from './pages/login';
 import { UserContextProvider } from './context/UserContext';
 import ProtectedRoute from './components/protectedRoute';
+import { ChatContextProvider } from './context/ChatContext';
 
 function App() {
   return (
     <UserContextProvider>
+      <ChatContextProvider>
       <BrowserRouter>
         <Routes>
           <Route path="login" element={<LoginPage />} />
@@ -22,6 +24,7 @@ function App() {
           />
         </Routes>
       </BrowserRouter>
+      </ChatContextProvider>
     </UserContextProvider>
   );
 }

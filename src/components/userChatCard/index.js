@@ -13,10 +13,12 @@ import { firestore } from '../../firebase/init';
 import { UserAuth } from '../../context/UserContext';
 import { getDoc, serverTimestamp, setDoc, updateDoc,doc } from 'firebase/firestore';
 
-function UserChatCard({user}) {
+function UserChatCard({user, type}) {
+  console.log(user);
   const navigate = useNavigate();
   const {user: loggedInUser} = UserAuth();
-  console.log(loggedInUser);
+
+
   const handleConversation = async () => {
 
     const mutualId = loggedInUser.uid > user.uid ? loggedInUser.uid + user.uid : user.uid + loggedInUser.uid;
@@ -58,7 +60,13 @@ function UserChatCard({user}) {
           {user.displayName}
         </MediumText>
         <SmallText>
-        {`${user.faculty} | ${user.major}`}
+        {type.includes('search') ? (
+              `${user.faculty} | ${user.major}`
+            ) : (
+              // {user.lastMessage}
+              <></>
+            )}
+        
         </SmallText>
       </UserDataContainer>
       <PrimaryButton size="small" variant="yellowAccent" type="submit">

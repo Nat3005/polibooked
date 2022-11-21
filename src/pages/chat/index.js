@@ -1,5 +1,5 @@
 import { Tabs, Tab } from '@mui/material';
-import { React, useState } from 'react';
+import { React, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import HourglassEmptyRoundedIcon from '@mui/icons-material/HourglassEmptyRounded';
 import PeopleAltRoundedIcon from '@mui/icons-material/PeopleAltRounded';
@@ -8,9 +8,13 @@ import { ChatContainer,ChatTabs } from './ChatElements';
 import UserChatCard from '../../components/userChatCard';
 import TabPanel from './tabPanel';
 import {firestore} from '../../firebase/init';
-import { collection,getDocs,query,where} from 'firebase/firestore';
+import { collection,doc,getDocs,query,where, onSnapshot} from 'firebase/firestore';
+import { UserAuth } from '../../context/UserContext';
+import { UserChat } from '../../context/ChatContext';
 function Chat() {
-  const [value, setValue] = useState(0);
+
+  const {user: loggedInUser} = UserAuth ();
+   const [value, setValue] = useState(0);
   
   const [username, setUsername] =  useState("")
   const [user,setUser] = useState(null)
@@ -35,6 +39,28 @@ function Chat() {
     e.code ==='Enter' && handleSearch ();
   }
 
+  const [chats, setChats] = useState([]);
+  const {dispatch} = UserChat();
+
+  useEffect(() => {
+    const getChats = () => {
+      const userChats = onSnapshot(doc(firestore, 'userChats',loggedInUser.uid),(doc) => {
+        setChats(doc.data())
+      });
+    
+      return () => {
+        userChats();
+      };
+    };
+
+    loggedInUser.uid && getChats();
+  }, [loggedInUser.uid])
+
+  console.log(Object.entries(chats));
+
+  const handleSelect = (u) => {
+    dispatch({type: "changeUser", payload: u})
+  }
 
   return (
     <ChatContainer>
@@ -45,10 +71,6 @@ function Chat() {
             label="Ostatnie rozmowy"
           />
           <Tab
-            icon={<PeopleAltRoundedIcon />}
-            label="Wszyscy użytkownicy"
-          />
-          <Tab
             icon={<PersonSearchRoundedIcon />}
             label="Znajdź osobę"
           />
@@ -56,15 +78,20 @@ function Chat() {
       </ChatTabs>
       <TabPanel value={value} index={0}>
         
+        {
+          Object.entries(chats)?.map((chat) => (
+            <UserChatCard user={chat[1].userInfo} type="latest" onClick={handleSelect(chat[1].userInfo)}/>
+          ))
+        }
+
+
+
       </TabPanel>
       <TabPanel value={value} index={1}>
-        all 
-      </TabPanel>
-      <TabPanel value={value} index={2}>
         <div>
           <input type="text" placeholder='znajdź osobę' onKeyDown={handleKey} onChange={e=> setUsername(e.target.value)}/>
         </div>
-        {user && <UserChatCard user={user} />}
+        {user && <UserChatCard user={user} type="search"/>}
       </TabPanel>
     </ChatContainer>
   );
