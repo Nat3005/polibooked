@@ -41,6 +41,7 @@ function UserChatCard({ user, type, lastMsg }) {
           photoURL: user.photoURL,
         },
         [`${mutualId}.date`]: serverTimestamp(),
+        [`${mutualId}.lastMessage`]: '',
       });
 
       await updateDoc(doc(firestore, 'userChats', user.uid), {
@@ -50,6 +51,7 @@ function UserChatCard({ user, type, lastMsg }) {
           photoURL: loggedInUser.photoURL,
         },
         [`${mutualId}.date`]: serverTimestamp(),
+        [`${mutualId}.lastMessage`]: '',
       });
     }
 
