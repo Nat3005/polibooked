@@ -17,11 +17,11 @@ function BreadcrumbsBar({ variant }) {
         {pathnames.map((name, index) => {
           const isLast = index === pathnames.length - 1;
           return isLast ? (
-            <SmallText variant="purpleAccent" weight="bold">
+            <SmallText key={name} variant="purpleAccent" weight="bold">
               {name}
             </SmallText>
           ) : (
-            <BreadcrumbLink>{name}</BreadcrumbLink>
+            <BreadcrumbLink key={name}>{name}</BreadcrumbLink>
           );
         })}
       </Breadcrumbs>
@@ -32,11 +32,11 @@ function BreadcrumbsBar({ variant }) {
       {pathnames.map((name, index) => {
         const isLast = index === pathnames.length - 1;
         return isLast ? (
-          <SmallText variant="purpleAccent" weight="bold">
+          <SmallText key={name} variant="purpleAccent" weight="bold">
             {name}
           </SmallText>
         ) : (
-          <BreadcrumbLink onClick={() => navigate(-index - 1)}>
+          <BreadcrumbLink key={name} onClick={() => navigate(-index - 1)}>
             {name}
           </BreadcrumbLink>
         );

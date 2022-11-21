@@ -75,6 +75,7 @@ function Chat() {
         {chats &&
           Object.entries(chats)?.map((chat) => (
             <UserChatCard
+              key={chat[0]}
               user={chat[1].userInfo}
               lastMsg={chat[1].lastMessage.inputMessage}
               type="latest"

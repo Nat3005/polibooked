@@ -23,6 +23,9 @@ import { UserAuth } from '../../context/UserContext';
 function UserChatCard({ user, type, lastMsg }) {
   const navigate = useNavigate();
   const { user: loggedInUser } = UserAuth();
+  if (!user) {
+    return <h2>dupa, nie ma usera</h2>;
+  }
   const mutualId =
     loggedInUser.uid > user.uid
       ? loggedInUser.uid + user.uid

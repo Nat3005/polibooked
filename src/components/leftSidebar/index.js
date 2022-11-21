@@ -32,7 +32,9 @@ function LeftSidebar() {
       </SmallText>
       <ChipsContainer>
         {user?.tags?.map((item) => (
-          <Chip variant="light">{item}</Chip>
+          <Chip key={item} variant="light">
+            {item}
+          </Chip>
         ))}
       </ChipsContainer>
       <Menu />
