@@ -3,8 +3,10 @@ import { GridContainer } from '../grid/GridElements';
 
 const handleColor = (variant) =>
   ({
-    tutor: 'var(--accent-purple)',
-    student: 'var(--accent-yellow)',
+    tutorNew: 'var(--accent-purple)',
+    studentNew: 'var(--accent-yellow)',
+    tutorEdit: 'var(--accent-purple)',
+    studentEdit: 'var(--accent-yellow)',
   }[variant]);
 
 export const ModalOverlay = styled(GridContainer)`

@@ -2,74 +2,102 @@ import React from 'react';
 import MailOutlineRoundedIcon from '@mui/icons-material/MailOutlineRounded';
 import { useNavigate } from 'react-router-dom';
 import {
+  getDoc,
+  serverTimestamp,
+  setDoc,
+  updateDoc,
+  doc,
+} from 'firebase/firestore';
+import {
   PictureContainer,
   UserChatCardContainer,
   UserDataContainer,
-  Picture
+  Picture,
+  TextData,
 } from './UserChatCardElements';
 import { PrimaryButton } from '../buttons/ButtonElements';
 import { MediumText, SmallText } from '../text/TextElements';
 import { firestore } from '../../firebase/init';
 import { UserAuth } from '../../context/UserContext';
-import { getDoc, serverTimestamp, setDoc, updateDoc,doc } from 'firebase/firestore';
 
-function UserChatCard({user, type}) {
-  console.log(user);
+function UserChatCard({ user, type, lastMsg }) {
   const navigate = useNavigate();
-  const {user: loggedInUser} = UserAuth();
-
-
+  const { user: loggedInUser } = UserAuth();
+  const mutualId =
+    loggedInUser.uid > user.uid
+      ? loggedInUser.uid + user.uid
+      : user.uid + loggedInUser.uid;
   const handleConversation = async () => {
+    const response = await getDoc(doc(firestore, 'chats', mutualId));
 
-    const mutualId = loggedInUser.uid > user.uid ? loggedInUser.uid + user.uid : user.uid + loggedInUser.uid;
-    
-    const response = await getDoc(doc(firestore,'chats', mutualId));
+    if (!response.exists()) {
+      // create chat
+      await setDoc(doc(firestore, 'chats', mutualId), { messages: [] });
 
-    if(!response.exists()){
-      //create chat 
-      await setDoc(doc (firestore,'chats',mutualId),{messages:[]});
-      
-      await updateDoc(doc(firestore,'userChats', loggedInUser.uid),{
-        [mutualId+".userInfo"]: {
+      await updateDoc(doc(firestore, 'userChats', loggedInUser.uid), {
+        [`${mutualId}.userInfo`]: {
           uid: user.uid,
           displayName: user.displayName,
-          photoURL: user.photoURL
+          photoURL: user.photoURL,
         },
-        [mutualId+".date"]: serverTimestamp()
+        [`${mutualId}.date`]: serverTimestamp(),
       });
 
-      await updateDoc(doc(firestore,'userChats', user.uid),{
-        [mutualId+".userInfo"]: {
+      await updateDoc(doc(firestore, 'userChats', user.uid), {
+        [`${mutualId}.userInfo`]: {
           uid: loggedInUser.uid,
           displayName: loggedInUser.displayName,
-          photoURL: loggedInUser.photoURL
+          photoURL: loggedInUser.photoURL,
         },
-        [mutualId+".date"]: serverTimestamp()
+        [`${mutualId}.date`]: serverTimestamp(),
       });
     }
 
-    //[1:33:45 -> uid bedzie podawany do konwersacji jako propsy]
-    navigate('conversation');
+    // [1:33:45 -> uid bedzie podawany do konwersacji jako propsy]
+    navigate('conversation', {
+      state: {
+        conversationId: mutualId,
+        user,
+      },
+    });
+  };
+
+  const handleSelect = () => {
+    navigate('conversation', {
+      state: {
+        conversationId: mutualId,
+        user,
+      },
+    });
   };
 
   return (
-    <UserChatCardContainer onClick={handleConversation}>
-      <PictureContainer><Picture src={user.photoURL}/></PictureContainer>
+    <UserChatCardContainer
+      variant={type}
+      onClick={type.includes('search') ? handleConversation : handleSelect}
+    >
       <UserDataContainer>
-        <MediumText weight="bold" variant="dark">
-          {user.displayName}
-        </MediumText>
-        <SmallText>
-        {type.includes('search') ? (
-              `${user.faculty} | ${user.major}`
-            ) : (
-              // {user.lastMessage}
-              <></>
-            )}
-        
-        </SmallText>
+        <PictureContainer variant={type}>
+          <Picture src={user.photoURL} />
+        </PictureContainer>
+        <TextData>
+          <MediumText weight="bold" variant="dark">
+            {user.displayName}
+          </MediumText>
+          {type.includes('search') ? (
+            <SmallText>{`${user.faculty} | ${user.major}`}</SmallText>
+          ) : (
+            <SmallText>{lastMsg}</SmallText>
+          )}
+          <SmallText />
+        </TextData>
       </UserDataContainer>
-      <PrimaryButton size="small" variant="yellowAccent" type="submit">
+      <PrimaryButton
+        size="small"
+        variant={type.includes('search') ? 'yellowAccent' : 'purpleAccent'}
+        type="submit"
+        style={{ justifySelf: 'flex-end' }}
+      >
         <MailOutlineRoundedIcon />
       </PrimaryButton>
     </UserChatCardContainer>

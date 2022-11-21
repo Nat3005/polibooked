@@ -31,7 +31,7 @@ export const initUser = async (user) => {
     };
     await setDoc(docRef, defaultData);
     // return defaulData to not wait for retrieving
-    await setDoc(chatRef,{});
+    await setDoc(chatRef, {});
     return defaultData;
   }
   return document.data();

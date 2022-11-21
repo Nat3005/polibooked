@@ -1,12 +1,7 @@
-import React from 'react'
-
-function TabPanel({children, value, index}) {
-
-    if(value===index) {
-        return (
-            <>{children}</>
-        )
-    }
+function TabPanel({ children, value, index }) {
+  if (value === index) {
+    return { children };
+  }
 }
 
-export default TabPanel
+export default TabPanel;
