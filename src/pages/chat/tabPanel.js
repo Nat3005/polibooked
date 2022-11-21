@@ -1,6 +1,9 @@
+import React from 'react';
+
 function TabPanel({ children, value, index }) {
   if (value === index) {
-    return { children };
+    // eslint-disable-next-line react/jsx-no-useless-fragment
+    return <>{children}</>;
   }
 }
 
