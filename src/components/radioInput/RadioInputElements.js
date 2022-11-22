@@ -2,8 +2,10 @@ import styled from 'styled-components';
 
 const handleColor = (variant) =>
   ({
-    tutor: 'var(--accent-purple)',
-    student: 'var(--accent-yellow)',
+    tutorNew: 'var(--accent-purple)',
+    studentNew: 'var(--accent-yellow)',
+    tutorEdit: 'var(--accent-purple)',
+    studentEdit: 'var(--accent-yellow)',
   }[variant]);
 
 export const RadioInputContainer = styled.div`

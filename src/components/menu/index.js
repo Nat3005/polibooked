@@ -20,19 +20,19 @@ function Menu() {
   };
   return (
     <MenuContainer>
-      <IconButton to="/homepage">
+      <IconButton to="/home">
         <ApartmentRoundedIcon /> strona główna
       </IconButton>
-      <IconButton to="/profile">
+      <IconButton to="/profil">
         <PersonOutlineRoundedIcon /> profil
       </IconButton>
       <IconButton to="/chat">
         <MailOutlineRoundedIcon /> chat
       </IconButton>
-      <IconButton to="/calendar">
+      <IconButton to="/kalendarz">
         <CalendarMonthRoundedIcon /> kalendarz
       </IconButton>
-      <IconButton to="/favourites">
+      <IconButton to="/ulubione">
         <FavoriteBorderRoundedIcon /> ulubione
       </IconButton>
       <IconButton onClick={handleLogOut}>

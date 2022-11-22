@@ -1,5 +1,5 @@
 import React from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import Homepage from '../homepage';
 import Profile from '../profile';
 import Calendar from '../calendar';
@@ -7,17 +7,24 @@ import Majors from '../majors';
 import Announcements from '../announcements';
 import Chat from '../chat';
 import Favourites from '../favourites';
+import Conversation from '../conversation';
 
-function DashboardRouting() {
+function DashboardRouting({ openEditModal }) {
   return (
     <Routes>
-      <Route path="homepage" element={<Homepage />} />
-      <Route path="profile" element={<Profile />} />
-      <Route path="calendar" element={<Calendar />} />
+      <Route path="home" element={<Homepage />} />
+      <Route path="profil" element={<Profile />} />
+      <Route path="kalendarz" element={<Calendar />} />
       <Route path="chat" element={<Chat />} />
-      <Route path="favourites" element={<Favourites />} />
-      <Route path="majors" element={<Majors />} />
-      <Route path="announcements" element={<Announcements />} />
+      <Route path="ulubione" element={<Favourites />} />
+      <Route path="/home/:abbreviation" element={<Majors />} />
+      <Route
+        path="/home/:abbreviation/:major"
+        element={<Announcements openEditModal={openEditModal} />}
+      />
+      <Route path="/chat/rozmowa" element={<Conversation />} />
+      <Route exact path="/" element={<Navigate to="home" />} />
+      {/* <Route path = "*" element={no page found} /> */}
     </Routes>
   );
 }

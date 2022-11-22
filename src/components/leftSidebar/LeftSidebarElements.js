@@ -4,6 +4,7 @@ export const LeftSidebarContainer = styled.div`
   height: 100vh;
   background: var(--white);
   grid-column: 1/4;
+  grid-row: 1/3;
   display: flex;
   flex-direction: column;
   align-items: left;

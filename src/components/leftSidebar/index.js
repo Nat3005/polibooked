@@ -9,7 +9,6 @@ import { Chip } from '../chips/ChipsElements';
 import Menu from '../menu';
 import horizontalLogo from '../../images/logo_horizontal.svg';
 import { SmallText } from '../text/TextElements';
-import { MyIcon } from '../../utils/icons';
 import ProfilePicture from '../profilePicture';
 
 function LeftSidebar() {
@@ -20,9 +19,6 @@ function LeftSidebar() {
       <ProfilePicture />
       <SmallText style={{ alignSelf: 'center' }} weight="bold" variant="dark">
         {user?.displayName}
-      </SmallText>
-      <SmallText varint="dark" alignment="left" weight="bold">
-        <MyIcon name="Pets" />
       </SmallText>
       <SmallText varint="dark" alignment="left" weight="bold">
         {user?.major}
@@ -36,7 +32,9 @@ function LeftSidebar() {
       </SmallText>
       <ChipsContainer>
         {user?.tags?.map((item) => (
-          <Chip variant="light">{item}</Chip>
+          <Chip key={item} variant="light">
+            {item}
+          </Chip>
         ))}
       </ChipsContainer>
       <Menu />

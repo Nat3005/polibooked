@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const NavbarContainer = styled.div`
-  height: 10vh;
+  height: 12vh;
   background: var(--white);
   border-bottom: 5px solid transparent;
   border-image: var(--gradient-horizontal);
@@ -62,4 +62,10 @@ export const MobileDropdownToggle = styled(DropdownToggle)`
   @media screen and (max-width: 768px) {
     display: flex;
   }
+`;
+
+export const BreadcrumbsContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  row-gap: 0.375rem;
 `;

@@ -19,13 +19,13 @@ import {
 import { MediumText, SmallText } from '../text/TextElements';
 import { UserAuth } from '../../context/UserContext';
 
-function AnnouncementCard({ announcement }) {
+function AnnouncementCard({ announcement, openEditModal }) {
   const { user } = UserAuth();
 
   const handlePrice = (price) => {
-    if (price.length === null) return 'bezpłatne';
+    if (price.length === 0) return 'bezpłatne';
     if (price.length === 1) return price[0];
-    if (price.length === 2) return price[0].concat(' - ', price[1]);
+    if (price.length === 2) return `${price[0]} - ${price[1]}`;
 
     return '';
   };
@@ -34,18 +34,20 @@ function AnnouncementCard({ announcement }) {
       <HeaderContainer>
         <ProfileContainer>
           <PictureContainer variant={announcement.type}>
-            <Picture src={user.photoURL} />
+            <Picture src={announcement.user.photoURL} />
           </PictureContainer>
           <UserDataContainer>
             <MediumText weight="bold" variant="dark">
-              Natalia Rusin
+              {announcement.user.displayName}
             </MediumText>
             <SmallText>
-              Informatyka Techniczna | Wydział Informatyki i Telekomunikacji
+              {`${announcement.user.faculty} | ${announcement.user.major}`}
             </SmallText>
           </UserDataContainer>
         </ProfileContainer>
-        <MoreVertRoundedIcon />
+        {user.uid === announcement.user.uid && (
+          <MoreVertRoundedIcon onClick={() => openEditModal(announcement)} />
+        )}
       </HeaderContainer>
       <SmallText variant="dark" weight="bold">
         {announcement.title}

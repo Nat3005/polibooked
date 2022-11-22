@@ -8,7 +8,7 @@ function Homepage() {
   return (
     <HomepageContainer>
       {faculties?.map((item) => (
-        <FacultyCard item={item} />
+        <FacultyCard key={item.name} item={item} />
       ))}
       {/* {announcements?.map((item) => (
               <AnnouncementCard announcement={item} key={item.id} />

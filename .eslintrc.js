@@ -7,6 +7,7 @@ module.exports = {
     quotes: [2, 'single', { avoidEscape: true }],
     'import/prefer-default-export': 0,
     'react/prop-types': 0,
+    'react/forbid-prop-types': 'off',
     'react/jsx-filename-extension': [1, { extensions: ['.js', '.jsx'] }],
     'prettier/prettier': [
       'error',

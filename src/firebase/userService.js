@@ -5,6 +5,7 @@ export const initUser = async (user) => {
   if (user === null) return null;
 
   const docRef = doc(firestore, 'users', user.uid);
+  const chatRef = doc(firestore, 'userChats', user.uid);
   const document = await getDoc(docRef);
   if (!document.exists()) {
     const defaultData = {
@@ -30,7 +31,10 @@ export const initUser = async (user) => {
     };
     await setDoc(docRef, defaultData);
     // return defaulData to not wait for retrieving
+    await setDoc(chatRef, {});
     return defaultData;
   }
   return document.data();
 };
+
+export const getUser = (userRef) => getDoc(userRef);

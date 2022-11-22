@@ -2,20 +2,26 @@ import styled from 'styled-components';
 
 const handleColor = (variant) =>
   ({
-    tutor: 'var(--accent-purple)',
-    student: 'var(--accent-yellow)',
+    tutorNew: 'var(--accent-purple)',
+    studentNew: 'var(--accent-yellow)',
+    tutorEdit: 'var(--accent-purple)',
+    studentEdit: 'var(--accent-yellow)',
   }[variant]);
 
 const handleBackground = (variant) =>
   ({
-    tutor: 'var(--neutral-purple)',
-    student: 'var(--neutral-yellow)',
+    tutorNew: 'var(--neutral-purple)',
+    studentNew: 'var(--neutral-yellow)',
+    tutorEdit: 'var(--neutral-purple)',
+    studentEdit: 'var(--neutral-yellow)',
   }[variant]);
 
 const handleCopyColor = (variant) =>
   ({
-    tutor: 'var(--greyish-purple)',
-    student: 'var(--greyish-yellow)',
+    tutorNew: 'var(--greyish-purple)',
+    studentNew: 'var(--greyish-yellow)',
+    tutorEdit: 'var(--greyish-purple)',
+    studentEdit: 'var(--greyish-yellow)',
   }[variant]);
 
 export const InputContainer = styled.div`

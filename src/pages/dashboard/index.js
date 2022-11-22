@@ -15,17 +15,33 @@ function Dashboard() {
   const [showStudentModal, setShowStudentModal] = useState(false);
   const [showSidebar, setShowSidebar] = useState(false);
 
+  // Edit Modal managment
+  const [editedAnnouncement, setEditedAnnouncement] = useState(null);
+  const [showEditModal, setShowEditModal] = useState(false);
+
+  const toggleEditModal = (announcement = null) => {
+    setEditedAnnouncement(announcement);
+    setShowEditModal(!!announcement);
+  };
+  // Edit Modal managment
+
   return (
     <>
       <Modal
         showModal={showTutoringModal}
         setShowModal={setShowTutoringModal}
-        announcementType="tutor"
+        announcementType="tutorNew"
       />
       <Modal
         showModal={showStudentModal}
         setShowModal={setShowStudentModal}
-        announcementType="student"
+        announcementType="studentNew"
+      />
+      <Modal
+        showModal={showEditModal}
+        setShowModal={toggleEditModal}
+        announcementType={`${editedAnnouncement?.type}Edit`}
+        announcement={editedAnnouncement}
       />
       <MobileSidebar
         showSidebar={showSidebar}
@@ -47,7 +63,7 @@ function Dashboard() {
             setShowSidebar={setShowSidebar}
           />
           <MainContainer>
-            <DashboardRouting />
+            <DashboardRouting openEditModal={toggleEditModal} />
           </MainContainer>
         </CenterContainer>
       </DashboardContainer>

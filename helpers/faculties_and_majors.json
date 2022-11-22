@@ -1,8 +1,9 @@
 {
     "W1":{
        "name":"Wydział Architektury",
-       "abbreviation:": "W1",
+       "abbreviation": "W1",
        "order": 1,
+       "icon_name": "BusinessRounded",
        "majors_first_grade":[
           "Architektura",
           "Gospodarka Przestrzenna"
@@ -15,8 +16,9 @@
     },
     "W2":{
        "name":"Wydział Budownictwa Lądowego i Wodnego",
-       "abbreviation:": "W2",
+       "abbreviation": "W2",
        "order": 2,
+       "icon_name": "ConstructionRounded",
        "majors_first_grade":[
           "Budownictwo"
        ],
@@ -27,8 +29,9 @@
     },
     "W3":{
        "name":"Wydział Chemiczny",
-       "abbreviation:": "W3",
+       "abbreviation" : "W3",
        "order": 3,
+       "icon_name": "ScienceRounded",
        "majors_first_grade":[
           "Biotechnologia",
           "Chemia i analityka przemysłowa",
@@ -51,8 +54,9 @@
     },
     "W4":{
        "name":"Wydział Informatyki i telekomunikacji",
-       "abbreviation:": "W4",
+       "abbreviation": "W4",
        "order": 4,
+       "icon_name": "CodeRounded",
        "majors_first_grade":[
           "Cyberbezpieczeństwo",
           "Informatyczne systemy automatyki",
@@ -80,8 +84,9 @@
     },
     "W5":{
        "name":"Wydział Elektryczny",
-       "abbreviation:": "W5",
+       "abbreviation": "W5",
        "order": 5,
+       "icon_name": "TungstenRounded",
        "majors_first_grade":[
           "Automatyka przemysłowa",
           "Elektromechatronika",
@@ -95,8 +100,9 @@
     },
     "W6":{
        "name":"Wydział Geoinżynierii, Górnictwa i Geologii",
-       "abbreviation:": "W6",
+       "abbreviation": "W6",
        "order": 6,
+       "icon_name": "PublicRounded",
        "majors_first_grade":[
           "Geodezja i kartografia",
           "Geoenergetyka",
@@ -114,8 +120,9 @@
     },
     "W7":{
        "name":"Wydział Inżynierii Środowiska",
-       "abbreviation:": "W7",
+       "abbreviation": "W7",
        "order": 7,
+       "icon_name": "EnergySavingsLeafRounded",
        "majors_first_grade":[
           "Gospodarka o obiegu zamkniętym i ochrona klimatu",
           "Inżynieria środowiska"
@@ -128,8 +135,9 @@
     },
     "W8":{
        "name":"Wydział Zarządzania",
-       "abbreviation:": "W8",
+       "abbreviation": "W8",
        "order": 8,
+       "icon_name": "GroupsRounded",
        "majors_first_grade":[
           "Inżynieria zarządzania",
           "Zarządzanie",
@@ -143,8 +151,9 @@
     },
     "W9":{
        "name":"Wydział Mechaniczno-Energetyczny",
-       "abbreviation:": "W9",
+       "abbreviation": "W9",
        "order": 9,
+       "icon_name": "SolarPowerRounded",
        "majors_first_grade":[
           "Energetyka",
           "Lotnictwo i kosmonautyka",
@@ -160,8 +169,9 @@
     },
     "W10":{
        "name":"Wydział Mechaniczny",
-       "abbreviation:": "W10",
+       "abbreviation": "W10",
        "order": 10,
+       "icon_name": "PrecisionManufacturingRounded",
        "majors_first_grade":[
           "Biomechanika inżynierska",
           "Mechanika i budowa maszyn",
@@ -184,8 +194,9 @@
     },
     "W11":{
        "name":"Wydział Podstawowych Problemów Techniki",
-       "abbreviation:": "W1",
+       "abbreviation": "W1",
        "order": 11,
+       "icon_name": "BiotechRounded",
        "majors_first_grade":[
           "Fizyka techniczna",
           "Inżynieria biomedyczna",
@@ -203,8 +214,9 @@
     },
     "W12":{
        "name":"Wydział Elektroniki, Fotoniki i Mikrosystemów",
-       "abbreviation:": "W12",
+       "abbreviation": "W12",
        "order": 12,
+       "icon_name": "MemoryRounded",
        "majors_first_grade":[
           "Automatyka i robotyka",
           "Electronic and Computer Engineering",
@@ -224,8 +236,9 @@
     },
     "W13":{
        "name":"Wydział Matematyki",
-       "abbreviation:": "W13",
+       "abbreviation": "W13",
        "order": 13,
+       "icon_name": "FunctionsRounded",
        "majors_first_grade":[
           "Matematyka",
           "Matematyka stosowana"
