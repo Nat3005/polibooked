@@ -46,7 +46,7 @@ function BreadcrumbsBar({ variant }) {
         ) : (
           <BreadcrumbLink
             key={breadcrumbName}
-            onClick={() => navigate(-index - 1)}
+            onClick={() => navigate(-(pathnames.length - 1) + index)}
           >
             {breadcrumbName}
           </BreadcrumbLink>

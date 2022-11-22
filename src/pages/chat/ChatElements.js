@@ -38,6 +38,10 @@ export const SearchInput = styled.input`
   color: var(--primary-dark);
   width: 100%;
 
+  @media screen and (max-width: 768px) {
+    font-size: var(--basic-text);
+  }
+
   &:focus: {
     outline: none;
     font-weight: bold;

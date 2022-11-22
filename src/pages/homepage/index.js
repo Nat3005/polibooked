@@ -10,9 +10,6 @@ function Homepage() {
       {faculties?.map((item) => (
         <FacultyCard key={item.name} item={item} />
       ))}
-      {/* {announcements?.map((item) => (
-              <AnnouncementCard announcement={item} key={item.id} />
-            ))} */}
     </HomepageContainer>
   );
 }

@@ -81,11 +81,9 @@ function Conversation() {
       <MessagesContainer>
         {messages &&
           messages.map((message) => {
-            let type = '';
+            let type = 'response';
             if (message.uid === loggedInUser.uid) {
               type = 'message';
-            } else {
-              type = 'response';
             }
             return (
               <ChatBubble

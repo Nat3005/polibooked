@@ -2,6 +2,7 @@ import React from 'react';
 import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
 import EmojiPeopleRoundedIcon from '@mui/icons-material/EmojiPeopleRounded';
 import SchoolRoundedIcon from '@mui/icons-material/SchoolRounded';
+import { matchPath, useLocation } from 'react-router-dom';
 import { UserAuth } from '../../context/UserContext';
 import {
   ButtonsContainer,
@@ -25,6 +26,7 @@ function MobileSidebar({
   showStudentModal,
   setShowStudentModal,
 }) {
+  const { pathname } = useLocation();
   if (!showSidebar) return null;
 
   const { user } = UserAuth();
@@ -36,6 +38,23 @@ function MobileSidebar({
   const openStudentModal = () => {
     setShowStudentModal(!showStudentModal);
   };
+
+  const inMajorPath = !!matchPath('home/:abbreviation/:major', pathname);
+
+  const buttons = (
+    <ButtonsContainer>
+      <TertiaryButton onClick={openTutoringModal} variant="purpleAccent">
+        {' '}
+        <SchoolRoundedIcon />
+        Zostań korepetytorem{' '}
+      </TertiaryButton>
+      <TertiaryButton onClick={openStudentModal} variant="yellowAccent">
+        {' '}
+        <EmojiPeopleRoundedIcon />
+        Znajdź korepetytora{' '}
+      </TertiaryButton>
+    </ButtonsContainer>
+  );
 
   return (
     <SidebarContainer>
@@ -57,18 +76,7 @@ function MobileSidebar({
             {user?.faculty}
           </em>
         </SmallText>
-        <ButtonsContainer>
-          <TertiaryButton onClick={openTutoringModal} variant="purpleAccent">
-            {' '}
-            <SchoolRoundedIcon />
-            Zostań korepetytorem{' '}
-          </TertiaryButton>
-          <TertiaryButton onClick={openStudentModal} variant="yellowAccent">
-            {' '}
-            <EmojiPeopleRoundedIcon />
-            Znajdź korepetytora{' '}
-          </TertiaryButton>
-        </ButtonsContainer>
+        {inMajorPath && buttons}
         <Menu style={{ alignSelf: 'flex-start' }} />
       </SidebarContent>
       <LogoContainer>
