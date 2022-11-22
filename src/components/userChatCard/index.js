@@ -58,7 +58,6 @@ function UserChatCard({ user, type, lastMsg }) {
       });
     }
 
-    // [1:33:45 -> uid bedzie podawany do konwersacji jako propsy]
     navigate('rozmowa', {
       state: {
         conversationId: mutualId,

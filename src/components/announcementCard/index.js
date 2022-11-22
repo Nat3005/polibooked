@@ -4,6 +4,7 @@ import AttachMoneyRoundedIcon from '@mui/icons-material/AttachMoneyRounded';
 import MailOutlineRoundedIcon from '@mui/icons-material/MailOutlineRounded';
 import EventRoundedIcon from '@mui/icons-material/EventRounded';
 import FavoriteBorderRoundedIcon from '@mui/icons-material/FavoriteBorderRounded';
+import { arrayUnion, updateDoc, doc, arrayRemove } from 'firebase/firestore';
 import { PrimaryButton } from '../buttons/ButtonElements';
 import {
   AnnouncementContainer,
@@ -18,8 +19,10 @@ import {
 } from './AnnouncementCardElements';
 import { MediumText, SmallText } from '../text/TextElements';
 import { UserAuth } from '../../context/UserContext';
+import { firestore } from '../../firebase/init';
 
 function AnnouncementCard({ announcement, openEditModal }) {
+  console.log({ announcement });
   const { user } = UserAuth();
 
   const handlePrice = (price) => {
@@ -29,6 +32,25 @@ function AnnouncementCard({ announcement, openEditModal }) {
 
     return '';
   };
+
+  const handleAddFavourites = async (e) => {
+    e.preventDefault();
+    const favouritesRef = doc(firestore, 'favourites', user.uid);
+    const announcementRef = doc(firestore, 'announcements', announcement.id);
+    await updateDoc(favouritesRef, {
+      favourites: arrayUnion(announcementRef),
+    });
+  };
+
+  const handleRemoveFavourites = async (e) => {
+    e.preventDefault();
+    const favouritesRef = doc(firestore, 'favourites', user.uid);
+    const announcementRef = doc(firestore, 'announcements', announcement.id);
+    await updateDoc(favouritesRef, {
+      favourites: arrayRemove(announcementRef),
+    });
+  };
+
   return (
     <AnnouncementContainer variant={announcement.type}>
       <HeaderContainer>
@@ -72,7 +94,11 @@ function AnnouncementCard({ announcement, openEditModal }) {
             <PrimaryButton size="small" variant="purpleAccent">
               <EventRoundedIcon /> rezerwój
             </PrimaryButton>
-            <PrimaryButton size="small" variant="purpleAccent">
+            <PrimaryButton
+              size="small"
+              variant="purpleAccent"
+              onClick={handleAddFavourites}
+            >
               <FavoriteBorderRoundedIcon /> polub
             </PrimaryButton>
           </>

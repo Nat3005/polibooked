@@ -6,6 +6,7 @@ export const initUser = async (user) => {
 
   const docRef = doc(firestore, 'users', user.uid);
   const chatRef = doc(firestore, 'userChats', user.uid);
+  const favouritesRef = doc(firestore, 'favourites', user.uid);
   const document = await getDoc(docRef);
   if (!document.exists()) {
     const defaultData = {
@@ -20,8 +21,12 @@ export const initUser = async (user) => {
       tags: ['tag', 'troche dłuższy tag', 'krótki tag', 'drugi tag'],
       uid: user.uid,
     };
+    const favouritesData = {
+      favourites: [],
+    };
     await setDoc(docRef, defaultData);
     await setDoc(chatRef, {});
+    await setDoc(favouritesRef, favouritesData);
     return defaultData;
   }
   return document.data();
