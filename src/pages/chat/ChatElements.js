@@ -16,7 +16,7 @@ export const ChatTabs = styled.div`
   align-items: center;
 `;
 
-export const SearchContainer = styled.div`
+export const SearchContainer = styled.form`
   display: flex;
   flex-direction: row;
   padding: 1rem;
@@ -27,8 +27,12 @@ export const SearchContainer = styled.div`
   align-items: center;
 `;
 
-export const IconContainer = styled.div`
+export const IconContainer = styled.button`
   color: var(--accent-purple);
+  background-color: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
 `;
 export const SearchInput = styled.input`
   background: var(--white);
@@ -60,7 +64,8 @@ export const ImageContainer = styled.div`
   width: 80%;
   align-self: center;
   justify-self: center;
-  height: 55vh;
+  height: 65vh;
+  row-gap: 1rem;
 `;
 
 export const NoResultsImage = styled.img`

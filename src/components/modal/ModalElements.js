@@ -26,7 +26,7 @@ export const ModalOverlay = styled(GridContainer)`
 export const ModalContainer = styled.div`
   background: var(--white);
   padding: 1.5rem;
-  grid-column: 4/9;
+  grid-column: 4/10;
   border-radius: var(--outer-radius);
   height: auto;
   display: flex;

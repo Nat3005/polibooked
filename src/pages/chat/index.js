@@ -25,6 +25,8 @@ import TabPanel from './tabPanel';
 import { firestore } from '../../firebase/init';
 import { UserAuth } from '../../context/UserContext';
 import NoResultsImg from '../../images/no_results.png';
+import NoRecentsImg from '../../images/no_recents.png';
+import { SmallText } from '../../components/text/TextElements';
 
 function Chat() {
   const { user: loggedInUser } = UserAuth();
@@ -37,7 +39,12 @@ function Chat() {
     setValue(newValue);
   };
 
-  const handleSearch = async () => {
+  const handleSearch = async (e) => {
+    e?.preventDefault();
+    if (username === '') {
+      return;
+    }
+
     const q = query(
       collection(firestore, 'users'),
       where('displayName', '==', username)
@@ -47,7 +54,6 @@ function Chat() {
     const fetchedUser = [];
     querySnapshot.forEach((document) => {
       fetchedUser.push(document.data());
-
     });
     setUsers(fetchedUser);
   };
@@ -98,7 +104,7 @@ function Chat() {
         </Tabs>
       </ChatTabs>
       <TabPanel value={value} index={0}>
-        {chats &&
+        {Object.keys(chats).length !== 0 ? (
           Object.entries(chats)?.map((chat) => (
             <UserChatCard
               key={chat[0]}
@@ -106,10 +112,16 @@ function Chat() {
               lastMsg={chat[1].lastMessage.inputMessage}
               type="latest"
             />
-          ))}
+          ))
+        ) : (
+          <ImageContainer>
+            <NoResultsImage src={NoRecentsImg} />
+            <SmallText>Brak ostatnich rozmów</SmallText>
+          </ImageContainer>
+        )}
       </TabPanel>
       <TabPanel value={value} index={1}>
-        <SearchContainer>
+        <SearchContainer onSubmit={handleSearch}>
           <SearchInput
             type="text"
             placeholder="Wpisz imię i nazwisko szukanej osoby"
@@ -120,9 +132,9 @@ function Chat() {
             <SearchRoundedIcon />
           </IconContainer>
         </SearchContainer>
-        {users ? users.map(u=>(
-          <UserChatCard key={u.uid} user={u} type="search" />
-        ) ): (
+        {users ? (
+          users.map((u) => <UserChatCard key={u.uid} user={u} type="search" />)
+        ) : (
           <ImageContainer>
             <NoResultsImage src={NoResultsImg} />
           </ImageContainer>

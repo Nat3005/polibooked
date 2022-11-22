@@ -56,6 +56,8 @@ export const PrimaryButton = styled.button`
   display: flex;
   column-gap: 0.5rem;
   max-height: 55px;
+  white-space: nowrap;
+  word-break: keep-all
 
   :hover {
     background-color: ${(props) => handleHoverColor(props.variant)};
