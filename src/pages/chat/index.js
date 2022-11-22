@@ -31,7 +31,7 @@ function Chat() {
   const [value, setValue] = useState(0);
 
   const [username, setUsername] = useState('');
-  const [user, setUser] = useState(null);
+  const [users, setUsers] = useState(null);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -44,9 +44,12 @@ function Chat() {
     );
 
     const querySnapshot = await getDocs(q);
+    const fetchedUser = [];
     querySnapshot.forEach((document) => {
-      setUser(document.data());
+      fetchedUser.push(document.data());
+
     });
+    setUsers(fetchedUser);
   };
 
   const handleKey = (e) => {
@@ -117,9 +120,9 @@ function Chat() {
             <SearchRoundedIcon />
           </IconContainer>
         </SearchContainer>
-        {user ? (
-          <UserChatCard user={user} type="search" />
-        ) : (
+        {users ? users.map(u=>(
+          <UserChatCard key={u.uid} user={u} type="search" />
+        ) ): (
           <ImageContainer>
             <NoResultsImage src={NoResultsImg} />
           </ImageContainer>
