@@ -1,6 +1,6 @@
 import { Tabs, Tab } from '@mui/material';
 import { React, useState, useEffect } from 'react';
-import HourglassEmptyRoundedIcon from '@mui/icons-material/HourglassEmptyRounded';
+import AccessTimeRoundedIcon from '@mui/icons-material/AccessTimeRounded';
 import PersonSearchRoundedIcon from '@mui/icons-material/PersonSearchRounded';
 import {
   collection,
@@ -10,11 +10,21 @@ import {
   onSnapshot,
   doc,
 } from 'firebase/firestore';
-import { ChatContainer, ChatTabs } from './ChatElements';
+import SearchRoundedIcon from '@mui/icons-material/SearchRounded';
+import {
+  ChatContainer,
+  ChatTabs,
+  IconContainer,
+  NoResultsImage,
+  SearchContainer,
+  SearchInput,
+  ImageContainer,
+} from './ChatElements';
 import UserChatCard from '../../components/userChatCard';
 import TabPanel from './tabPanel';
 import { firestore } from '../../firebase/init';
 import { UserAuth } from '../../context/UserContext';
+import NoResultsImg from '../../images/no_results.png';
 
 function Chat() {
   const { user: loggedInUser } = UserAuth();
@@ -66,8 +76,21 @@ function Chat() {
   return (
     <ChatContainer>
       <ChatTabs>
-        <Tabs value={value} onChange={handleChange}>
-          <Tab icon={<HourglassEmptyRoundedIcon />} label="Ostatnie rozmowy" />
+        <Tabs
+          value={value}
+          onChange={handleChange}
+          TabIndicatorProps={{
+            sx: { backgroundColor: 'var(--accent-purple)' },
+          }}
+          sx={{
+            '& button': { color: 'var(--primary-dark)', textTransform: 'none' },
+            '& button.Mui-selected': {
+              color: 'var(--accent-purple)',
+              textTransform: 'none',
+            },
+          }}
+        >
+          <Tab icon={<AccessTimeRoundedIcon />} label="Ostatnie rozmowy" />
           <Tab icon={<PersonSearchRoundedIcon />} label="Znajdź osobę" />
         </Tabs>
       </ChatTabs>
@@ -83,15 +106,24 @@ function Chat() {
           ))}
       </TabPanel>
       <TabPanel value={value} index={1}>
-        <div>
-          <input
+        <SearchContainer>
+          <SearchInput
             type="text"
-            placeholder="znajdź osobę"
+            placeholder="Wpisz imię i nazwisko szukanej osoby"
             onKeyDown={handleKey}
             onChange={(e) => setUsername(e.target.value)}
           />
-        </div>
-        {user && <UserChatCard user={user} type="search" />}
+          <IconContainer>
+            <SearchRoundedIcon />
+          </IconContainer>
+        </SearchContainer>
+        {user ? (
+          <UserChatCard user={user} type="search" />
+        ) : (
+          <ImageContainer>
+            <NoResultsImage src={NoResultsImg} />
+          </ImageContainer>
+        )}
       </TabPanel>
     </ChatContainer>
   );

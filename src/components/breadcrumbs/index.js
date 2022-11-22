@@ -13,31 +13,42 @@ function BreadcrumbsBar({ variant }) {
 
   if (variant === 'disabled') {
     return (
-      <Breadcrumbs separator={<ChevronRight />} aria-label="breadcrumb">
+      <Breadcrumbs separator={<ChevronRight />}>
         {pathnames.map((name, index) => {
+          const breadcrumbName = name.charAt(0).toUpperCase() + name.slice(1);
           const isLast = index === pathnames.length - 1;
           return isLast ? (
-            <SmallText key={name} variant="purpleAccent" weight="bold">
-              {name}
+            <SmallText
+              key={breadcrumbName}
+              variant="purpleAccent"
+              weight="bold"
+            >
+              {breadcrumbName}
             </SmallText>
           ) : (
-            <BreadcrumbLink key={name}>{name}</BreadcrumbLink>
+            <BreadcrumbLink key={breadcrumbName}>
+              {breadcrumbName}
+            </BreadcrumbLink>
           );
         })}
       </Breadcrumbs>
     );
   }
   return (
-    <Breadcrumbs separator={<ChevronRight />} aria-label="breadcrumb">
+    <Breadcrumbs separator={<ChevronRight />}>
       {pathnames.map((name, index) => {
         const isLast = index === pathnames.length - 1;
+        const breadcrumbName = name.charAt(0).toUpperCase() + name.slice(1);
         return isLast ? (
-          <SmallText key={name} variant="purpleAccent" weight="bold">
-            {name}
+          <SmallText key={breadcrumbName} variant="purpleAccent" weight="bold">
+            {breadcrumbName}
           </SmallText>
         ) : (
-          <BreadcrumbLink key={name} onClick={() => navigate(-index - 1)}>
-            {name}
+          <BreadcrumbLink
+            key={breadcrumbName}
+            onClick={() => navigate(-index - 1)}
+          >
+            {breadcrumbName}
           </BreadcrumbLink>
         );
       })}

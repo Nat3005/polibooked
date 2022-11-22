@@ -22,7 +22,7 @@ function DashboardRouting({ openEditModal }) {
         path="/home/:abbreviation/:major"
         element={<Announcements openEditModal={openEditModal} />}
       />
-      <Route path="/chat/conversation" element={<Conversation />} />
+      <Route path="/chat/rozmowa" element={<Conversation />} />
       <Route exact path="/" element={<Navigate to="home" />} />
       {/* <Route path = "*" element={no page found} /> */}
     </Routes>

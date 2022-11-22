@@ -59,7 +59,7 @@ function UserChatCard({ user, type, lastMsg }) {
     }
 
     // [1:33:45 -> uid bedzie podawany do konwersacji jako propsy]
-    navigate('conversation', {
+    navigate('rozmowa', {
       state: {
         conversationId: mutualId,
         user,
@@ -68,7 +68,7 @@ function UserChatCard({ user, type, lastMsg }) {
   };
 
   const handleSelect = () => {
-    navigate('conversation', {
+    navigate('rozmowa', {
       state: {
         conversationId: mutualId,
         user,
