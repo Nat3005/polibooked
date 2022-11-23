@@ -22,6 +22,7 @@ function Announcements({ openEditModal }) {
             announcement={item}
             key={item.id}
             openEditModal={openEditModal}
+            type="announcements"
           />
         ))}
       {announcements.length === 0 && (

@@ -1,32 +1,36 @@
-import { onSnapshot, doc } from 'firebase/firestore';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
+import AnnouncementCard from '../../components/announcementCard';
+import { useFavourites } from '../../dataManagement';
+import {
+  FavouritesContainer,
+  ImageContainer,
+  NoFavouritesImgage,
+} from './FavouritesElements';
+import NoResultsImg from '../../images/no_favourites.png';
+import { MediumText } from '../../components/text/TextElements';
 
-import { UserAuth } from '../../context/UserContext';
-import { firestore } from '../../firebase/init';
-import { FavouritesContainer } from './FavouritesElements';
+function Favourites({ openEditModal }) {
+  const [favourites] = useFavourites();
 
-function Favourites() {
-  // const [favourites, setFavourites] = useState([]);
-  const [references, setReferences] = useState([]);
-  const { user } = UserAuth();
-  useEffect(() => {
-    const getReferences = () => {
-      const announcementReferences = onSnapshot(
-        doc(firestore, 'favourites', user.uid),
-        (document) => {
-          setReferences(document.data());
-        }
-      );
-      return () => {
-        announcementReferences();
-      };
-    };
-
-    // eslint-disable-next-line no-unused-expressions
-    user.uid && getReferences();
-  }, [user.uid]);
-
-  return <FavouritesContainer />;
+  return (
+    <FavouritesContainer>
+      {favourites.length !== 0 &&
+        favourites?.map((item) => (
+          <AnnouncementCard
+            announcement={item}
+            key={item.id}
+            openEditModal={openEditModal}
+            type="favourites"
+          />
+        ))}
+      {favourites.length === 0 && (
+        <ImageContainer>
+          <NoFavouritesImgage src={NoResultsImg} />
+          <MediumText>Brak ulubionych ogłoszeń</MediumText>
+        </ImageContainer>
+      )}
+    </FavouritesContainer>
+  );
 }
 
 export default Favourites;

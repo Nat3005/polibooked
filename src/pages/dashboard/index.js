@@ -1,4 +1,5 @@
 import { React, useState } from 'react';
+import { matchPath, useLocation } from 'react-router-dom';
 import LeftSidebar from '../../components/leftSidebar';
 import Navbar from '../../components/navbar';
 import {
@@ -25,6 +26,11 @@ function Dashboard() {
   };
   // Edit Modal managment
 
+  const { pathname } = useLocation();
+  let type = 'scroll';
+  if (!!matchPath('chat', pathname) || !!matchPath('chat/rozmowa', pathname)) {
+    type = 'noScroll';
+  }
   return (
     <>
       <Modal
@@ -62,7 +68,7 @@ function Dashboard() {
             showSidebar={showSidebar}
             setShowSidebar={setShowSidebar}
           />
-          <MainContainer>
+          <MainContainer type={type}>
             <DashboardRouting openEditModal={toggleEditModal} />
           </MainContainer>
         </CenterContainer>

@@ -4,6 +4,7 @@ import AttachMoneyRoundedIcon from '@mui/icons-material/AttachMoneyRounded';
 import MailOutlineRoundedIcon from '@mui/icons-material/MailOutlineRounded';
 import EventRoundedIcon from '@mui/icons-material/EventRounded';
 import FavoriteBorderRoundedIcon from '@mui/icons-material/FavoriteBorderRounded';
+import FavoriteIcon from '@mui/icons-material/Favorite';
 import { arrayUnion, updateDoc, doc, arrayRemove } from 'firebase/firestore';
 import { PrimaryButton } from '../buttons/ButtonElements';
 import {
@@ -16,14 +17,20 @@ import {
   PriceContainer,
   ChipsContainer,
   ButtonsContainer,
+  BreadcrumbsContainer,
 } from './AnnouncementCardElements';
 import { MediumText, SmallText } from '../text/TextElements';
 import { UserAuth } from '../../context/UserContext';
 import { firestore } from '../../firebase/init';
+import { useFavourites } from '../../dataManagement';
+import BreadcrumbsBar from '../breadcrumbs';
 
-function AnnouncementCard({ announcement, openEditModal }) {
-  console.log({ announcement });
+function AnnouncementCard({ announcement, openEditModal, type }) {
   const { user } = UserAuth();
+  const [favourites] = useFavourites();
+  const isFavorite = favourites.find(
+    (favourite) => favourite.id === announcement.id
+  );
 
   const handlePrice = (price) => {
     if (price.length === 0) return 'bezpłatne';
@@ -62,9 +69,24 @@ function AnnouncementCard({ announcement, openEditModal }) {
             <MediumText weight="bold" variant="dark">
               {announcement.user.displayName}
             </MediumText>
-            <SmallText>
-              {`${announcement.user.faculty} | ${announcement.user.major}`}
-            </SmallText>
+            {type.includes('favourites') && (
+              <BreadcrumbsContainer>
+                {' '}
+                <SmallText> Ogłoszenie w </SmallText>{' '}
+                <BreadcrumbsBar
+                  variant="disabled"
+                  abbreviation={announcement.abbreviation}
+                  major={announcement.major}
+                />
+              </BreadcrumbsContainer>
+            )}
+
+            {type.includes('announcements') && (
+              <SmallText>
+                {' '}
+                {`${announcement.user.faculty} | ${announcement.user.major}`}
+              </SmallText>
+            )}
           </UserDataContainer>
         </ProfileContainer>
         {user.uid === announcement.user.uid && (
@@ -94,22 +116,46 @@ function AnnouncementCard({ announcement, openEditModal }) {
             <PrimaryButton size="small" variant="purpleAccent">
               <EventRoundedIcon /> rezerwój
             </PrimaryButton>
-            <PrimaryButton
-              size="small"
-              variant="purpleAccent"
-              onClick={handleAddFavourites}
-            >
-              <FavoriteBorderRoundedIcon /> polub
-            </PrimaryButton>
+            {isFavorite ? (
+              <PrimaryButton
+                size="small"
+                variant="purpleAccent"
+                onClick={handleRemoveFavourites}
+              >
+                <FavoriteIcon /> usuń z ulubionych
+              </PrimaryButton>
+            ) : (
+              <PrimaryButton
+                size="small"
+                variant="purpleAccent"
+                onClick={handleAddFavourites}
+              >
+                <FavoriteBorderRoundedIcon /> dodaj do ulubionych
+              </PrimaryButton>
+            )}
           </>
         ) : (
           <>
             <PrimaryButton size="small" variant="yellowAccent">
               <MailOutlineRoundedIcon /> napisz
             </PrimaryButton>
-            <PrimaryButton size="small" variant="yellowAccent">
-              <FavoriteBorderRoundedIcon /> polub
-            </PrimaryButton>
+            {isFavorite ? (
+              <PrimaryButton
+                size="small"
+                variant="yellowAccent"
+                onClick={handleRemoveFavourites}
+              >
+                <FavoriteIcon /> usuń z ulubionych
+              </PrimaryButton>
+            ) : (
+              <PrimaryButton
+                size="small"
+                variant="yellowAccent"
+                onClick={handleAddFavourites}
+              >
+                <FavoriteBorderRoundedIcon /> dodaj do ulubionych
+              </PrimaryButton>
+            )}
           </>
         )}
       </ButtonsContainer>

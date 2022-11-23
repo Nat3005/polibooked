@@ -1,6 +1,12 @@
 import styled from 'styled-components';
 import { GridContainer } from '../../components/grid/GridElements';
 
+const handleScroll = (type) =>
+  ({
+    scroll: 'scroll;',
+    noScroll: 'hidden;',
+  }[type]);
+
 export const DashboardContainer = styled(GridContainer)`
   height: 100vh;
   background: var(--white);
@@ -13,7 +19,7 @@ export const MainContainer = styled.div`
   display: flex;
   flex-direction: column;
   row-gap: 1rem;
-  overflow-y: scroll;
+  overflow-y: ${(props) => handleScroll(props.type)};
 
   @media screen and (max-width: 768px) {
     grid-column: 1/9;

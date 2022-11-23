@@ -68,6 +68,11 @@ export const BreadcrumbsContainer = styled.div`
   padding-bottom: 0.5rem;
   font-size: var(--basic-text);
   column-gap: 0.5rem;
+
+  @media screen and (max-width: 768px) {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 `;
 
 export const SubmitButtons = styled.form`

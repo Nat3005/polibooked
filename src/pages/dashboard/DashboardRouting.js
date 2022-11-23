@@ -16,7 +16,10 @@ function DashboardRouting({ openEditModal }) {
       <Route path="profil" element={<Profile />} />
       <Route path="kalendarz" element={<Calendar />} />
       <Route path="chat" element={<Chat />} />
-      <Route path="ulubione" element={<Favourites />} />
+      <Route
+        path="ulubione"
+        element={<Favourites openEditModal={openEditModal} />}
+      />
       <Route path="/home/:abbreviation" element={<Majors />} />
       <Route
         path="/home/:abbreviation/:major"

@@ -26,7 +26,7 @@ function Modal({ showModal, setShowModal, announcementType, announcement }) {
   const formItem = useRef({});
   const { pathname } = useLocation();
   const { params: urlParams } =
-    matchPath(':dupa/:abbreviation/:major', pathname) ?? {};
+    matchPath(':source/:abbreviation/:major', pathname) ?? {};
 
   if (!showModal) return null;
 
@@ -50,8 +50,12 @@ function Modal({ showModal, setShowModal, announcementType, announcement }) {
         description: formItem.current.description.value,
         price: formItem.current.price,
         tags: separatedTags,
-        abbreviation: urlParams.abbreviation,
-        major: urlParams.major,
+        abbreviation: announcementType.includes('Edit')
+          ? announcement.abbreviation
+          : urlParams.abbreviation,
+        major: announcementType.includes('Edit')
+          ? announcement.major
+          : urlParams.major,
         ...(!!announcement && { id: announcement.id }),
       };
 
@@ -88,9 +92,25 @@ function Modal({ showModal, setShowModal, announcementType, announcement }) {
             onClick={() => setShowModal(!showModal)}
           />
         </HeadlineContainer>
-        <BreadcrumbsContainer>
-          <SmallText>Publikujesz ogłoszenie w </SmallText>{' '}
-          <BreadcrumbsBar variant="disabled" />
+        <BreadcrumbsContainer variant={announcementType}>
+          {announcementType.includes('Edit') ? (
+            <SmallText>Edytujesz ogłoszenie opublikowane w </SmallText>
+          ) : (
+            <SmallText>Publikujesz ogłoszenie w </SmallText>
+          )}
+          {announcementType.includes('Edit') ? (
+            <BreadcrumbsBar
+              variant="disabled"
+              abbreviation={announcement.abbreviation}
+              major={announcement.major}
+            />
+          ) : (
+            <BreadcrumbsBar
+              variant="disabled"
+              abbreviation={urlParams.abbreviation}
+              major={urlParams.major}
+            />
+          )}
         </BreadcrumbsContainer>
         <TextInput
           variant={announcementType}
@@ -143,11 +163,15 @@ function Modal({ showModal, setShowModal, announcementType, announcement }) {
           </TertiaryButton>
           {announcementType.includes('tutor') ? (
             <PrimaryButton size="big" variant="purpleAccent">
-              Dodaj ogłoszenie
+              {announcementType.includes('Edit')
+                ? 'Edytuj ogłoszenie'
+                : 'Dodaj ogłoszenie'}
             </PrimaryButton>
           ) : (
             <PrimaryButton size="big" variant="yellowAccent">
-              Dodaj ogłoszenie
+              {announcementType.includes('Edit')
+                ? 'Edytuj ogłoszenie'
+                : 'Dodaj ogłoszenie'}
             </PrimaryButton>
           )}
         </SubmitButtons>

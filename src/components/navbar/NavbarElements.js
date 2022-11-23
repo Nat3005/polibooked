@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const NavbarContainer = styled.div`
-  height: 12vh;
+  height: 13vh;
   background: var(--white);
   border-bottom: 5px solid transparent;
   border-image: var(--gradient-horizontal);
@@ -17,6 +17,7 @@ export const NavbarContainer = styled.div`
     grid-column: 1/9;
     grid-row: 1/2;
     z-index: 2;
+    padding: 0.5rem 2rem;
   }
 `;
 

@@ -18,7 +18,7 @@ const modalData = {
     tagsPlaceholder: 'np.: całki, algebra, analiza matematyczna',
   },
   tutorEdit: {
-    modalTitle: 'Edytuj mnie i bądź korepetytorem',
+    modalTitle: 'Edytuj ogłoszenie',
     titlePlaceholder: 'np.: Poznaj tajnijki Logiki Układów Cyfrowych',
     descriptionPlaceholder:
       'np.: Od wielu lat zajmuje się programowaniem niskopoziomowym, dlatego pisanie programów w Assemblerze przychodzi mi z łatwością. Podczas zajęć pomogę Ci zrozumieć podstawy działania rejestrów oraz pokarzę w jaki sposób pisać i debugować programy.',
@@ -28,7 +28,7 @@ const modalData = {
       'np.: JavaScript, React.js, Programowanie Interfejsów Mobilnych',
   },
   studentEdit: {
-    modalTitle: 'Edytuj mnie i bądź cipką',
+    modalTitle: 'Edytuj ogłoszenie',
     titlePlaceholder: 'np.: Pomoc z Grafiką Komputerową poszukiwana!',
     descriptionPlaceholder:
       'np.: Jestem po pierwszym kolokwium z analizy matematycznej i wiem, że moja wiedza nie jest na zadowalającym poziomie. Szczególną trudność sprawia mi obliczanie granic i całek, dlatego szukam osoby, która byłaby wstanie wytłumaczyć mi te zagadanienia i przerobić kilka zadań.',
