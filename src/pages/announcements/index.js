@@ -13,6 +13,7 @@ import { MediumText } from '../../components/text/TextElements';
 function Announcements({ openEditModal }) {
   const { abbreviation, major } = useParams();
   const [announcements] = useAnnouncements(abbreviation, major);
+
   return (
     <AnnouncementsContainer>
       {announcements.length !== 0 &&
@@ -21,6 +22,7 @@ function Announcements({ openEditModal }) {
             announcement={item}
             key={item.id}
             openEditModal={openEditModal}
+            type="announcements"
           />
         ))}
       {announcements.length === 0 && (

@@ -61,7 +61,7 @@ export const ImageContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 80%;
+  width: 100%;
   align-self: center;
   justify-self: center;
   height: 65vh;
@@ -71,4 +71,10 @@ export const ImageContainer = styled.div`
 export const NoResultsImage = styled.img`
   width: 250px;
   height: auto;
+`;
+
+export const TabPanelContainer = styled.div`
+  width: auto;
+  height: auto;
+  overflow-y: scrol;
 `;

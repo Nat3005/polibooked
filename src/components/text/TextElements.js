@@ -31,4 +31,8 @@ export const MediumText = styled(paragraph)`
 `;
 export const LargeText = styled(paragraph)`
   font-size: var(--large-text);
+
+  @media screen and (max-width: 768px) {
+    font-size: var(--medium-text);
+  }
 `;

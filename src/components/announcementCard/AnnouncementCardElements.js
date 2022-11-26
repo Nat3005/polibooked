@@ -61,7 +61,7 @@ export const PictureContainer = styled.div`
   align-items: center;
 
   @media screen and (max-width: 768px) {
-    width: 56px;
+    width: 50px;
     height: 50px;
   }
 `;
@@ -87,8 +87,10 @@ export const ChipsContainer = styled.div`
 export const ButtonsContainer = styled.div`
   display: flex;
   flex-direction: row;
-  column-gap: 0.5rem;
+  column-gap: 0.3rem;
   justify-content: flex-end;
+  flex-wrap: wrap;
+  row-gap: 0.5rem;
 `;
 export const PriceContainer = styled.div`
   display: flex;
@@ -97,4 +99,15 @@ export const PriceContainer = styled.div`
   color: var(--primary-dark);
   align-items: center;
   justify-content: flex-start;
+`;
+
+export const BreadcrumbsContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  column-gap: 0.5rem;
+
+  @media screen and (max-width: 768px) {
+    display: flex;
+    flex-direction: column;
+  }
 `;
