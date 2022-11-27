@@ -25,7 +25,12 @@ import { firestore } from '../../firebase/init';
 import { useFavourites } from '../../dataManagement';
 import BreadcrumbsBar from '../breadcrumbs';
 
-function AnnouncementCard({ announcement, openEditModal, type }) {
+function AnnouncementCard({
+  announcement,
+  openEditModal,
+  type,
+  openBookModal,
+}) {
   const { user } = UserAuth();
   const [favourites] = useFavourites();
   const isFavorite = favourites.find(
@@ -113,7 +118,11 @@ function AnnouncementCard({ announcement, openEditModal, type }) {
             <PrimaryButton size="small" variant="purpleAccent">
               <MailOutlineRoundedIcon /> napisz
             </PrimaryButton>
-            <PrimaryButton size="small" variant="purpleAccent">
+            <PrimaryButton
+              size="small"
+              variant="purpleAccent"
+              onClick={() => openBookModal(announcement)}
+            >
               <EventRoundedIcon /> rezerwój
             </PrimaryButton>
             {isFavorite ? (

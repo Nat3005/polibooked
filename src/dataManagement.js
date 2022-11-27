@@ -1,10 +1,96 @@
 import { useState, useEffect } from 'react';
-import { onSnapshot, doc, getDoc } from 'firebase/firestore';
+import { onSnapshot, doc, getDoc, getDocs } from 'firebase/firestore';
 import { getAnnouncements } from './firebase/announcementService';
 import { getFaculties } from './firebase/facultiesService';
 import { getUser } from './firebase/userService';
 import { UserAuth } from './context/UserContext';
 import { firestore } from './firebase/init';
+import {
+  getBookedEvents,
+  getFreeEvents,
+  getPersonalEvents,
+} from './firebase/eventsService';
+
+export const usePersonalEvents = (publisherID = null) => {
+  const [events, setEvents] = useState([]);
+
+  useEffect(() => {
+    getPersonalEvents(publisherID).then((retrievedDocuments) => {
+      const promises = retrievedDocuments.docs.map((document) =>
+        getUser(document.data().publisherRef).then((u) => {
+          const retrievedUser = {
+            id: document.id,
+            publishinguUser: u.data(),
+            ...document.data(),
+          };
+          return retrievedUser;
+        })
+      );
+
+      Promise.all(promises).then((documentsList) => {
+        setEvents(documentsList);
+      });
+    });
+  }, [publisherID]);
+  return [events];
+};
+
+export const useFreeEvents = (publisherID = null) => {
+  const [events, setEvents] = useState([]);
+
+  useEffect(() => {
+    getFreeEvents(publisherID).then((retrievedDocuments) => {
+      const promises = retrievedDocuments.docs.map((document) =>
+        getUser(document.data().publisherRef).then((u) => {
+          const retrievedUser = {
+            id: document.id,
+            publishinguUser: u.data(),
+            ...document.data(),
+          };
+          return retrievedUser;
+        })
+      );
+
+      Promise.all(promises).then((documentsList) => {
+        setEvents(documentsList);
+      });
+    });
+  }, [publisherID]);
+  return [events];
+};
+
+export const useBookedEvents = (publisherID = null) => {
+  const [events, setEvents] = useState([]);
+
+  useEffect(() => {
+    getBookedEvents(publisherID).then((retrievedDocuments) => {
+      const promises = retrievedDocuments.docs.map((document) =>
+        getUser(document.data().subscriberRef).then((u) => {
+          const retrievedUser = {
+            id: document.id,
+            subscribingUser: u.data(),
+            ...document.data(),
+          };
+          return retrievedUser;
+        })
+      );
+      // const subscribedPromises = retrievedDocuments.docs.map((document) =>
+      // getUser(document.data().subscriberRef).then((u) => {
+      //   const retrievedUser = {
+      //     id: document.id,
+      //     subscribingUser: u.data(),
+      //     ...document.data(),
+      //   };
+      //   return retrievedUser;
+      // }));
+
+      Promise.all(promises).then((documentsList) => {
+        setEvents(documentsList);
+      });
+    });
+  }, [publisherID]);
+  return [events];
+};
 
 export const useFavourites = () => {
   const [favourites, setFavourites] = useState([]);

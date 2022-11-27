@@ -10,11 +10,14 @@ import {
 import DashboardRouting from './DashboardRouting';
 import Modal from '../../components/modal';
 import MobileSidebar from '../../components/mobileSidebar';
+import EventModal from '../../components/eventModal';
+import BookModal from '../../components/bookModal';
 
 function Dashboard() {
   const [showTutoringModal, setShowTutoringModal] = useState(false);
   const [showStudentModal, setShowStudentModal] = useState(false);
   const [showSidebar, setShowSidebar] = useState(false);
+  const [showEventModal, setShowEventModal] = useState(false);
 
   // Edit Modal managment
   const [editedAnnouncement, setEditedAnnouncement] = useState(null);
@@ -26,6 +29,13 @@ function Dashboard() {
   };
   // Edit Modal managment
 
+  const [bookFromAnnouncement, setBookFromAnnouncement] = useState(null);
+  const [showBookModal, setShowBookModal] = useState(false);
+  const toggleBookModal = (announcement = null) => {
+    setBookFromAnnouncement(announcement);
+    setShowBookModal(!!announcement);
+  };
+
   const { pathname } = useLocation();
   let type = 'scroll';
   if (!!matchPath('chat', pathname) || !!matchPath('chat/rozmowa', pathname)) {
@@ -33,6 +43,15 @@ function Dashboard() {
   }
   return (
     <>
+      <BookModal
+        showModal={showBookModal}
+        setShowModal={setShowBookModal}
+        announcement={bookFromAnnouncement}
+      />
+      <EventModal
+        showEventModal={showEventModal}
+        setShowEventModal={setShowEventModal}
+      />
       <Modal
         showModal={showTutoringModal}
         setShowModal={setShowTutoringModal}
@@ -69,7 +88,12 @@ function Dashboard() {
             setShowSidebar={setShowSidebar}
           />
           <MainContainer type={type}>
-            <DashboardRouting openEditModal={toggleEditModal} />
+            <DashboardRouting
+              openBookModal={toggleBookModal}
+              openEditModal={toggleEditModal}
+              setShowEventModal={setShowEventModal}
+              showEventModal={showEventModal}
+            />
           </MainContainer>
         </CenterContainer>
       </DashboardContainer>

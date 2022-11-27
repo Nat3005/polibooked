@@ -6,6 +6,7 @@ const handleColor = (variant) =>
     studentNew: 'var(--accent-yellow)',
     tutorEdit: 'var(--accent-purple)',
     studentEdit: 'var(--accent-yellow)',
+    userEvent: 'var(--accent-purple)',
   }[variant]);
 
 const handleBackground = (variant) =>
@@ -14,6 +15,7 @@ const handleBackground = (variant) =>
     studentNew: 'var(--neutral-yellow)',
     tutorEdit: 'var(--neutral-purple)',
     studentEdit: 'var(--neutral-yellow)',
+    userEvent: 'var(--neutral-purple)',
   }[variant]);
 
 const handleCopyColor = (variant) =>
@@ -22,6 +24,7 @@ const handleCopyColor = (variant) =>
     studentNew: 'var(--greyish-yellow)',
     tutorEdit: 'var(--greyish-purple)',
     studentEdit: 'var(--greyish-yellow)',
+    userEvent: 'var(--greyish-purple)',
   }[variant]);
 
 export const InputContainer = styled.div`

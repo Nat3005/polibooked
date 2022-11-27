@@ -9,12 +9,25 @@ import Chat from '../chat';
 import Favourites from '../favourites';
 import Conversation from '../conversation';
 
-function DashboardRouting({ openEditModal }) {
+function DashboardRouting({
+  openEditModal,
+  setShowEventModal,
+  showEventModal,
+  openBookModal,
+}) {
   return (
     <Routes>
       <Route path="home" element={<Homepage />} />
       <Route path="profil" element={<Profile />} />
-      <Route path="kalendarz" element={<Calendar />} />
+      <Route
+        path="kalendarz"
+        element={
+          <Calendar
+            setShowEventModal={setShowEventModal}
+            showEventModal={showEventModal}
+          />
+        }
+      />
       <Route path="chat" element={<Chat />} />
       <Route
         path="ulubione"
@@ -23,7 +36,12 @@ function DashboardRouting({ openEditModal }) {
       <Route path="/home/:abbreviation" element={<Majors />} />
       <Route
         path="/home/:abbreviation/:major"
-        element={<Announcements openEditModal={openEditModal} />}
+        element={
+          <Announcements
+            openEditModal={openEditModal}
+            openBookModal={openBookModal}
+          />
+        }
       />
       <Route path="/chat/rozmowa" element={<Conversation />} />
       <Route exact path="/" element={<Navigate to="home" />} />

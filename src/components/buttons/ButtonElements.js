@@ -69,8 +69,8 @@ export const PrimaryButton = styled.button`
 export const SecondaryButton = styled.button`
   background-color: transparent;
   color: ${(props) => handleColor(props.variant)};
-  padding: 1rem 2rem;
-  border-radius: var(--outer-radius);
+  padding: ${(props) => handleSize(props.size)};
+  border-radius: ${(props) => handleRadius(props.size)};
   border: var(--button-style);
   border-color: ${(props) => handleColor(props.variant)};
   cursor: pointer;
@@ -83,7 +83,7 @@ export const SecondaryButton = styled.button`
 export const TertiaryButton = styled.button`
   background-color: transparent;
   color: ${(props) => handleColor(props.variant)};
-  padding: 0.5rem 1rem;
+  padding: ${(props) => handleSize(props.size)};
   cursor: pointer;
   border: none;
   font-size: var(--basic-text);

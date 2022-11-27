@@ -10,7 +10,7 @@ import AnnouncementCard from '../../components/announcementCard';
 import NoAnnouncementsImg from '../../images/no_announcements.png';
 import { MediumText } from '../../components/text/TextElements';
 
-function Announcements({ openEditModal }) {
+function Announcements({ openEditModal, openBookModal }) {
   const { abbreviation, major } = useParams();
   const [announcements] = useAnnouncements(abbreviation, major);
 
@@ -22,6 +22,7 @@ function Announcements({ openEditModal }) {
             announcement={item}
             key={item.id}
             openEditModal={openEditModal}
+            openBookModal={openBookModal}
             type="announcements"
           />
         ))}
