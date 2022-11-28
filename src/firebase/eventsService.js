@@ -20,16 +20,6 @@ export const addEvent = async (userEvent) => {
   });
 };
 
-export const getPersonalEvents = async (publisherID = null) => {
-  const ref = doc(firestore, 'users', publisherID);
-
-  const myQuery = [collection(firestore, 'events'), orderBy('eventStartTime')];
-
-  if (publisherID) myQuery.push(where('publisherRef', '==', ref));
-
-  const eventsRef = query(...myQuery);
-  return getDocs(eventsRef);
-};
 
 export const getFreeEvents = async (publisherID = null) => {
   const ref = doc(firestore, 'users', publisherID);
@@ -51,6 +41,15 @@ export const getBookedEvents = async (publisherID = null) => {
   if (publisherID) myQuery.push(where('publisherRef', '==', ref));
   myQuery.push(where('subscriberRef', '!=', null));
   myQuery.push(orderBy('eventStartTime'));
+  const eventsRef = query(...myQuery);
+  return getDocs(eventsRef);
+};
+
+export const getSubscribedEvents = async (subscriberID = null) => {
+  const ref = doc(firestore, 'users', subscriberID);
+  const myQuery = [collection(firestore, 'events'), orderBy('eventStartTime')];
+
+  if (subscriberID) myQuery.push(where('subscriberRef', '==', ref));
   const eventsRef = query(...myQuery);
   return getDocs(eventsRef);
 };

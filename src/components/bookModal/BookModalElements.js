@@ -85,3 +85,20 @@ export const FreeEventsContainer = styled.div`
   align-items: center;
   padding: 1rem 0rem;
 `;
+
+export const ImageContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 80%;
+  align-self: center;
+  justify-self: center;
+  height: 85vh;
+  row-gap: 1rem;
+`;
+
+export const NoFreeEventsContainer = styled.img`
+  width: 175px;
+  height: auto;
+`;

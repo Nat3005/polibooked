@@ -18,7 +18,7 @@ import { editEvent } from '../../firebase/eventsService';
 import { UserAuth } from '../../context/UserContext';
 
 function BookModal({ showModal, setShowModal, announcement }) {
-  const [events] = useFreeEvents(announcement?.user.uid);
+  const [events, setPublisherUserUID] = useFreeEvents(announcement?.user.uid);
   const [selectedEvent, setSelected] = useState(null);
   const { user } = UserAuth();
   const bookEvents = useRef({});
@@ -39,14 +39,15 @@ function BookModal({ showModal, setShowModal, announcement }) {
       };
 
       editEvent(updateEvent, user.uid).then((result) =>
-        console.warn(`I should be a tołst: ${result}`)
+        console.warn(`I should be a tołstoj: ${result}`)
       );
       bookEvents.current.comment.value = '';
       setSelected(null);
+      setPublisherUserUID(null);
       setShowModal(false);
+
     }
   };
-
   if (!showModal) return null;
   return (
     <ModalOverlay>
@@ -59,6 +60,7 @@ function BookModal({ showModal, setShowModal, announcement }) {
             style={{ cursor: 'pointer' }}
             onClick={() => {
               setSelected(null);
+              setPublisherUserUID(null);
               setShowModal(!showModal);
             }}
           />
@@ -68,7 +70,7 @@ function BookModal({ showModal, setShowModal, announcement }) {
           Rezerwujesz zajęcia z {announcement.user.displayName}
         </SmallText>
         <FreeEventsContainer>
-          {Object.keys(events).length !== 0 ? (
+          {Object.keys(events).length !== 0 && (
             Object.entries(events)?.map((e) => (
               <DateCard
                 key={e[1].id}
@@ -79,8 +81,6 @@ function BookModal({ showModal, setShowModal, announcement }) {
                 status={selectedEvent?.id === e[1].id}
               />
             ))
-          ) : (
-            <></>
           )}
         </FreeEventsContainer>
         <TextInput

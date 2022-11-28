@@ -25,3 +25,12 @@ export const TabPanelContainer = styled.div`
   row-gap: 1rem;
   align-items: flex-start;
 `;
+
+export const TabContentContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  column-gap: 1.5rem;
+  row-gap: 1.5rem;
+  flex-wrap: wrap;
+  justify-content: space-between;
+`;

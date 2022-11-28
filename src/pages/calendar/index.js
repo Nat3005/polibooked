@@ -6,7 +6,11 @@ import CalendarMonthRoundedIcon from '@mui/icons-material/CalendarMonthRounded';
 import { getDocs, onSnapshot } from 'firebase/firestore';
 import dayjs from 'dayjs';
 import TabPanel from './tabPanel';
-import { CalendarContainer, CalendarTabs } from './CalendarElements';
+import {
+  CalendarContainer,
+  CalendarTabs,
+  TabContentContainer,
+} from './CalendarElements';
 import { PrimaryButton } from '../../components/buttons/ButtonElements';
 import { MediumText, SmallText } from '../../components/text/TextElements';
 import DateCard from '../../components/dateCard';
@@ -15,13 +19,15 @@ import { UserAuth } from '../../context/UserContext';
 import {
   useBookedEvents,
   useFreeEvents,
-  usePersonalEvents,
+  useSubscribedEvents,
 } from '../../dataManagement';
+import TutoringCard from '../../components/tutoringCard';
 
 function Calendar({ showEventModal, setShowEventModal }) {
   const { user } = UserAuth();
-  const [personalEvents] = usePersonalEvents(user.uid);
+  const [personalEvents] = useFreeEvents(user.uid);
   const [bookedEvents] = useBookedEvents(user.uid);
+  const [subscribedEvents] = useSubscribedEvents(user.uid);
   const [value, setValue] = useState(0);
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -30,7 +36,7 @@ function Calendar({ showEventModal, setShowEventModal }) {
   const openEventModal = () => {
     setShowEventModal(!showEventModal);
   };
-  console.log(bookedEvents);
+
   return (
     <CalendarContainer>
       <CalendarTabs>
@@ -57,10 +63,38 @@ function Calendar({ showEventModal, setShowEventModal }) {
         </Tabs>
       </CalendarTabs>
       <TabPanel value={value} index={0}>
-        pierwszy
+        <TabContentContainer>
+          {Object.keys(bookedEvents).length !== 0 ? (
+            Object.entries(bookedEvents)?.map((e) => (
+              <TutoringCard
+                key={e[1].id}
+                type="tutor"
+                user={e[1].subscribingUser}
+                startDate={e[1].eventStartTime}
+                endDate={e[1].eventEndTime}
+              />
+            ))
+          ) : (
+            <></>
+          )}
+        </TabContentContainer>
       </TabPanel>
       <TabPanel value={value} index={1}>
-        drugi
+        <TabContentContainer>
+          {Object.keys(subscribedEvents).length !== 0 ? (
+            Object.entries(subscribedEvents)?.map((e) => (
+              <TutoringCard
+                key={e[1].id}
+                type="student"
+                user={e[1].publishingUser}
+                startDate={e[1].eventStartTime}
+                endDate={e[1].eventEndTime}
+              />
+            ))
+          ) : (
+            <></>
+          )}
+        </TabContentContainer>
       </TabPanel>
       <TabPanel value={value} index={2}>
         <PrimaryButton
@@ -75,18 +109,20 @@ function Calendar({ showEventModal, setShowEventModal }) {
         <SmallText variant="primaryDark" weight="bold">
           Moje Terminy
         </SmallText>
-        {Object.keys(personalEvents).length !== 0 ? (
-          Object.entries(personalEvents)?.map((e) => (
-            <DateCard
-              key={e[1].id}
-              startDate={e[1].eventStartTime}
-              endDate={e[1].eventEndTime}
-              type="editable"
-            />
-          ))
-        ) : (
-          <></>
-        )}
+        <TabContentContainer>
+          {Object.keys(personalEvents).length !== 0 ? (
+            Object.entries(personalEvents)?.map((e) => (
+              <DateCard
+                key={e[1].id}
+                startDate={e[1].eventStartTime}
+                endDate={e[1].eventEndTime}
+                type="editable"
+              />
+            ))
+          ) : (
+            <></>
+          )}
+        </TabContentContainer>
       </TabPanel>
     </CalendarContainer>
   );
