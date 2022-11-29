@@ -18,10 +18,11 @@ import { editEvent } from '../../firebase/eventsService';
 import { UserAuth } from '../../context/UserContext';
 
 function BookModal({ showModal, setShowModal, announcement }) {
-  const [events, setPublisherUserUID] = useFreeEvents(announcement?.user.uid);
+  const [events] = useFreeEvents(announcement?.user.uid);
   const [selectedEvent, setSelected] = useState(null);
   const { user } = UserAuth();
   const bookEvents = useRef({});
+
   const handleClick = (e) => {
     setSelected(e);
   };
@@ -43,7 +44,6 @@ function BookModal({ showModal, setShowModal, announcement }) {
       );
       bookEvents.current.comment.value = '';
       setSelected(null);
-      setPublisherUserUID(null);
       setShowModal(false);
 
     }
@@ -60,7 +60,6 @@ function BookModal({ showModal, setShowModal, announcement }) {
             style={{ cursor: 'pointer' }}
             onClick={() => {
               setSelected(null);
-              setPublisherUserUID(null);
               setShowModal(!showModal);
             }}
           />

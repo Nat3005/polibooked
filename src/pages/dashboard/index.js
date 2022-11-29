@@ -43,11 +43,11 @@ function Dashboard() {
   }
   return (
     <>
-      <BookModal
+      { showBookModal && <BookModal
         showModal={showBookModal}
         setShowModal={setShowBookModal}
         announcement={bookFromAnnouncement}
-      />
+      />}
       <EventModal
         showEventModal={showEventModal}
         setShowEventModal={setShowEventModal}

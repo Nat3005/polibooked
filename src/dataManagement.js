@@ -11,17 +11,13 @@ import {
   getSubscribedEvents,
 } from './firebase/eventsService';
 
-export const useFreeEvents = (publisherID = null) => {
+export const useFreeEvents = (publisherUID) => {
   const [events, setEvents] = useState([]);
 
-  console.log({publisherID})
-  const [publisherUID, setPublisherUID] = useState(null);
-
   useEffect(() => {
-    console.log({publisherUID})
     if (publisherUID===null) return;
 
-    getFreeEvents(publisherID).then((documents) => {
+    getFreeEvents(publisherUID).then((documents) => {
       const documentsList = [];
       documents.forEach((document) => {
         documentsList.push({ id: document.id, ...document.data() });
@@ -31,7 +27,7 @@ export const useFreeEvents = (publisherID = null) => {
     });
   }, [publisherUID]);
 
-  return [events, setPublisherUID];
+  return [events];
 };
 
 export const useBookedEvents = (publisherID = null) => {
