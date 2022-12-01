@@ -8,6 +8,7 @@ import {
   where,
   doc,
   updateDoc,
+  deleteDoc
 } from 'firebase/firestore';
 import { firestore, auth } from './init';
 
@@ -41,3 +42,8 @@ export const getAnnouncements = async (abbreviation = null, major = null) => {
   const announcementsRef = query(...myQuery);
   return getDocs(announcementsRef);
 };
+
+export const removeAnnouncement = async (announcementID) => {
+  const announcementRef = doc(firestore, 'announcements', announcementID);
+  return deleteDoc(announcementRef);
+}

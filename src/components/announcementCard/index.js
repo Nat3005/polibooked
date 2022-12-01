@@ -6,7 +6,7 @@ import EventRoundedIcon from '@mui/icons-material/EventRounded';
 import FavoriteBorderRoundedIcon from '@mui/icons-material/FavoriteBorderRounded';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import { arrayUnion, updateDoc, doc, arrayRemove } from 'firebase/firestore';
-import { PrimaryButton } from '../buttons/ButtonElements';
+import { PrimaryButton, TertiaryButton } from '../buttons/ButtonElements';
 import {
   AnnouncementContainer,
   HeaderContainer,
@@ -24,6 +24,7 @@ import { UserAuth } from '../../context/UserContext';
 import { firestore } from '../../firebase/init';
 import { useFavourites } from '../../dataManagement';
 import BreadcrumbsBar from '../breadcrumbs';
+import { removeAnnouncement } from '../../firebase/announcementService';
 
 function AnnouncementCard({
   announcement,
@@ -62,6 +63,15 @@ function AnnouncementCard({
       favourites: arrayRemove(announcementRef),
     });
   };
+
+  const handleRemoveAnnouncemntBecauseICan = (e) => {
+    e.preventDefault();
+
+    removeAnnouncement(announcement.id).then(()=>{
+      console.warn("O la Boga! Udao się!")
+    });
+
+  }
 
   return (
     <AnnouncementContainer variant={announcement.type}>
@@ -167,6 +177,13 @@ function AnnouncementCard({
             )}
           </>
         )}
+          {user.uid === announcement.user.uid &&
+            <PrimaryButton
+            size="small"
+            variant="rosso"
+            onClick={handleRemoveAnnouncemntBecauseICan}
+          > bieda button do usuwania
+            </PrimaryButton>}
       </ButtonsContainer>
     </AnnouncementContainer>
   );
