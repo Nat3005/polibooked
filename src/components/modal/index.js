@@ -1,8 +1,8 @@
-import { React, useRef, useState } from 'react';
-import SchoolRoundedIcon from '@mui/icons-material/SchoolRounded';
-import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
-import EmojiPeopleRoundedIcon from '@mui/icons-material/EmojiPeopleRounded';
-import { matchPath, useLocation } from 'react-router-dom';
+import { React, useRef, useState } from "react";
+import SchoolRoundedIcon from "@mui/icons-material/SchoolRounded";
+import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
+import EmojiPeopleRoundedIcon from "@mui/icons-material/EmojiPeopleRounded";
+import { matchPath, useLocation } from "react-router-dom";
 import {
   ModalContainer,
   ModalOverlay,
@@ -10,78 +10,90 @@ import {
   HeadlineContainer,
   BreadcrumbsContainer,
   SubmitButtons,
-} from './ModalElements';
-import TextInput from '../textInput';
-import RadioInput from '../radioInput';
-import { PrimaryButton, TertiaryButton } from '../buttons/ButtonElements';
-import modalData from './modalData';
-import {
-  addAnnouncement,
-  editAnnouncement,
-} from '../../firebase/announcementService';
-import BreadcrumbsBar from '../breadcrumbs';
-import { SmallText } from '../text/TextElements';
-
+} from "./ModalElements";
+import TextInput from "../textInput";
+import RadioInput from "../radioInput";
+import { PrimaryButton, TertiaryButton } from "../buttons/ButtonElements";
+import modalData from "./modalData";
+import { addAnnouncement, editAnnouncement } from "../../firebase/announcementService";
+import BreadcrumbsBar from "../breadcrumbs";
+import { SmallText } from "../text/TextElements";
+import * as yup from "yup";
 
 function Modal({ showModal, setShowModal, announcementType, announcement }) {
+  const [validationErrors, setValidationErrors] = useState([]);
   const formItem = useRef({});
   const { pathname } = useLocation();
-  const { params: urlParams } =
-    matchPath(':source/:abbreviation/:major', pathname) ?? {};
+  const { params: urlParams } = matchPath(":source/:abbreviation/:major", pathname) ?? {};
 
   if (!showModal) return null;
 
   const placeholderData = modalData[announcementType];
 
+  const writeToFirestore = (newAnnouncement) => {
+    if (announcementType.includes("Edit")) {
+      editAnnouncement(newAnnouncement).then((result) =>
+        console.warn(`I should be a tołst: ${result}`)
+      );
+    } else {
+      addAnnouncement(newAnnouncement).then((result) =>
+        console.warn(`I should be a toast: ${result}`)
+      );
+    }
+    formItem.current.title.value = "";
+    formItem.current.description.value = "";
+    formItem.current.tags.value = "";
+    setValidationErrors([]);
+    setShowModal(false);
+  };
+
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    if (
-      formItem.current.title.value !== '' &&
-      formItem.current.description.value !== '' &&
-      formItem.current.tags.value !== ''
-    ) {
-      const separatedTags = formItem.current.tags.value
-        .split(',')
-        .map((s) => s.trim());
+    const separatedTags = formItem.current.tags.value.split(",").map((s) => s.trim());
 
-      const newAnnouncement = {
-        type: announcementType.includes('tutor') ? 'tutor' : 'student',
-        title: formItem.current.title.value,
-        description: formItem.current.description.value,
-        price: formItem.current.price,
-        tags: separatedTags,
-        abbreviation: announcementType.includes('Edit')
-          ? announcement.abbreviation
-          : urlParams.abbreviation,
-        major: announcementType.includes('Edit')
-          ? announcement.major
-          : urlParams.major,
-        ...(!!announcement && { id: announcement.id }),
-      };
+    const newAnnouncement = {
+      type: announcementType.includes("tutor") ? "tutor" : "student",
+      title: formItem.current.title.value,
+      description: formItem.current.description.value,
+      price: formItem.current.price,
+      tags: separatedTags,
+      abbreviation: announcementType.includes("Edit")
+        ? announcement.abbreviation
+        : urlParams.abbreviation,
+      major: announcementType.includes("Edit") ? announcement.major : urlParams.major,
+      ...(!!announcement && { id: announcement.id }),
+    };
 
-      if (announcementType.includes('Edit')) {
-        editAnnouncement(newAnnouncement).then((result) =>
-          console.warn(`I should be a tołst: ${result}`)
-        );
-      } else {
-        addAnnouncement(newAnnouncement).then((result) =>
-          console.warn(`I should be a toast: ${result}`)
-        );
-      }
-      formItem.current.title.value = '';
-      formItem.current.description.value = '';
-      formItem.current.tags.value = '';
-      setShowModal(false);
-    }
+    let schema = yup.object().shape({
+      title: yup
+        .string()
+        .required("Please provide title"),
+      description: yup
+        .string()
+        .required("Please provide desription")
+        .matches(/^.*cycki.*$/, "there must be 'cycki' in desription"),
+    });
+
+schema.validate(newAnnouncement, { abortEarly: false })
+      .then(() => writeToFirestore(newAnnouncement))
+      .catch((err) => {
+        setValidationErrors(err.errors);
+      });
   };
+
+  const validationErrorsHTML = validationErrors?.map((it) => (
+    <p key={it} style={{ color: "red" }}>
+      {it}
+    </p>
+  ));
 
   return (
     <ModalOverlay>
       <ModalContainer>
         <HeadlineContainer>
           <TitleContainer variant={announcementType}>
-            {announcementType.includes('tutor') ? (
+            {announcementType.includes("tutor") ? (
               <SchoolRoundedIcon />
             ) : (
               <EmojiPeopleRoundedIcon />
@@ -89,17 +101,17 @@ function Modal({ showModal, setShowModal, announcementType, announcement }) {
             {placeholderData.modalTitle}
           </TitleContainer>
           <CloseRoundedIcon
-            style={{ cursor: 'pointer' }}
+            style={{ cursor: "pointer" }}
             onClick={() => setShowModal(!showModal)}
           />
         </HeadlineContainer>
         <BreadcrumbsContainer variant={announcementType}>
-          {announcementType.includes('Edit') ? (
+          {announcementType.includes("Edit") ? (
             <SmallText>Edytujesz ogłoszenie opublikowane w </SmallText>
           ) : (
             <SmallText>Publikujesz ogłoszenie w </SmallText>
           )}
-          {announcementType.includes('Edit') ? (
+          {announcementType.includes("Edit") ? (
             <BreadcrumbsBar
               variant="disabled"
               abbreviation={announcement.abbreviation}
@@ -156,26 +168,20 @@ function Modal({ showModal, setShowModal, announcementType, announcement }) {
           placeholder={placeholderData.tagsPlaceholder}
         />
         <SubmitButtons onSubmit={handleSubmit}>
-          <TertiaryButton
-            variant="dark"
-            onClick={() => setShowModal(!showModal)}
-          >
+          <TertiaryButton variant="dark" onClick={() => setShowModal(!showModal)}>
             Anuluj
           </TertiaryButton>
-          {announcementType.includes('tutor') ? (
+          {announcementType.includes("tutor") ? (
             <PrimaryButton size="big" variant="purpleAccent">
-              {announcementType.includes('Edit')
-                ? 'Edytuj ogłoszenie'
-                : 'Dodaj ogłoszenie'}
+              {announcementType.includes("Edit") ? "Edytuj ogłoszenie" : "Dodaj ogłoszenie"}
             </PrimaryButton>
           ) : (
             <PrimaryButton size="big" variant="yellowAccent">
-              {announcementType.includes('Edit')
-                ? 'Edytuj ogłoszenie'
-                : 'Dodaj ogłoszenie'}
+              {announcementType.includes("Edit") ? "Edytuj ogłoszenie" : "Dodaj ogłoszenie"}
             </PrimaryButton>
           )}
         </SubmitButtons>
+        <div>{validationErrorsHTML}</div>
       </ModalContainer>
     </ModalOverlay>
   );
