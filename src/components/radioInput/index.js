@@ -37,7 +37,7 @@ function RadioInput({ label, refs, placeholder, variant }) {
         refs={(ref) => {
           costFromRef.current = ref;
         }}
-        type="text"
+        type="number"
         name="costFrom"
         placeholder="np.: 10"
         onChange={handleInsert}
@@ -48,7 +48,7 @@ function RadioInput({ label, refs, placeholder, variant }) {
         refs={(ref) => {
           costToRef.current = ref;
         }}
-        type="text"
+        type="number"
         name="costTo"
         placeholder="np.: 30"
         onChange={handleInsert}

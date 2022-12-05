@@ -4,6 +4,7 @@ import {
   InputLabel,
   Input,
   TextAreaInput,
+  MessageError
 } from './TextInputElements';
 
 function TextInput({
@@ -27,7 +28,11 @@ function TextInput({
           placeholder={placeholder}
           variant={variant}
           defaultValue={value}
+          required
         />
+        <MessageError>
+        Pole nie może być puste!
+      </MessageError>
       </InputContainer>
     );
   }
@@ -43,7 +48,11 @@ function TextInput({
         placeholder={placeholder}
         variant={variant}
         defaultValue={value}
+        required={true}
       />
+      <MessageError>
+      Pole nie może być puste!
+      </MessageError>
     </InputContainer>
   );
 }

@@ -35,7 +35,7 @@ function LoginPage() {
       <LoginFormContainer>
         <LogoImage src={logoVertical} />
         <PrimaryButton size="big" variant="yellowAccent" onClick={handleLogIn}>
-          Login with PWR Google account
+          Zaloguj się mailem z domeny PWR
         </PrimaryButton>
       </LoginFormContainer>
       <LoginImageContainer>

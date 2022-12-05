@@ -16,8 +16,8 @@ export const UserChatCardContainer = styled.div`
   display: flex;
   flex-direction: row;
   column-gap: 1rem;
-  background-color: var(--white);
   padding: 0.5rem;
+  background-color: var(--white);
   border-left: 2px solid ${(props) => handleColor(props.variant)};
   border-radius: var(--inner-radius);
   align-items: center;

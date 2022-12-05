@@ -1,4 +1,4 @@
-import { React, useRef } from 'react';
+import { React, useRef, useState } from 'react';
 import SchoolRoundedIcon from '@mui/icons-material/SchoolRounded';
 import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
 import EmojiPeopleRoundedIcon from '@mui/icons-material/EmojiPeopleRounded';
@@ -22,6 +22,7 @@ import {
 import BreadcrumbsBar from '../breadcrumbs';
 import { SmallText } from '../text/TextElements';
 
+
 function Modal({ showModal, setShowModal, announcementType, announcement }) {
   const formItem = useRef({});
   const { pathname } = useLocation();
@@ -44,7 +45,7 @@ function Modal({ showModal, setShowModal, announcementType, announcement }) {
         .split(',')
         .map((s) => s.trim());
 
-      const newPost = {
+      const newAnnouncement = {
         type: announcementType.includes('tutor') ? 'tutor' : 'student',
         title: formItem.current.title.value,
         description: formItem.current.description.value,
@@ -60,11 +61,11 @@ function Modal({ showModal, setShowModal, announcementType, announcement }) {
       };
 
       if (announcementType.includes('Edit')) {
-        editAnnouncement(newPost).then((result) =>
+        editAnnouncement(newAnnouncement).then((result) =>
           console.warn(`I should be a tołst: ${result}`)
         );
       } else {
-        addAnnouncement(newPost).then((result) =>
+        addAnnouncement(newAnnouncement).then((result) =>
           console.warn(`I should be a toast: ${result}`)
         );
       }

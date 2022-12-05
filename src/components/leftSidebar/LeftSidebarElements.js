@@ -30,3 +30,11 @@ export const Logo = styled.img`
   height: auto;
   margin-left: -20px;
 `;
+
+export const UserContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  row-gap: 1rem;
+  justify-content: center;
+  align-items: center;
+`

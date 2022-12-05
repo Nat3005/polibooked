@@ -9,9 +9,10 @@
     --accent-yellow: #FFBB36;
     --greyish-purple: #7869A5;
     --greyish-yellow: #9E6900;
+    --error: #C50147;
 
-    --border-style: 1px solid;
-    --button-style: 2px solid;
+    --border-style-light: 1px solid;
+    --border-style-bold: 2px solid;
     --outer-radius: 15px;
     --inner-radius: 7.5px;
 
@@ -23,4 +24,6 @@
     --large-text: 1.75rem;
     --bold: 700;
     --regular: 400;
+
+    --hover-transition: all 0.2s ease-in-out;
 }

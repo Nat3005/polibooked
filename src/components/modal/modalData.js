@@ -3,7 +3,7 @@ const modalData = {
     modalTitle: 'Zostań korepetytorem',
     titlePlaceholder: 'np.: Poznaj tajnijki Logiki Układów Cyfrowych',
     descriptionPlaceholder:
-      'np.: Od wielu lat zajmuje się programowaniem niskopoziomowym, dlatego pisanie programów w Assemblerze przychodzi mi z łatwością. Podczas zajęć pomogę Ci zrozumieć podstawy działania rejestrów oraz pokarzę w jaki sposób pisać i debugować programy.',
+      'np.: Od wielu lat zajmuje się programowaniem niskopoziomowym, dlatego pisanie programów w Assemblerze przychodzi mi z łatwością. Podczas zajęć pomogę Ci zrozumieć podstawy działania rejestrów oraz pokażę w jaki sposób pisać i debugować programy.',
     pricePlaceholder:
       'np.: Pierwsze godzinne spotkanie jest bezpłatne. Koszt następnych to 25zł/h.',
     tagsPlaceholder:
@@ -21,7 +21,7 @@ const modalData = {
     modalTitle: 'Edytuj ogłoszenie',
     titlePlaceholder: 'np.: Poznaj tajnijki Logiki Układów Cyfrowych',
     descriptionPlaceholder:
-      'np.: Od wielu lat zajmuje się programowaniem niskopoziomowym, dlatego pisanie programów w Assemblerze przychodzi mi z łatwością. Podczas zajęć pomogę Ci zrozumieć podstawy działania rejestrów oraz pokarzę w jaki sposób pisać i debugować programy.',
+      'np.: Od wielu lat zajmuje się programowaniem niskopoziomowym, dlatego pisanie programów w Assemblerze przychodzi mi z łatwością. Podczas zajęć pomogę Ci zrozumieć podstawy działania rejestrów oraz pokażę w jaki sposób pisać i debugować programy.',
     pricePlaceholder:
       'np.: Pierwsze godzinne spotkanie jest bezpłatne. Koszt następnych to 25zł/h.',
     tagsPlaceholder:

@@ -1,11 +1,29 @@
-import { collection, query, getDocs, orderBy } from 'firebase/firestore';
+import { collection, query, getDocs, orderBy, onSnapshot } from 'firebase/firestore';
 import { firestore } from './init';
+
+// export const getFaculties = async () => {
+//   const facultyRef = query(
+//     collection(firestore, 'faculties'),
+//     orderBy('order')
+//   );
+
+//   return getDocs(facultyRef);
+// };
 
 export const getFaculties = async () => {
   const facultyRef = query(
-    collection(firestore, 'faculties'),
-    orderBy('order')
-  );
+        collection(firestore, 'faculties'),
+        orderBy('order')
+      );
 
-  return getDocs(facultyRef);
-};
+      const func = onSnapshot(
+        facultyRef,
+        (document) => {
+          setChats(document.data());
+        }
+      );
+
+      return () => {
+        func();
+      };
+}

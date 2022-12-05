@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { SmallText } from '../text/TextElements';
 
 const handleColor = (variant) =>
   ({
@@ -38,6 +39,11 @@ export const InputLabel = styled.label`
   font-size: var(--basic-text);
   font-weight: var(--bold);
 `;
+export const MessageError = styled.p`
+  font-size: var(--small-text);
+  color: var(--error);
+  display: none;
+`
 
 export const Input = styled.input`
   background: ${(props) => handleBackground(props.variant)};
@@ -55,6 +61,7 @@ export const Input = styled.input`
   ::placeholder {
     color: ${(props) => handleCopyColor(props.variant)};
   }
+
 `;
 export const TextAreaInput = styled.textarea`
   background: ${(props) => handleBackground(props.variant)};
@@ -75,3 +82,4 @@ export const TextAreaInput = styled.textarea`
     color: ${(props) => handleCopyColor(props.variant)};
   }
 `;
+

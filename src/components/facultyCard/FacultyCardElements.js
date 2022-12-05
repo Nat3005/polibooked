@@ -44,43 +44,42 @@ export const FacultyDataContainer = styled.div`
   align-items: flex-start;
 `;
 
-export const FacultyCardContainer = styled.div`
+export const FacultyCardContainer = styled.article`
   display: flex;
   flex-direction: column;
-  height: 220px;
   align-items: flex-start;
+  justify-content: center;
+  height: 220px;
   padding 1rem;
   background: var(--white);
-  justify-content: center;
-  border-right: 2px solid var(--accent-purple);
+  border-right: var(-border-style-bold) var(--accent-purple);
   border-radius: var(--outer-radius);
   cursor: pointer;
   grid-column: ${(props) => handleGridColumn(props.id)};
-  cursor: poitnter;
+  cursor: pointer;
   @media screen and (max-width: 768px) {
     grid-column: ${(props) => handleGridColumnMid(props.id)};
   }
   @media screen and (max-width: 456px) {
     grid-column: 1/5;
-    transition: all 1s ease-in-out;
   }
 
   :hover {
     background-color: var(--accent-yellow);
-    transition: all 0.2s ease-in-out;
-    border-right: 2px solid var(--white);
+    transition: var(--hover-transition);
+    border-right: var(-border-style-bold) var(--white);
 
     ${FacultyIconContainer}{
       background-color: var(--white);
       color: var(--accent-yellow);
-      transition: all 0.2s ease-in-out;
+      transition: var(--hover-transition);
     }
-  
+
     ${ArrowIconContainer}{
       color: var(--primary-dark);
-      transition: all 0.2s ease-in-out;
+      transition: var(--hover-transition);
       margin-left: 20px;
     }
-    
+
   }
 `;

@@ -75,7 +75,7 @@ export const SecondaryButton = styled.button`
   color: ${(props) => handleColor(props.variant)};
   padding: ${(props) => handleSize(props.size)};
   border-radius: ${(props) => handleRadius(props.size)};
-  border: var(--button-style);
+  border: var(--border-style-bold);
   border-color: ${(props) => handleColor(props.variant)};
   cursor: pointer;
   font-size: var(--basic-text);
