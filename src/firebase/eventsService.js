@@ -45,7 +45,19 @@ export const getFreeEvents =  (publisherID = null) => {
 //   return getDocs(eventsRef);
 // };
 
-export const getBookedEvents = async (publisherID = null) => {
+// export const getBookedEvents = async (publisherID = null) => {
+//   const ref = doc(firestore, 'users', publisherID);
+
+//   const myQuery = [collection(firestore, 'events'), orderBy('subscriberRef')];
+
+//   if (publisherID) myQuery.push(where('publisherRef', '==', ref));
+//   myQuery.push(where('subscriberRef', '!=', null));
+//   myQuery.push(orderBy('eventStartTime'));
+//   const eventsRef = query(...myQuery);
+//   return getDocs(eventsRef);
+// };
+
+export const getBookedEvents =  (publisherID = null) => {
   const ref = doc(firestore, 'users', publisherID);
 
   const myQuery = [collection(firestore, 'events'), orderBy('subscriberRef')];
@@ -53,18 +65,17 @@ export const getBookedEvents = async (publisherID = null) => {
   if (publisherID) myQuery.push(where('publisherRef', '==', ref));
   myQuery.push(where('subscriberRef', '!=', null));
   myQuery.push(orderBy('eventStartTime'));
-  const eventsRef = query(...myQuery);
-  return getDocs(eventsRef);
+
+  return query(...myQuery);
 };
 
-export const getSubscribedEvents = async (subscriberID = null) => {
-  const ref = doc(firestore, 'users', subscriberID);
-  const myQuery = [collection(firestore, 'events'), orderBy('eventStartTime')];
-
-  if (subscriberID) myQuery.push(where('subscriberRef', '==', ref));
-  const eventsRef = query(...myQuery);
-  return getDocs(eventsRef);
-};
+export const getSubscribedEvents = (subscriberID = null) => {
+    const ref = doc(firestore, 'users', subscriberID);
+    const myQuery = [collection(firestore, 'events'), orderBy('eventStartTime')];
+  
+    if (subscriberID) myQuery.push(where('subscriberRef', '==', ref));
+    return query(...myQuery);
+  };
 
 export const editEvent = async (userEvent, userID) => {
   if (userEvent === null) return null;
@@ -81,3 +92,15 @@ export const removeEvent = async (eventID) => {
   const eventRef = doc(firestore, 'events',eventID);
   return deleteDoc(eventRef);
 }
+
+export const cancelEvent = async (userEvent) => {
+  if (userEvent === null) return null;
+  const eventRef = doc(firestore, 'events', userEvent.id);
+  const subscriberRef = null;
+  return updateDoc(eventRef, {
+    subscriberRef,
+    ...userEvent,
+  });
+};
+
+//TODO dodac Id eventu do tutoring card i wywolac funkcje

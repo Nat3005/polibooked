@@ -12,7 +12,6 @@ import {
 } from './firebase/eventsService';
 
 /////////////////////// \/\/\/\/\\//\/ done /\/\/\\/\/\/\\/\/\///////////////////////////
-
 export const useFreeEvents = (publisherUID) => {
   const [events, setEvents] = useState([]);
   if (publisherUID===null) return;
@@ -40,52 +39,71 @@ export const useFreeEvents = (publisherUID) => {
 }
 
 
+/////////////////////// \/\/\/\/\\//\/ done /\/\/\\/\/\/\\/\/\///////////////////////////
 export const useBookedEvents = (publisherID = null) => {
   const [events, setEvents] = useState([]);
+  const eventsRef = getBookedEvents(publisherID);
 
-  useEffect(() => {
-    getBookedEvents(publisherID).then((retrievedDocuments) => {
-      const promises = retrievedDocuments.docs.map((document) =>
-        getUser(document.data().subscriberRef).then((u) => {
-          const retrievedUser = {
-            id: document.id,
-            subscribingUser: u.data(),
-            ...document.data(),
-          };
-          return retrievedUser;
-        })
-      );
-      Promise.all(promises).then((documentsList) => {
-        setEvents(documentsList);
-      });
-    });
-  }, [publisherID]);
+  useEffect(()=> {
+    const getBooked = onSnapshot( eventsRef, (querySnapshot) => {
+      const promises = querySnapshot.docs.map((document) =>
+      getUser(document.data().subscriberRef).then((u) => {
+        const retrievedUser = {
+          id: document.id,
+          subscribingUser: u.data(),
+          ...document.data(),
+        };
+        return retrievedUser;
+      })
+    );
+    Promise.all(promises).then((documentsList) => {
+      setEvents(documentsList);
+    })
+    }
+    );
+  
+    return () => {
+      getBooked();
+    };
+  },[publisherID]);
+
   return [events];
 };
 
+/////////////////////// \/\/\/\/\\//\/ done /\/\/\\/\/\/\\/\/\///////////////////////////
 export const useSubscribedEvents = (subscriberID = null) => {
   const [events, setEvents] = useState([]);
+  const eventsRef = getSubscribedEvents(subscriberID);
 
-  useEffect(() => {
-    getSubscribedEvents(subscriberID).then((retrievedDocuments) => {
-      const promises = retrievedDocuments.docs.map((document) =>
-        getUser(document.data().publisherRef).then((u) => {
-          const retrievedUser = {
-            id: document.id,
-            publishingUser: u.data(),
-            ...document.data(),
-          };
-          return retrievedUser;
-        })
-      );
-      Promise.all(promises).then((documentsList) => {
-        setEvents(documentsList);
-      });
-    });
-  }, [subscriberID]);
+  useEffect(()=> {
+    const getBooked = onSnapshot( eventsRef, (querySnapshot) => {
+      const promises = querySnapshot.docs.map((document) =>
+      getUser(document.data().publisherRef).then((u) => {
+        const retrievedUser = {
+          id: document.id,
+          publishingUser: u.data(),
+          ...document.data(),
+        };
+        return retrievedUser;
+      })
+    );
+    Promise.all(promises).then((documentsList) => {
+      setEvents(documentsList);
+    })
+    }
+    );
+  
+    return () => {
+      getBooked();
+    };
+  },[subscriberID]);
+
   return [events];
 };
 
+
+
+/////////////////////// \/\/\/\/\\//\/ done /\/\/\\/\/\/\\/\/\///////////////////////////
 export const useFavourites = () => {
   const [favourites, setFavourites] = useState([]);
   const [references, setReferences] = useState([]);
