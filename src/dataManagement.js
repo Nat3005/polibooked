@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { onSnapshot, doc, getDoc, getDocs } from 'firebase/firestore';
+import { onSnapshot, doc, getDoc, getDocs, query,collection, orderBy,where } from 'firebase/firestore';
 import { getAnnouncements } from './firebase/announcementService';
 import { getFaculties } from './firebase/facultiesService';
 import { getUser } from './firebase/userService';
@@ -11,24 +11,34 @@ import {
   getSubscribedEvents,
 } from './firebase/eventsService';
 
+/////////////////////// \/\/\/\/\\//\/ done /\/\/\\/\/\/\\/\/\///////////////////////////
+
 export const useFreeEvents = (publisherUID) => {
   const [events, setEvents] = useState([]);
+  if (publisherUID===null) return;
 
+  const eventsRef = getFreeEvents(publisherUID);
   useEffect(() => {
-    if (publisherUID===null) return;
-
-    getFreeEvents(publisherUID).then((documents) => {
-      const documentsList = [];
-      documents.forEach((document) => {
-        documentsList.push({ id: document.id, ...document.data() });
-      });
-
-      setEvents(documentsList);
-    });
-  }, [publisherUID]);
+    const getEvents =  onSnapshot(
+      eventsRef, (querySnapshot) => {
+        const docs = [];
+        querySnapshot.forEach((doc)=> {
+          docs.push({
+            id: doc.id,
+            ...doc.data(),
+          });
+        });
+        setEvents(docs);
+      }
+    )
+    return () => {
+      getEvents();
+    };
+    },[publisherUID]);
 
   return [events];
-};
+}
+
 
 export const useBookedEvents = (publisherID = null) => {
   const [events, setEvents] = useState([]);
@@ -121,12 +131,18 @@ export const useFavourites = () => {
   return [favourites];
 };
 
+/////////////////////// \/\/\/\/\\//\/ done /\/\/\\/\/\/\\/\/\///////////////////////////
 export const useAnnouncements = (abbreviation = null, major = null) => {
-  const [announcements, setAnnouncements] = useState([]);
+    const [announcements, setAnnouncements] = useState([]);
+    const myQuery = [collection(firestore, 'announcements'),orderBy("date", "desc")];
+    if (abbreviation) myQuery.push(where('abbreviation', '==', abbreviation));
+    if (major) myQuery.push(where('major', '==', major));
+    const announcementsRef = query(...myQuery);
 
   useEffect(() => {
-    getAnnouncements(abbreviation, major).then((retrievedDocuments) => {
-      const promises = retrievedDocuments.docs.map((document) =>
+    const getAnn = onSnapshot (
+      announcementsRef, (retrievedDocuments) => {
+        const promises = retrievedDocuments.docs.map((document) =>
         getUser(document.data().userRef).then((u) => {
           const retrievedUser = {
             id: document.id,
@@ -140,10 +156,15 @@ export const useAnnouncements = (abbreviation = null, major = null) => {
       Promise.all(promises).then((documentsList) => {
         setAnnouncements(documentsList);
       });
-    });
+      }
+    );
+    return () => {
+      getAnn();
+    };
   }, [abbreviation, major]);
   return [announcements];
 };
+
 
 export const useFaculties = () => {
   const [faculties, setFaculties] = useState([]);

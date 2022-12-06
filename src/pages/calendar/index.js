@@ -37,6 +37,7 @@ function Calendar({ showEventModal, setShowEventModal }) {
     setShowEventModal(!showEventModal);
   };
 
+  console.log(personalEvents);
   return (
     <CalendarContainer>
       <CalendarTabs>
@@ -117,6 +118,7 @@ function Calendar({ showEventModal, setShowEventModal }) {
                 startDate={e[1].eventStartTime}
                 endDate={e[1].eventEndTime}
                 type="editable"
+                eventID={e[1].id}
               />
             ))
           ) : (

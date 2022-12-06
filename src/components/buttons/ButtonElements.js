@@ -16,7 +16,6 @@ const handleColor = (variant) =>
   ({
     dark: 'var(--primary-dark)',
     light: 'var(--primary-light)',
-    rosso: 'fuchsia',
     purpleAccent: 'var(--accent-purple)',
     yellowAccent: 'var(--accent-yellow)',
   }[variant]);
@@ -25,7 +24,6 @@ const handleHoverColor = (variant) =>
   ({
     dark: 'var(--primary-light))',
     light: 'var(--primary-dark)',
-    rosso: 'purple',
     purpleAccent: 'var(--accent-yellow)',
     yellowAccent: 'var(--accent-purple)',
   }[variant]);
@@ -34,7 +32,6 @@ const handleFont = (variant) =>
   ({
     dark: 'var(--white)',
     light: 'var(--primary-dark)',
-    rosso: 'var(--white)',
     purpleAccent: 'var(--white)',
     yellowAccent: 'var(--primary-dark)',
   }[variant]);
@@ -43,7 +40,6 @@ const handleHoverFont = (variant) =>
   ({
     dark: 'var(--primary-dark)',
     light: 'var(--white)',
-    rosso: 'var(--white)',
     purpleAccent: 'var(--primary-dark)',
     yellowAccent: 'var(--white)',
   }[variant]);

@@ -5,6 +5,13 @@ export const DateCardContainer = styled.div`
     flex-direction: column;
     row-gap: 0.5.rem;
     cursor: pointer;
+
+    @media screen and (max-width: 768px){
+      width: 48%;
+    }
+    @media screen and (max-width: 768px){
+      width: 100%;
+    }
 `;
 
 export const TimeContainer = styled.div`

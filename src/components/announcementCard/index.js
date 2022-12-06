@@ -1,4 +1,4 @@
-import React from 'react';
+import {React, useState} from 'react';
 import MoreVertRoundedIcon from '@mui/icons-material/MoreVertRounded';
 import AttachMoneyRoundedIcon from '@mui/icons-material/AttachMoneyRounded';
 import MailOutlineRoundedIcon from '@mui/icons-material/MailOutlineRounded';
@@ -7,6 +7,8 @@ import FavoriteBorderRoundedIcon from '@mui/icons-material/FavoriteBorderRounded
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import { arrayUnion, updateDoc, doc, arrayRemove } from 'firebase/firestore';
 import { PrimaryButton, TertiaryButton } from '../buttons/ButtonElements';
+import BorderColorRoundedIcon from '@mui/icons-material/BorderColorRounded';
+import DeleteSweepRoundedIcon from '@mui/icons-material/DeleteSweepRounded';
 import {
   AnnouncementContainer,
   HeaderContainer,
@@ -17,6 +19,7 @@ import {
   PriceContainer,
   ChipsContainer,
   ButtonsContainer,
+  IconManagementContainer,
   BreadcrumbsContainer,
 } from './AnnouncementCardElements';
 import { MediumText, SmallText } from '../text/TextElements';
@@ -25,14 +28,16 @@ import { firestore } from '../../firebase/init';
 import { useFavourites } from '../../dataManagement';
 import BreadcrumbsBar from '../breadcrumbs';
 import { removeAnnouncement } from '../../firebase/announcementService';
-
+import Drowpdown from '../dropdown';
 function AnnouncementCard({
   announcement,
   openEditModal,
   type,
   openBookModal,
+
 }) {
   const { user } = UserAuth();
+  const [showDropdown, setShowDropdown] = useState(false);
   const [favourites] = useFavourites();
   const isFavorite = favourites.find(
     (favourite) => favourite.id === announcement.id
@@ -44,6 +49,10 @@ function AnnouncementCard({
     if (price.length === 2) return `${price[0]} - ${price[1]}`;
 
     return '';
+  };
+
+  const openDropDown = () => {
+    setShowDropdown(!showDropdown);
   };
 
   const handleAddFavourites = async (e) => {
@@ -105,7 +114,16 @@ function AnnouncementCard({
           </UserDataContainer>
         </ProfileContainer>
         {user.uid === announcement.user.uid && (
-          <MoreVertRoundedIcon onClick={() => openEditModal(announcement)} />
+          <IconManagementContainer>
+
+            <TertiaryButton size="small" onClick={() => openEditModal(announcement)} variant ="dark">
+            <BorderColorRoundedIcon /> Edytuj
+            </TertiaryButton>
+            <TertiaryButton size="small" onClick={handleRemoveAnnouncemntBecauseICan} variant ="dark">
+            <DeleteSweepRoundedIcon/> Usuń
+            </TertiaryButton>
+
+          </IconManagementContainer>
         )}
       </HeaderContainer>
       <SmallText variant="dark" weight="bold">
@@ -177,13 +195,6 @@ function AnnouncementCard({
             )}
           </>
         )}
-          {user.uid === announcement.user.uid &&
-            <PrimaryButton
-            size="small"
-            variant="rosso"
-            onClick={handleRemoveAnnouncemntBecauseICan}
-          > bieda button do usuwania
-            </PrimaryButton>}
       </ButtonsContainer>
     </AnnouncementContainer>
   );

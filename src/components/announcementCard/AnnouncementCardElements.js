@@ -111,3 +111,10 @@ export const BreadcrumbsContainer = styled.div`
     flex-direction: column;
   }
 `;
+
+export const IconManagementContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  column-gap: 0.25rem;
+  color: var(--primary-dark);
+`

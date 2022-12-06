@@ -10,8 +10,19 @@ import {
   DateCardContainer,
   TimeContainer,
 } from './DateCardElements';
+import { removeEvent } from '../../firebase/eventsService';
 
-function DateCard({ startDate, endDate, type, onClick, status }) {
+function DateCard({ eventID, startDate, endDate, type, onClick, status }) {
+  console.log(eventID);
+  const handleRemove = (e) => {
+    e.preventDefault();
+
+    removeEvent(eventID).then(()=>{
+      console.warn("O la Boga! To też sie Udao się!")
+    });
+
+  }
+
   return (
     <DateCardContainer onClick={onClick}>
       <SmallText variant="dark" weight="bold">
@@ -30,7 +41,7 @@ function DateCard({ startDate, endDate, type, onClick, status }) {
               <EditRoundedIcon />
               Edytuj
             </TertiaryButton>
-            <TertiaryButton size="small" variant="dark">
+            <TertiaryButton size="small" variant="dark" onClick={handleRemove}>
               <DeleteOutlineRoundedIcon> </DeleteOutlineRoundedIcon>Usuń
             </TertiaryButton>
           </ButtonsContainer>

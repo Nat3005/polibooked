@@ -32,5 +32,5 @@ export const TabContentContainer = styled.div`
   column-gap: 1.5rem;
   row-gap: 1.5rem;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: flex-start;
 `;

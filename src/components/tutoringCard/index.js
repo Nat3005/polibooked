@@ -14,7 +14,7 @@ import {
 import ProfilePicture from '../profilePicture';
 import { SmallText, MediumText } from '../text/TextElements';
 import { Chip } from '../chips/ChipsElements';
-import { SecondaryButton } from '../buttons/ButtonElements';
+import { SecondaryButton, TertiaryButton } from '../buttons/ButtonElements';
 
 function TutoringCard({ type, user, startDate, endDate }) {
   return (
@@ -36,18 +36,18 @@ function TutoringCard({ type, user, startDate, endDate }) {
               {dayjs.unix(endDate.seconds).format('HH:mm')}
             </Chip>
             <ButtonsContainer>
-              <SecondaryButton
+              <TertiaryButton
                 size="small"
-                variant={type === 'tutor' ? 'purpleAccent' : 'yellowAccent'}
+                variant={type === 'tutor' ? 'purpleAccent' : 'dark'}
               >
                 <MailOutlineRoundedIcon /> Napisz
-              </SecondaryButton>
-              <SecondaryButton
+              </TertiaryButton>
+              <TertiaryButton
                 size="small"
-                variant={type === 'tutor' ? 'purpleAccent' : 'yellowAccent'}
+                variant={type === 'tutor' ? 'purpleAccent' : 'dark'}
               >
                 <DeleteSweepRoundedIcon /> Odwołaj
-              </SecondaryButton>
+              </TertiaryButton>
             </ButtonsContainer>
           </EventDetailsContainer>
         </UserDataContainer>
