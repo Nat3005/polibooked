@@ -29,6 +29,13 @@ import { useFavourites } from '../../dataManagement';
 import BreadcrumbsBar from '../breadcrumbs';
 import { removeAnnouncement } from '../../firebase/announcementService';
 import Drowpdown from '../dropdown';
+import { useNavigate } from 'react-router-dom';
+import {
+  getDoc,
+  serverTimestamp,
+  setDoc,
+} from 'firebase/firestore';
+import { NavLink } from 'react-router-dom';
 function AnnouncementCard({
   announcement,
   openEditModal,
@@ -36,7 +43,8 @@ function AnnouncementCard({
   openBookModal,
 
 }) {
-  const { user } = UserAuth();
+  const navigate = useNavigate();
+  const { user} = UserAuth();
   const [showDropdown, setShowDropdown] = useState(false);
   const [favourites] = useFavourites();
   const isFavorite = favourites.find(
@@ -49,10 +57,6 @@ function AnnouncementCard({
     if (price.length === 2) return `${price[0]} - ${price[1]}`;
 
     return '';
-  };
-
-  const openDropDown = () => {
-    setShowDropdown(!showDropdown);
   };
 
   const handleAddFavourites = async (e) => {
@@ -73,14 +77,58 @@ function AnnouncementCard({
     });
   };
 
-  const handleRemoveAnnouncemntBecauseICan = (e) => {
+  const handleRemoveAnnouncement = (e) => {
     e.preventDefault();
-
     removeAnnouncement(announcement.id).then(()=>{
       console.warn("O la Boga! Udao się!")
     });
-
   }
+
+  // TODO przeniesc handle conversation i tworzenie ID
+  const mutualId =
+  user.uid > announcement.user.uid
+    ? user.uid + announcement.user.uid
+    : announcement.user.uid + user.uid;
+
+
+const handleConversation = async () => {
+  console.log("here");
+  const response = await getDoc(doc(firestore, 'chats', mutualId));
+
+  if (!response.exists()) {
+    // create chat
+    await setDoc(doc(firestore, 'chats', mutualId), { messages: [] });
+
+    await updateDoc(doc(firestore, 'userChats', loggedInUser.uid), {
+      [`${mutualId}.userInfo`]: {
+        uid: announcement.user.uid,
+        displayName: announcement.user.displayName,
+        photoURL: announcement.user.photoURL,
+      },
+      [`${mutualId}.date`]: serverTimestamp(),
+      [`${mutualId}.lastMessage`]: '',
+    });
+
+    await updateDoc(doc(firestore, 'userChats', announcement.user.uid), {
+      [`${mutualId}.userInfo`]: {
+        uid: loggedInUser.uid,
+        displayName: loggedInUser.displayName,
+        photoURL: loggedInUser.photoURL,
+      },
+      [`${mutualId}.date`]: serverTimestamp(),
+      [`${mutualId}.lastMessage`]: '',
+    });
+  }
+
+  const annUser = announcement.user;
+
+  navigate('/chat/rozmowa', {
+    state: {
+      conversationId: mutualId,
+      annUser,
+    },
+  });
+};
 
   return (
     <AnnouncementContainer variant={announcement.type}>
@@ -119,7 +167,7 @@ function AnnouncementCard({
             <TertiaryButton size="small" onClick={() => openEditModal(announcement)} variant ="dark">
             <BorderColorRoundedIcon /> Edytuj
             </TertiaryButton>
-            <TertiaryButton size="small" onClick={handleRemoveAnnouncemntBecauseICan} variant ="dark">
+            <TertiaryButton size="small" onClick={handleRemoveAnnouncement} variant ="dark">
             <DeleteSweepRoundedIcon/> Usuń
             </TertiaryButton>
 
@@ -140,10 +188,11 @@ function AnnouncementCard({
           <SmallText key={item}>{`#${item}`}</SmallText>
         ))}
       </ChipsContainer>
-      <ButtonsContainer>
+      {user.uid !== announcement.user.uid && (
+        <ButtonsContainer>
         {announcement.type.includes('tutor') ? (
           <>
-            <PrimaryButton size="small" variant="purpleAccent">
+            <PrimaryButton onClick={handleConversation} size="small" variant="purpleAccent">
               <MailOutlineRoundedIcon /> napisz
             </PrimaryButton>
             <PrimaryButton
@@ -173,7 +222,7 @@ function AnnouncementCard({
           </>
         ) : (
           <>
-            <PrimaryButton size="small" variant="yellowAccent">
+            <PrimaryButton onClick={handleConversation} size="small" variant="yellowAccent">
               <MailOutlineRoundedIcon /> napisz
             </PrimaryButton>
             {isFavorite ? (
@@ -196,6 +245,8 @@ function AnnouncementCard({
           </>
         )}
       </ButtonsContainer>
+      )}
+
     </AnnouncementContainer>
   );
 }

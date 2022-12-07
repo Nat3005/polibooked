@@ -24,8 +24,11 @@ function UserChatCard({ user, type, lastMsg }) {
   const navigate = useNavigate();
   const { user: loggedInUser } = UserAuth();
   if (!user) {
-    return <h2>dupa, nie ma usera</h2>;
+    return;
   }
+
+  // TODO przeniesc handle conversation i tworzenie ID
+
   const mutualId =
     loggedInUser.uid > user.uid
       ? loggedInUser.uid + user.uid
@@ -66,6 +69,8 @@ function UserChatCard({ user, type, lastMsg }) {
     });
   };
 
+
+  // TO NAVIGATE PONIZEJ JEST OK
   const handleSelect = () => {
     navigate('rozmowa', {
       state: {

@@ -47,15 +47,15 @@ function Modal({ showModal, setShowModal, announcementType, announcement }) {
     setShowModal(false);
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = (event) =>{
     event.preventDefault();
 
-    const separatedTags = formItem.current.tags.value.split(",").map((s) => s.trim());
+    const separatedTags = Object.keys(formItem.current.tags.value.split(",").map((s) => s.trim()));
 
     const newAnnouncement = {
       type: announcementType.includes("tutor") ? "tutor" : "student",
-      title: formItem.current.title.value,
-      description: formItem.current.description.value,
+      title: formItem.current.title.value.trim(),
+      description: formItem.current.description.value.trim(),
       price: formItem.current.price,
       tags: separatedTags,
       abbreviation: announcementType.includes("Edit")
@@ -68,14 +68,14 @@ function Modal({ showModal, setShowModal, announcementType, announcement }) {
     let schema = yup.object().shape({
       title: yup
         .string()
-        .required("Please provide title"),
+        .required("Tytuł nie może być pusty"),
       description: yup
         .string()
-        .required("Please provide desription")
-        .matches(/^.*cycki.*$/, "there must be 'cycki' in desription"),
+        .required("Opis nie może być pusty"),
+      tags: yup.object().required().min(1,"Lista tagów nie może być pusta"),
     });
 
-schema.validate(newAnnouncement, { abortEarly: false })
+    schema.validate(newAnnouncement, { abortEarly: false })
       .then(() => writeToFirestore(newAnnouncement))
       .catch((err) => {
         setValidationErrors(err.errors);

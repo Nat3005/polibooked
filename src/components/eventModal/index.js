@@ -27,21 +27,31 @@ import TextInput from '../textInput';
 import { UserAuth } from '../../context/UserContext';
 import { addEvent } from '../../firebase/eventsService';
 import { useEvents } from '../../dataManagement';
+import { SchemaRounded } from '@mui/icons-material';
+import * as yup from "yup";
 
 function EventModal({ showEventModal, setShowEventModal }) {
   const [dateValue, setValue] = useState(null);
   const userEvents = useRef({});
+  const [validationErrors, setValidationErrors] = useState([]);
 
   if (!showEventModal) return null;
 
+  const writeToFirestore = (newEvent) => {
+      addEvent(newEvent).then((result) =>
+      console.warn(`I should be a toast: ${result}`)
+      );
+
+    userEvents.current.hours.value = '';
+    userEvents.current.minutes.value = '';
+    setValue(null);
+    setValidationErrors([]);
+    setShowEventModal(false)
+
+  }
+
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    if (
-      userEvents.current.hours.value !== '' &&
-      userEvents.current.minutes.value !== '' &&
-      dateValue !== null
-    ) {
       const hoursToMin =
         parseInt(userEvents.current.hours.value * 60) +
         parseInt(userEvents.current.minutes.value);
@@ -52,28 +62,35 @@ function EventModal({ showEventModal, setShowEventModal }) {
         subscriberRef: null,
       };
 
-      addEvent(newEvent).then((result) =>
-        console.warn(`I should be a toast: ${result}`)
-      );
+      let schema = yup.object().shape({
+        eventStartTime: yup.date().nullable().required().typeError("Data rozpoczęcia nie może być pusta"),
+        eventEndTime: yup.date().nullable().required().typeError("Długość trwania zajęć nie może być pusta"),
+      });
 
-      userEvents.current.hours.value = '';
-      userEvents.current.minutes.value = '';
-      setValue(null);
-      setShowEventModal(false);
-    }
+      schema.validate(newEvent,{abortEarly: false})
+        .then(() => writeToFirestore(newEvent))
+        .catch((err) => {
+          setValidationErrors(err.errors);
+        })
   };
+
+  const validationErrorsHTML = validationErrors?.map((it) => (
+    <p key={it} style={{ color: "red" }}>
+      {it}
+    </p>
+  ));
 
   const eventForm = (
     <EventFormContainer>
       <SmallText variant="purpleAccent" weight="bold">
-        Podaj długość zajęć
+        Podaj długość zajęć*
       </SmallText>
       <Inputs>
         <Input>
           <TextInput
             variant="userEvent"
             refs={(ref) => (userEvents.current.hours = ref)}
-            type="text"
+            type="number"
             name="hours"
             placeholder="Np. 1"
           />
@@ -83,7 +100,7 @@ function EventModal({ showEventModal, setShowEventModal }) {
           <TextInput
             variant="userEvent"
             refs={(ref) => (userEvents.current.minutes = ref)}
-            type="text"
+            type="number"
             name="minutes"
             placeholder="Np. 30"
           />
@@ -91,7 +108,7 @@ function EventModal({ showEventModal, setShowEventModal }) {
         </Input>
       </Inputs>
       <SmallText variant="purpleAccent" weight="bold">
-        Podaj datę i godzinę rozpoczęcia
+        Podaj datę i godzinę rozpoczęcia*
       </SmallText>
       <CalendarPicker>
         <LocalizationProvider dateAdapter={AdapterDayjs}>
@@ -99,6 +116,7 @@ function EventModal({ showEventModal, setShowEventModal }) {
             renderInput={(props) => <TextField {...props} />}
             label="Wybierz datę i godzinę"
             value={dateValue}
+            minDate={new Date()}
             ampm={false}
             onChange={(newValue) => {
               setValue(newValue);
@@ -139,6 +157,7 @@ function EventModal({ showEventModal, setShowEventModal }) {
             Zapisz
           </PrimaryButton>
         </SubmitButtons>
+        <div>{validationErrorsHTML}</div>
       </ModalContainer>
     </ModalOverlay>
   );

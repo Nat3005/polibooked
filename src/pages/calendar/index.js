@@ -69,10 +69,12 @@ function Calendar({ showEventModal, setShowEventModal }) {
             Object.entries(bookedEvents)?.map((e) => (
               <TutoringCard
                 key={e[1].id}
+                eventID={e[1].id}
                 type="tutor"
                 user={e[1].subscribingUser}
                 startDate={e[1].eventStartTime}
                 endDate={e[1].eventEndTime}
+                publisher={e[1].publisherRef}
               />
             ))
           ) : (
@@ -86,6 +88,8 @@ function Calendar({ showEventModal, setShowEventModal }) {
             Object.entries(subscribedEvents)?.map((e) => (
               <TutoringCard
                 key={e[1].id}
+                eventID={e[1].id}
+                publisher={e[1].publisherRef}
                 type="student"
                 user={e[1].publishingUser}
                 startDate={e[1].eventStartTime}

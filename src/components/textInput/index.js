@@ -30,9 +30,6 @@ function TextInput({
           defaultValue={value}
           required
         />
-        <MessageError>
-        Pole nie może być puste!
-      </MessageError>
       </InputContainer>
     );
   }
@@ -44,15 +41,13 @@ function TextInput({
         ref={refs}
         type={type}
         name={name}
+        min="0"
         onChange={onChange}
         placeholder={placeholder}
         variant={variant}
         defaultValue={value}
         required={true}
       />
-      <MessageError>
-      Pole nie może być puste!
-      </MessageError>
     </InputContainer>
   );
 }
