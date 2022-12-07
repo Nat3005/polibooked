@@ -1,4 +1,4 @@
-import {React, useState} from 'react';
+import {React, useState, useMemo} from 'react';
 import MoreVertRoundedIcon from '@mui/icons-material/MoreVertRounded';
 import AttachMoneyRoundedIcon from '@mui/icons-material/AttachMoneyRounded';
 import MailOutlineRoundedIcon from '@mui/icons-material/MailOutlineRounded';
@@ -36,6 +36,9 @@ import {
   setDoc,
 } from 'firebase/firestore';
 import { NavLink } from 'react-router-dom';
+import { assembleChatID, prepareChat, navigateToChat } from "../../firebase/domowUsluga";
+
+
 function AnnouncementCard({
   announcement,
   openEditModal,
@@ -44,9 +47,15 @@ function AnnouncementCard({
 
 }) {
   const navigate = useNavigate();
-  const { user} = UserAuth();
+  const { user: loggedInUser } = UserAuth();
   const [showDropdown, setShowDropdown] = useState(false);
   const [favourites] = useFavourites();
+
+  const chatID = useMemo(
+    () => assembleChatID(loggedInUser, announcement.user),
+    [loggedInUser, announcement.user]
+  );
+
   const isFavorite = favourites.find(
     (favourite) => favourite.id === announcement.id
   );
@@ -85,49 +94,52 @@ function AnnouncementCard({
   }
 
   // TODO przeniesc handle conversation i tworzenie ID
-  const mutualId =
-  user.uid > announcement.user.uid
-    ? user.uid + announcement.user.uid
-    : announcement.user.uid + user.uid;
+  // const mutualId =
+  // user.uid > announcement.user.uid
+  //   ? user.uid + announcement.user.uid
+  //   : announcement.user.uid + user.uid;
 
 
 const handleConversation = async () => {
-  console.log("here");
-  const response = await getDoc(doc(firestore, 'chats', mutualId));
+  // console.log("here");
+  // const response = await getDoc(doc(firestore, 'chats', mutualId));
 
-  if (!response.exists()) {
-    // create chat
-    await setDoc(doc(firestore, 'chats', mutualId), { messages: [] });
+  // if (!response.exists()) {
+  //   // create chat
+  //   await setDoc(doc(firestore, 'chats', mutualId), { messages: [] });
 
-    await updateDoc(doc(firestore, 'userChats', loggedInUser.uid), {
-      [`${mutualId}.userInfo`]: {
-        uid: announcement.user.uid,
-        displayName: announcement.user.displayName,
-        photoURL: announcement.user.photoURL,
-      },
-      [`${mutualId}.date`]: serverTimestamp(),
-      [`${mutualId}.lastMessage`]: '',
-    });
+  //   await updateDoc(doc(firestore, 'userChats', loggedInUser.uid), {
+  //     [`${mutualId}.userInfo`]: {
+  //       uid: announcement.user.uid,
+  //       displayName: announcement.user.displayName,
+  //       photoURL: announcement.user.photoURL,
+  //     },
+  //     [`${mutualId}.date`]: serverTimestamp(),
+  //     [`${mutualId}.lastMessage`]: '',
+  //   });
 
-    await updateDoc(doc(firestore, 'userChats', announcement.user.uid), {
-      [`${mutualId}.userInfo`]: {
-        uid: loggedInUser.uid,
-        displayName: loggedInUser.displayName,
-        photoURL: loggedInUser.photoURL,
-      },
-      [`${mutualId}.date`]: serverTimestamp(),
-      [`${mutualId}.lastMessage`]: '',
-    });
-  }
+  //   await updateDoc(doc(firestore, 'userChats', announcement.user.uid), {
+  //     [`${mutualId}.userInfo`]: {
+  //       uid: loggedInUser.uid,
+  //       displayName: loggedInUser.displayName,
+  //       photoURL: loggedInUser.photoURL,
+  //     },
+  //     [`${mutualId}.date`]: serverTimestamp(),
+  //     [`${mutualId}.lastMessage`]: '',
+  //   });
+  // }
 
-  const annUser = announcement.user;
+  prepareChat(loggedInUser, interlocutorUser, chatID).then(() =>
+  navigateToChat(chatID, announcement.user, navigate, '/chat/rozmowa')
+);
+  // const annUser = announcement.user;
 
-  navigate('/chat/rozmowa', {
-    state: {
-      conversationId: mutualId,
-      annUser,
-    },
-  });
+  // navigate('/chat/rozmowa', {
+  //   state: {
+  //     conversationId: mutualId,
+  //     annUser,
+  //   },
+  // });
 };
 
   return (
@@ -161,7 +173,7 @@ const handleConversation = async () => {
             )}
           </UserDataContainer>
         </ProfileContainer>
-        {user.uid === announcement.user.uid && (
+        {loggedInUser.uid === announcement.user.uid && (
           <IconManagementContainer>
 
             <TertiaryButton size="small" onClick={() => openEditModal(announcement)} variant ="dark">
@@ -188,7 +200,7 @@ const handleConversation = async () => {
           <SmallText key={item}>{`#${item}`}</SmallText>
         ))}
       </ChipsContainer>
-      {user.uid !== announcement.user.uid && (
+      {loggedInUser.uid !== announcement.user.uid && (
         <ButtonsContainer>
         {announcement.type.includes('tutor') ? (
           <>
