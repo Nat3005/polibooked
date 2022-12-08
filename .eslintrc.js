@@ -8,6 +8,7 @@ module.exports = {
     'import/prefer-default-export': 0,
     'react/prop-types': 0,
     'react/forbid-prop-types': 'off',
+    'react/jsx-props-no-spreading': 'off',
     'react/jsx-filename-extension': [1, { extensions: ['.js', '.jsx'] }],
     'prettier/prettier': [
       'error',

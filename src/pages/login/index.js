@@ -9,7 +9,7 @@ import {
 } from './LoginElements';
 import fullScreenImage from '../../images/homepage_full_screen.svg';
 import logoVertical from '../../images/logo vertical.svg';
-import { PrimaryButton } from '../../components/buttons/ButtonElements';
+import { PrimaryButton } from '../../ui_elements/buttons/ButtonElements';
 import { UserAuth } from '../../context/UserContext';
 
 function LoginPage() {

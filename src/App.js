@@ -4,7 +4,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Dashboard from './pages/dashboard';
 import LoginPage from './pages/login';
 import { UserContextProvider } from './context/UserContext';
-import ProtectedRoute from './components/protectedRoute';
+import ProtectedRoute from './ui_components/protectedRoute';
 
 function App() {
   return (

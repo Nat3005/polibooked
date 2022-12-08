@@ -1,17 +1,17 @@
 import { React, useState } from 'react';
 import { matchPath, useLocation } from 'react-router-dom';
-import LeftSidebar from '../../components/leftSidebar';
-import Navbar from '../../components/navbar';
+import LeftSidebar from '../../ui_components/leftSidebar';
+import Navbar from '../../ui_components/navbar';
 import {
   CenterContainer,
   DashboardContainer,
   MainContainer,
 } from './DashboardElements';
 import DashboardRouting from './DashboardRouting';
-import Modal from '../../components/modal';
-import MobileSidebar from '../../components/mobileSidebar';
-import EventModal from '../../components/eventModal';
-import BookModal from '../../components/bookModal';
+import Modal from '../../ui_components/modal';
+import MobileSidebar from '../../ui_components/mobileSidebar';
+import EventModal from '../../ui_components/eventModal';
+import BookModal from '../../ui_components/bookModal';
 
 function Dashboard() {
   const [showTutoringModal, setShowTutoringModal] = useState(false);
@@ -43,11 +43,13 @@ function Dashboard() {
   }
   return (
     <>
-      { showBookModal && <BookModal
-        showModal={showBookModal}
-        setShowModal={setShowBookModal}
-        announcement={bookFromAnnouncement}
-      />}
+      {showBookModal && (
+        <BookModal
+          showModal={showBookModal}
+          setShowModal={setShowBookModal}
+          announcement={bookFromAnnouncement}
+        />
+      )}
       <EventModal
         showEventModal={showEventModal}
         setShowEventModal={setShowEventModal}

@@ -3,8 +3,6 @@ import { React, useState } from 'react';
 import SchoolRoundedIcon from '@mui/icons-material/SchoolRounded';
 import EmojiPeopleRoundedIcon from '@mui/icons-material/EmojiPeopleRounded';
 import CalendarMonthRoundedIcon from '@mui/icons-material/CalendarMonthRounded';
-import { getDocs, onSnapshot } from 'firebase/firestore';
-import dayjs from 'dayjs';
 import TabPanel from './tabPanel';
 import {
   CalendarContainer,
@@ -13,21 +11,18 @@ import {
   NoEventsImage,
   TabContentContainer,
 } from './CalendarElements';
-import { PrimaryButton } from '../../components/buttons/ButtonElements';
-import { MediumText, SmallText } from '../../components/text/TextElements';
-import DateCard from '../../components/dateCard';
-import { firestore } from '../../firebase/init';
+import { PrimaryButton } from '../../ui_elements/buttons/ButtonElements';
+import { SmallText } from '../../ui_elements/text/TextElements';
+import DateCard from '../../ui_elements/dateCard';
 import { UserAuth } from '../../context/UserContext';
-import {
-  useBookedEvents,
-  useFreeEvents,
-  useSubscribedEvents,
-} from '../../dataManagement';
-import TutoringCard from '../../components/tutoringCard';
+import TutoringCard from '../../ui_components/tutoringCard';
 import noBookedEventsImg from '../../images/no_tutors.png';
 import noEventsImg from '../../images/no_events.png';
-import noSubscribedEvents from '../../images/no_subscribed.png'
+import noSubscribedEvents from '../../images/no_subscribed.png';
 // import { makeStyles } from "@material-ui/styles";
+import { useFreeEvents } from '../../data/useFreeEvents';
+import { useSubscribedEvents } from '../../data/useSubscribedEvents';
+import { useBookedEvents } from '../../data/useBookedEvents';
 
 function Calendar({ showEventModal, setShowEventModal }) {
   const { user } = UserAuth();
@@ -44,7 +39,6 @@ function Calendar({ showEventModal, setShowEventModal }) {
   // });
 
   // const classes = useStyles();
-
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -120,15 +114,15 @@ function Calendar({ showEventModal, setShowEventModal }) {
             ))
           ) : (
             <NoEventsContainer>
-            <NoEventsImage src={noSubscribedEvents} />
-            <SmallText>Nie uczestniczysz w żadnych korepetycjach</SmallText>
-          </NoEventsContainer>
+              <NoEventsImage src={noSubscribedEvents} />
+              <SmallText>Nie uczestniczysz w żadnych korepetycjach</SmallText>
+            </NoEventsContainer>
           )}
         </TabContentContainer>
       </TabPanel>
       <TabPanel value={value} index={2}>
         <PrimaryButton
-        style={{alignSelf:'flex-start'}}
+          style={{ alignSelf: 'flex-start' }}
           size="big"
           variant="purpleAccent"
           onClick={openEventModal}

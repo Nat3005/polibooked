@@ -1,7 +1,7 @@
 import React from 'react';
-import { useFaculties } from '../../dataManagement';
 import { HomepageContainer } from './HomepageElements';
-import FacultyCard from '../../components/facultyCard';
+import FacultyCard from '../../ui_elements/facultyCard';
+import { useFaculties } from '../../data/useFaculties';
 
 function Homepage() {
   const [faculties] = useFaculties();

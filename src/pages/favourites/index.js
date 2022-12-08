@@ -1,13 +1,13 @@
 import React from 'react';
-import AnnouncementCard from '../../components/announcementCard';
-import { useFavourites } from '../../dataManagement';
+import AnnouncementCard from '../../ui_components/announcementCard';
 import {
   FavouritesContainer,
   ImageContainer,
   NoFavouritesImgage,
 } from './FavouritesElements';
 import NoResultsImg from '../../images/no_favourites.png';
-import { MediumText } from '../../components/text/TextElements';
+import { MediumText } from '../../ui_elements/text/TextElements';
+import { useFavourites } from '../../data/useFavourites';
 
 function Favourites({ openEditModal }) {
   const [favourites] = useFavourites();

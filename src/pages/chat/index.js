@@ -20,13 +20,13 @@ import {
   SearchInput,
   ImageContainer,
 } from './ChatElements';
-import UserChatCard from '../../components/userChatCard';
+import UserChatCard from '../../ui_components/userChatCard';
 import TabPanel from './tabPanel';
 import { firestore } from '../../firebase/init';
 import { UserAuth } from '../../context/UserContext';
 import NoResultsImg from '../../images/no_results.png';
 import NoRecentsImg from '../../images/no_recents.png';
-import { SmallText } from '../../components/text/TextElements';
+import { SmallText } from '../../ui_elements/text/TextElements';
 
 function Chat() {
   const { user: loggedInUser } = UserAuth();

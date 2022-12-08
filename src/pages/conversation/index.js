@@ -10,7 +10,7 @@ import {
 import MailOutlineRoundedIcon from '@mui/icons-material/MailOutlineRounded';
 import { useLocation } from 'react-router-dom';
 import { v4 as uuid } from 'uuid';
-import ChatBubble from '../../components/chatBubble';
+import ChatBubble from '../../ui_elements/chatBubble';
 import {
   ConversationContainer,
   MessageInput,
@@ -18,7 +18,7 @@ import {
   SendMessageContainer,
 } from './ConversationElements';
 import { firestore } from '../../firebase/init';
-import { PrimaryButton } from '../../components/buttons/ButtonElements';
+import { PrimaryButton } from '../../ui_elements/buttons/ButtonElements';
 import { UserAuth } from '../../context/UserContext';
 
 function Conversation() {

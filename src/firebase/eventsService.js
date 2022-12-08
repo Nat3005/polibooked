@@ -4,12 +4,10 @@ import {
   doc,
   query,
   where,
-  getDocs,
   orderBy,
   updateDoc,
   deleteDoc,
 } from 'firebase/firestore';
-import { UserAuth } from '../context/UserContext';
 import { firestore, auth } from './init';
 
 export const addEvent = async (userEvent) => {
@@ -21,8 +19,7 @@ export const addEvent = async (userEvent) => {
   });
 };
 
-
-export const getFreeEvents =  (publisherID = null) => {
+export const getFreeEvents = (publisherID = null) => {
   const ref = doc(firestore, 'users', publisherID);
 
   const myQuery = [collection(firestore, 'events'), orderBy('eventStartTime')];
@@ -57,7 +54,7 @@ export const getFreeEvents =  (publisherID = null) => {
 //   return getDocs(eventsRef);
 // };
 
-export const getBookedEvents =  (publisherID = null) => {
+export const getBookedEvents = (publisherID = null) => {
   const ref = doc(firestore, 'users', publisherID);
 
   const myQuery = [collection(firestore, 'events'), orderBy('subscriberRef')];
@@ -70,12 +67,12 @@ export const getBookedEvents =  (publisherID = null) => {
 };
 
 export const getSubscribedEvents = (subscriberID = null) => {
-    const ref = doc(firestore, 'users', subscriberID);
-    const myQuery = [collection(firestore, 'events'), orderBy('eventStartTime')];
+  const ref = doc(firestore, 'users', subscriberID);
+  const myQuery = [collection(firestore, 'events'), orderBy('eventStartTime')];
 
-    if (subscriberID) myQuery.push(where('subscriberRef', '==', ref));
-    return query(...myQuery);
-  };
+  if (subscriberID) myQuery.push(where('subscriberRef', '==', ref));
+  return query(...myQuery);
+};
 
 export const editEvent = async (userEvent, userID) => {
   if (userEvent === null) return null;
@@ -88,9 +85,9 @@ export const editEvent = async (userEvent, userID) => {
 };
 
 export const removeEvent = async (eventID) => {
-  const eventRef = doc(firestore, 'events',eventID);
+  const eventRef = doc(firestore, 'events', eventID);
   return deleteDoc(eventRef);
-}
+};
 
 export const cancelEvent = async (userEvent) => {
   if (userEvent === null) return null;
@@ -101,5 +98,3 @@ export const cancelEvent = async (userEvent) => {
     ...userEvent,
   });
 };
-
-//TODO dodac Id eventu do tutoring card i wywolac funkcje

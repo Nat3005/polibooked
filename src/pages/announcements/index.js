@@ -5,10 +5,10 @@ import {
   NoAnnouncementsContainer,
   NoAnnouncementsImage,
 } from './AnnouncementsElements';
-import { useAnnouncements } from '../../dataManagement';
-import AnnouncementCard from '../../components/announcementCard';
+import AnnouncementCard from '../../ui_components/announcementCard';
 import NoAnnouncementsImg from '../../images/no_announcements.png';
-import { MediumText } from '../../components/text/TextElements';
+import { MediumText } from '../../ui_elements/text/TextElements';
+import { useAnnouncements } from '../../data/useAnnouncements';
 
 function Announcements({ openEditModal, openBookModal }) {
   const { abbreviation, major } = useParams();
