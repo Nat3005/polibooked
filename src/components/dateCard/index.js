@@ -13,7 +13,6 @@ import {
 import { removeEvent } from '../../firebase/eventsService';
 
 function DateCard({ eventID, startDate, endDate, type, onClick, status }) {
-  console.log(eventID);
   const handleRemove = (e) => {
     e.preventDefault();
 
@@ -37,10 +36,6 @@ function DateCard({ eventID, startDate, endDate, type, onClick, status }) {
         </TimeContainer>
         {type === 'editable' && (
           <ButtonsContainer>
-            <TertiaryButton size="small" variant="dark">
-              <EditRoundedIcon />
-              Edytuj
-            </TertiaryButton>
             <TertiaryButton size="small" variant="dark" onClick={handleRemove}>
               <DeleteOutlineRoundedIcon> </DeleteOutlineRoundedIcon>Usuń
             </TertiaryButton>

@@ -19,6 +19,7 @@ import { addAnnouncement, editAnnouncement } from "../../firebase/announcementSe
 import BreadcrumbsBar from "../breadcrumbs";
 import { SmallText } from "../text/TextElements";
 import * as yup from "yup";
+import ErrorMessage from "../errorMessage";
 
 function Modal({ showModal, setShowModal, announcementType, announcement }) {
   const [validationErrors, setValidationErrors] = useState([]);
@@ -72,7 +73,6 @@ function Modal({ showModal, setShowModal, announcementType, announcement }) {
       description: yup
         .string()
         .required("Opis nie może być pusty"),
-      tags: yup.object().required().min(1,"Lista tagów nie może być pusta"),
     });
 
     schema.validate(newAnnouncement, { abortEarly: false })
@@ -83,9 +83,7 @@ function Modal({ showModal, setShowModal, announcementType, announcement }) {
   };
 
   const validationErrorsHTML = validationErrors?.map((it) => (
-    <p key={it} style={{ color: "red" }}>
-      {it}
-    </p>
+    <ErrorMessage key={it}  message={it}/>
   ));
 
   return (

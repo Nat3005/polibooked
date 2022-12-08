@@ -8,6 +8,8 @@ import {
   ModalOverlay,
   TitleContainer,
   FreeEventsContainer,
+  NoFreeEventsContainer,
+  ImageContainer,
 } from './BookModalElements';
 import { SmallText } from '../text/TextElements';
 import { TertiaryButton, PrimaryButton } from '../buttons/ButtonElements';
@@ -16,7 +18,7 @@ import DateCard from '../dateCard';
 import TextInput from '../textInput';
 import { editEvent } from '../../firebase/eventsService';
 import { UserAuth } from '../../context/UserContext';
-
+import noFreeEventsImg from '../../images/no_free_events.png';
 function BookModal({ showModal, setShowModal, announcement }) {
   const [events] = useFreeEvents(announcement?.user.uid);
   const [selectedEvent, setSelected] = useState(null);
@@ -49,6 +51,36 @@ function BookModal({ showModal, setShowModal, announcement }) {
     }
   };
   if (!showModal) return null;
+
+  if(Object.keys(events).length === 0) {
+    return (
+    <ModalOverlay>
+      <ModalContainer>
+        <HeadlineContainer>
+          <TitleContainer>
+            <CalendarMonthRounded /> Wybierz termin zajęć
+          </TitleContainer>
+          <CloseRoundedIcon
+            style={{ cursor: 'pointer' }}
+            onClick={() => {
+              setSelected(null);
+              setShowModal(!showModal);
+            }}
+          />
+        </HeadlineContainer>
+
+        <SmallText variant="dark" weight="normal">
+          Rezerwujesz zajęcia z {announcement.user.displayName}
+        </SmallText>
+            <ImageContainer>
+              <NoFreeEventsContainer src={noFreeEventsImg}/>
+              <SmallText>Niestety, {announcement.user.displayName} nie ma wolnych terminów. </SmallText>
+            </ImageContainer>
+      </ModalContainer>
+    </ModalOverlay>
+    );
+  }
+
   return (
     <ModalOverlay>
       <ModalContainer>

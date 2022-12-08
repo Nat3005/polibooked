@@ -12,8 +12,6 @@ import DeleteSweepRoundedIcon from '@mui/icons-material/DeleteSweepRounded';
 import {
   AnnouncementContainer,
   HeaderContainer,
-  Picture,
-  PictureContainer,
   ProfileContainer,
   UserDataContainer,
   PriceContainer,
@@ -36,7 +34,8 @@ import {
   setDoc,
 } from 'firebase/firestore';
 import { NavLink } from 'react-router-dom';
-import { assembleChatID, prepareChat, navigateToChat } from "../../firebase/domowUsluga";
+import { assembleChatID, prepareChat, navigateToChat } from "../../firebase/chatService";
+import UserPicture from '../userPicture';
 
 
 function AnnouncementCard({
@@ -48,7 +47,6 @@ function AnnouncementCard({
 }) {
   const navigate = useNavigate();
   const { user: loggedInUser } = UserAuth();
-  const [showDropdown, setShowDropdown] = useState(false);
   const [favourites] = useFavourites();
 
   const chatID = useMemo(
@@ -93,62 +91,18 @@ function AnnouncementCard({
     });
   }
 
-  // TODO przeniesc handle conversation i tworzenie ID
-  // const mutualId =
-  // user.uid > announcement.user.uid
-  //   ? user.uid + announcement.user.uid
-  //   : announcement.user.uid + user.uid;
+  const handleConversation = async () => {
 
-
-const handleConversation = async () => {
-  // console.log("here");
-  // const response = await getDoc(doc(firestore, 'chats', mutualId));
-
-  // if (!response.exists()) {
-  //   // create chat
-  //   await setDoc(doc(firestore, 'chats', mutualId), { messages: [] });
-
-  //   await updateDoc(doc(firestore, 'userChats', loggedInUser.uid), {
-  //     [`${mutualId}.userInfo`]: {
-  //       uid: announcement.user.uid,
-  //       displayName: announcement.user.displayName,
-  //       photoURL: announcement.user.photoURL,
-  //     },
-  //     [`${mutualId}.date`]: serverTimestamp(),
-  //     [`${mutualId}.lastMessage`]: '',
-  //   });
-
-  //   await updateDoc(doc(firestore, 'userChats', announcement.user.uid), {
-  //     [`${mutualId}.userInfo`]: {
-  //       uid: loggedInUser.uid,
-  //       displayName: loggedInUser.displayName,
-  //       photoURL: loggedInUser.photoURL,
-  //     },
-  //     [`${mutualId}.date`]: serverTimestamp(),
-  //     [`${mutualId}.lastMessage`]: '',
-  //   });
-  // }
-
-  prepareChat(loggedInUser, interlocutorUser, chatID).then(() =>
-  navigateToChat(chatID, announcement.user, navigate, '/chat/rozmowa')
-);
-  // const annUser = announcement.user;
-
-  // navigate('/chat/rozmowa', {
-  //   state: {
-  //     conversationId: mutualId,
-  //     annUser,
-  //   },
-  // });
-};
+    prepareChat(loggedInUser, announcement.user, chatID).then(() =>
+    navigateToChat(chatID, announcement.user, navigate, '/chat/rozmowa')
+  );
+  };
 
   return (
     <AnnouncementContainer variant={announcement.type}>
       <HeaderContainer>
         <ProfileContainer>
-          <PictureContainer variant={announcement.type}>
-            <Picture src={announcement.user.photoURL} />
-          </PictureContainer>
+          <UserPicture type={announcement.type} imageSrc={announcement.user.photoURL}/>
           <UserDataContainer>
             <MediumText weight="bold" variant="dark">
               {announcement.user.displayName}
@@ -173,18 +127,6 @@ const handleConversation = async () => {
             )}
           </UserDataContainer>
         </ProfileContainer>
-        {loggedInUser.uid === announcement.user.uid && (
-          <IconManagementContainer>
-
-            <TertiaryButton size="small" onClick={() => openEditModal(announcement)} variant ="dark">
-            <BorderColorRoundedIcon /> Edytuj
-            </TertiaryButton>
-            <TertiaryButton size="small" onClick={handleRemoveAnnouncement} variant ="dark">
-            <DeleteSweepRoundedIcon/> Usuń
-            </TertiaryButton>
-
-          </IconManagementContainer>
-        )}
       </HeaderContainer>
       <SmallText variant="dark" weight="bold">
         {announcement.title}
@@ -200,8 +142,25 @@ const handleConversation = async () => {
           <SmallText key={item}>{`#${item}`}</SmallText>
         ))}
       </ChipsContainer>
+
+      {loggedInUser.uid === announcement.user.uid && (
+        <ButtonsContainer>
+          <IconManagementContainer>
+
+            <TertiaryButton size="small" onClick={() => openEditModal(announcement)} variant ="dark">
+            <BorderColorRoundedIcon /> Edytuj
+            </TertiaryButton>
+            <TertiaryButton size="small" onClick={handleRemoveAnnouncement} variant ="dark">
+            <DeleteSweepRoundedIcon/> Usuń
+            </TertiaryButton>
+
+          </IconManagementContainer>
+          </ButtonsContainer>
+        )}
+
       {loggedInUser.uid !== announcement.user.uid && (
         <ButtonsContainer>
+
         {announcement.type.includes('tutor') ? (
           <>
             <PrimaryButton onClick={handleConversation} size="small" variant="purpleAccent">

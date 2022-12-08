@@ -30,4 +30,6 @@ export const Chip = styled.p`
   display: flex;
   justify-content: center;
   align-items: center;
+  white-space: nowrap;
+  word-break: keep-all;
 `;

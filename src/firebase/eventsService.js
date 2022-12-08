@@ -72,7 +72,7 @@ export const getBookedEvents =  (publisherID = null) => {
 export const getSubscribedEvents = (subscriberID = null) => {
     const ref = doc(firestore, 'users', subscriberID);
     const myQuery = [collection(firestore, 'events'), orderBy('eventStartTime')];
-  
+
     if (subscriberID) myQuery.push(where('subscriberRef', '==', ref));
     return query(...myQuery);
   };
@@ -88,7 +88,6 @@ export const editEvent = async (userEvent, userID) => {
 };
 
 export const removeEvent = async (eventID) => {
-  console.log(eventID);
   const eventRef = doc(firestore, 'events',eventID);
   return deleteDoc(eventRef);
 }

@@ -29,7 +29,7 @@ import { addEvent } from '../../firebase/eventsService';
 import { useEvents } from '../../dataManagement';
 import { SchemaRounded } from '@mui/icons-material';
 import * as yup from "yup";
-
+import ErrorMessage from '../errorMessage'
 function EventModal({ showEventModal, setShowEventModal }) {
   const [dateValue, setValue] = useState(null);
   const userEvents = useRef({});
@@ -75,9 +75,8 @@ function EventModal({ showEventModal, setShowEventModal }) {
   };
 
   const validationErrorsHTML = validationErrors?.map((it) => (
-    <p key={it} style={{ color: "red" }}>
-      {it}
-    </p>
+    <ErrorMessage key={it}  message={it}/>
+
   ));
 
   const eventForm = (
@@ -152,7 +151,7 @@ function EventModal({ showEventModal, setShowEventModal }) {
         </SmallText>
         {eventForm}
         <SubmitButtons onSubmit={handleSubmit}>
-          <TertiaryButton variant="dark">Anuluj</TertiaryButton>
+          <TertiaryButton  onClick={() => setShowEventModal(!showEventModal)} variant="dark">Anuluj</TertiaryButton>
           <PrimaryButton size="big" variant="purpleAccent">
             Zapisz
           </PrimaryButton>

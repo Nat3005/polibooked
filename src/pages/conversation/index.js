@@ -23,9 +23,10 @@ import { UserAuth } from '../../context/UserContext';
 
 function Conversation() {
   const { user: loggedInUser } = UserAuth();
+  const [messages, setMessages] = useState([]);
   const location = useLocation();
   const { conversationId, user } = location.state;
-  const [messages, setMessages] = useState([]);
+
   useEffect(() => {
     const getMessages = onSnapshot(
       doc(firestore, 'chats', conversationId),

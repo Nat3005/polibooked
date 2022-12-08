@@ -9,6 +9,8 @@ import TabPanel from './tabPanel';
 import {
   CalendarContainer,
   CalendarTabs,
+  NoEventsContainer,
+  NoEventsImage,
   TabContentContainer,
 } from './CalendarElements';
 import { PrimaryButton } from '../../components/buttons/ButtonElements';
@@ -22,6 +24,10 @@ import {
   useSubscribedEvents,
 } from '../../dataManagement';
 import TutoringCard from '../../components/tutoringCard';
+import noBookedEventsImg from '../../images/no_tutors.png';
+import noEventsImg from '../../images/no_events.png';
+import noSubscribedEvents from '../../images/no_subscribed.png'
+// import { makeStyles } from "@material-ui/styles";
 
 function Calendar({ showEventModal, setShowEventModal }) {
   const { user } = UserAuth();
@@ -29,6 +35,17 @@ function Calendar({ showEventModal, setShowEventModal }) {
   const [bookedEvents] = useBookedEvents(user.uid);
   const [subscribedEvents] = useSubscribedEvents(user.uid);
   const [value, setValue] = useState(0);
+  // const useStyles = makeStyles({
+  //   scrollButtons: {
+  //     "&.Mui-disabled": {
+  //       opacity: 0.3
+  //     }
+  //   }
+  // });
+
+  // const classes = useStyles();
+
+
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
@@ -37,13 +54,13 @@ function Calendar({ showEventModal, setShowEventModal }) {
     setShowEventModal(!showEventModal);
   };
 
-  console.log(personalEvents);
   return (
     <CalendarContainer>
       <CalendarTabs>
         <Tabs
           value={value}
           onChange={handleChange}
+          allowScrollButtonsMobile
           TabIndicatorProps={{
             sx: { backgroundColor: 'var(--accent-purple)' },
           }}
@@ -71,6 +88,7 @@ function Calendar({ showEventModal, setShowEventModal }) {
                 key={e[1].id}
                 eventID={e[1].id}
                 type="tutor"
+                comment={e[1].comment}
                 user={e[1].subscribingUser}
                 startDate={e[1].eventStartTime}
                 endDate={e[1].eventEndTime}
@@ -78,7 +96,10 @@ function Calendar({ showEventModal, setShowEventModal }) {
               />
             ))
           ) : (
-            <></>
+            <NoEventsContainer>
+              <NoEventsImage src={noBookedEventsImg} />
+              <SmallText>Nie udzielasz żadnych korepetycji</SmallText>
+            </NoEventsContainer>
           )}
         </TabContentContainer>
       </TabPanel>
@@ -91,18 +112,23 @@ function Calendar({ showEventModal, setShowEventModal }) {
                 eventID={e[1].id}
                 publisher={e[1].publisherRef}
                 type="student"
+                comment={e[1].comment}
                 user={e[1].publishingUser}
                 startDate={e[1].eventStartTime}
                 endDate={e[1].eventEndTime}
               />
             ))
           ) : (
-            <></>
+            <NoEventsContainer>
+            <NoEventsImage src={noSubscribedEvents} />
+            <SmallText>Nie uczestniczysz w żadnych korepetycjach</SmallText>
+          </NoEventsContainer>
           )}
         </TabContentContainer>
       </TabPanel>
       <TabPanel value={value} index={2}>
         <PrimaryButton
+        style={{alignSelf:'flex-start'}}
           size="big"
           variant="purpleAccent"
           onClick={openEventModal}
@@ -126,7 +152,10 @@ function Calendar({ showEventModal, setShowEventModal }) {
               />
             ))
           ) : (
-            <></>
+            <NoEventsContainer>
+              <NoEventsImage src={noEventsImg} />
+              <SmallText>Nie udostępniasz żadnych terminów</SmallText>
+            </NoEventsContainer>
           )}
         </TabContentContainer>
       </TabPanel>

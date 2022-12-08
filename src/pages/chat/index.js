@@ -88,6 +88,7 @@ function Chat() {
         <Tabs
           value={value}
           onChange={handleChange}
+          allowScrollButtonsMobile
           TabIndicatorProps={{
             sx: { backgroundColor: 'var(--accent-purple)' },
           }}

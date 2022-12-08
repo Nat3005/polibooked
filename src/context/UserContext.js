@@ -11,11 +11,9 @@ import { auth } from '../firebase/init';
 import { initUser } from '../firebase/userService';
 
 const UserContext = createContext();
-
 export function UserContextProvider({ children }) {
   const [user, setUser] = useState({});
   const [loading, setLoading] = useState(true);
-
   const googleLogIn = () => {
     const googleProvider = new GoogleAuthProvider();
     signInWithRedirect(auth, googleProvider);

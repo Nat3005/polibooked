@@ -39,32 +39,6 @@ export const ProfileContainer = styled.div`
     align-items: flex-start;
   }
 `;
-export const Picture = styled.img`
-  width: 60px;
-  height: 60px;
-  border-radius: 100%;
-  border: 2.5px solid var(--white);
-
-  @media screen and (max-width: 768px) {
-    width: 40px;
-    height: 40px;
-  }
-`;
-export const PictureContainer = styled.div`
-  width: 70px;
-  height: 70px;
-  border-radius: 100%;
-  background-color: ${(props) => handleColor(props.variant)};
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-
-  @media screen and (max-width: 768px) {
-    width: 50px;
-    height: 50px;
-  }
-`;
 export const UserDataContainer = styled.div`
   display: flex;
   flex-direction: column;

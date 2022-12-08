@@ -91,10 +91,7 @@ export const ImageContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 80%;
-  align-self: center;
-  justify-self: center;
-  height: 85vh;
+  padding: 2rem;
   row-gap: 1rem;
 `;
 

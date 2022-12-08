@@ -6,66 +6,68 @@ const handleColor = (variant) =>
     tutor: 'var(--accent-purple)',
   }[variant]);
 
+  const handleHover = (variant) =>
+  ({
+    student: 'var(--neutral-yellow)',
+    tutor: 'var(--primary-light)',
+  }[variant]);
+
+const handleFont = (variant) =>
+({
+  student: 'var(--primary-dark)',
+  tutor: 'var(--white)',
+}[variant]);
+
 export const TutoringCardContainer = styled.div`
   display: flex;
   flex-direction: column;
   width: 48%;
+  background: var(--white);
+  border-radius: var(--outer-radius);
+  row-gap: 0.75rem;
+  padding: 1rem;
+  justify-content: space-between;
 
   @media screen and (max-width: 768px) {
-
     width: 100%;
+  }
+  :hover {
+    background: ${(props) => handleHover(props.type)};
+    transition: var( --hover-transition);
   }
 `;
 
 export const DetailsContainer = styled.div`
-  background: var(--white);
-  border-radius: var(--outer-radius);
-  padding: 2rem 2rem 2rem 1rem;
-  border-left: 2px solid ${(props) => handleColor(props.type)};
   display: flex;
-  flex-direction: row;
-  column-gap: 1rem;
-  row-gap: 1.5rem;
-  align-items: start;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
 `;
 
 export const UserDataContainer = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-direcion: row;
+  column-gap: 0.5rem;
+  align-items: center;
 `;
 export const EventDetailsContainer = styled.div`
+  background-color: ${(props) => handleColor(props.type)};
+  color: ${(props) => handleFont(props.type)};
+  padding: 0.5rem;
+  border-radius: var(--inner-radius);
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  padding-top: 0.5rem;
-  row-gap: 0.25rem;
+  justify-content: center;
+  align-items: center;
 `;
 export const ButtonsContainer = styled.div`
   display: flex;
-  flex-direction: row;
-  column-gap: 0.5rem;
-  justify-content: space-around;
-`;
+  flex-drection: row;
 
-export const Picture = styled.img`
-  width: 60px;
-  height: 60px;
-  border-radius: 100%;
-  border: 2.5px solid var(--white);
-
-  @media screen and (max-width: 768px) {
-    width: 50px;
-    height: 50px;
-  }
 `;
-export const PictureContainer = styled.div`
-  padding: 0.25rem;
-  border-radius: 100%;
-  background-color: ${(props) => handleColor(props.type)};
+export const BottomContainer = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  justify-self: flex-start;
+  justify-self: flex-end;
+`
 
-`;
+

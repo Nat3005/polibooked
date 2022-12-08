@@ -8,15 +8,34 @@ import {
   TutoringCardContainer,
   UserDataContainer,
   DetailsContainer,
-  Picture,
-  PictureContainer,
+  BottomContainer,
 } from './TutoringCardElements';
 import ProfilePicture from '../profilePicture';
 import { SmallText, MediumText } from '../text/TextElements';
 import { Chip } from '../chips/ChipsElements';
 import { SecondaryButton, TertiaryButton } from '../buttons/ButtonElements';
 import { cancelEvent } from '../../firebase/eventsService';
-function TutoringCard({ eventID, type, user, startDate, endDate,publisher }) {
+import { UserAuth } from '../../context/UserContext';
+import { useMemo} from 'react';
+import { useNavigate } from "react-router-dom";
+import { assembleChatID } from '../../firebase/chatService';
+import { prepareChat } from '../../firebase/chatService';
+import { navigateToChat } from '../../firebase/chatService';
+import UserPicture from '../userPicture';
+function TutoringCard({ comment, eventID, type, user : interlocutorUser, startDate, endDate,publisher }) {
+  const navigate = useNavigate();
+  const {user : loggedInUser} = UserAuth();
+
+  const chatID = useMemo(
+    () => assembleChatID(loggedInUser, interlocutorUser),
+    [loggedInUser, interlocutorUser]
+  );
+
+  const handleConversation = async () => {
+    prepareChat(loggedInUser, interlocutorUser, chatID).then(() =>
+      navigateToChat(chatID, interlocutorUser, navigate,"/chat/rozmowa")
+    );
+  };
 
   const handleCancel = (event) => {
 
@@ -34,45 +53,47 @@ function TutoringCard({ eventID, type, user, startDate, endDate,publisher }) {
     );
 
   }
-
   return (
-    <TutoringCardContainer>
-      <SmallText weight="bold">
-        {dayjs.unix(startDate.seconds).format('DD-MM-YYYY')}
-      </SmallText>
-      <DetailsContainer type={type}>
-        <PictureContainer type={type}>
-          <Picture src={user.photoURL} />
-        </PictureContainer>
-        <UserDataContainer>
-          <MediumText weight="bold">{user.displayName}</MediumText>
-          <SmallText>{`${user.faculty} | ${user.major}`}</SmallText>
-          <EventDetailsContainer>
-            <Chip variant="dark">
-              {' '}
-              {dayjs.unix(startDate.seconds).format('HH:mm')} -{' '}
-              {dayjs.unix(endDate.seconds).format('HH:mm')}
-            </Chip>
-            <ButtonsContainer>
+    <TutoringCardContainer type={type}>
+      <UserDataContainer>
+        <UserPicture type={type} imageSrc={interlocutorUser.photoURL} />
+        <DetailsContainer>
+              <MediumText weight="bold">{interlocutorUser.displayName}</MediumText>
+         <SmallText>{`${interlocutorUser.faculty} | ${interlocutorUser.major}`}</SmallText>
+        </DetailsContainer>
+      </UserDataContainer>
+
+      <SmallText>{comment} </SmallText>
+      <BottomContainer>
+      <EventDetailsContainer type={type}>
+      <SmallText weight="bold" variant={type === 'tutor' ? "light" : "dark"}>
+      Termin: {' '}
+      {dayjs.unix(startDate.seconds).format('DD-MM-YYYY')}
+      {', '}
+          {dayjs.unix(startDate.seconds).format('HH:mm')} -{' '}
+        {dayjs.unix(endDate.seconds).format('HH:mm')}
+     </SmallText>
+      </EventDetailsContainer>
+      <ButtonsContainer>
               <TertiaryButton
+              onClick={handleConversation}
                 size="small"
-                variant={type === 'tutor' ? 'purpleAccent' : 'dark'}
+                variant= 'dark'
               >
                 <MailOutlineRoundedIcon /> Napisz
               </TertiaryButton>
               <TertiaryButton
                 onClick={handleCancel}
                 size="small"
-                variant={type === 'tutor' ? 'purpleAccent' : 'dark'}
+                variant='dark'
               >
                 <DeleteSweepRoundedIcon /> Odwołaj
               </TertiaryButton>
             </ButtonsContainer>
-          </EventDetailsContainer>
-        </UserDataContainer>
-      </DetailsContainer>
+      </BottomContainer>
+
     </TutoringCardContainer>
-  );
+  )
 }
 
 export default TutoringCard;

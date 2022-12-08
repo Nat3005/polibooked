@@ -7,11 +7,9 @@ export const DateCardContainer = styled.div`
     cursor: pointer;
 
     @media screen and (max-width: 768px){
-      width: 48%;
+      width: 46%;
     }
-    @media screen and (max-width: 768px){
-      width: 100%;
-    }
+
 `;
 
 export const TimeContainer = styled.div`
@@ -30,6 +28,7 @@ export const ButtonsContainer = styled.div`
   visibility: hidden;
   height: 0px;
   padding: 0rem 1rem;
+  justify-content: center;
 `;
 export const BoxContainer = styled.div`
   background-color: ${(props) =>

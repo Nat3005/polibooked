@@ -1,17 +1,15 @@
 import React, { useMemo } from "react";
 import MailOutlineRoundedIcon from "@mui/icons-material/MailOutlineRounded";
 import { useNavigate } from "react-router-dom";
-import { assembleChatID, prepareChat, navigateToChat } from "../../firebase/domowUsluga";
+import { assembleChatID, prepareChat, navigateToChat } from "../../firebase/chatService";
 import {
-  PictureContainer,
   UserChatCardContainer,
   UserDataContainer,
-  Picture,
   TextData,
 } from "./UserChatCardElements";
 import { PrimaryButton } from "../buttons/ButtonElements";
 import { MediumText, SmallText } from "../text/TextElements";
-
+import UserPicture from "../userPicture";
 import { UserAuth } from "../../context/UserContext";
 
 function UserChatCard({ user: interlocutorUser, type, lastMsg }) {
@@ -22,13 +20,6 @@ function UserChatCard({ user: interlocutorUser, type, lastMsg }) {
     return;
   }
 
-  // TODO przeniesc handle conversation i tworzenie ID
-
-  // const mutualId =
-  //   loggedInUser.uid > user.uid
-  //     ? loggedInUser.uid + user.uid
-  //     : user.uid + loggedInUser.uid;
-
   const chatID = useMemo(
     () => assembleChatID(loggedInUser, interlocutorUser),
     [loggedInUser, interlocutorUser]
@@ -36,26 +27,11 @@ function UserChatCard({ user: interlocutorUser, type, lastMsg }) {
 
   const handleConversation = async () => {
     prepareChat(loggedInUser, interlocutorUser, chatID).then(() =>
-      navigateToChat(chatID, interlocutorUser, navigate)
+      navigateToChat(chatID, interlocutorUser, navigate,"rozmowa")
     );
   };
 
-  // navigate("rozmowa", {
-  //   state: {
-  //     conversationId: mutualId,
-  //     user,
-  //   },
-  // });
-  // };
-
-  // TO NAVIGATE PONIZEJ JEST OK
   const handleSelect = () => {
-    // navigate("rozmowa", {
-    //   state: {
-    //     conversationId: mutualId,
-    //     user,
-    //   },
-    // });
     navigateToChat(chatID, interlocutorUser, navigate, "rozmowa")
   };
 
@@ -65,9 +41,7 @@ function UserChatCard({ user: interlocutorUser, type, lastMsg }) {
       onClick={type.includes("search") ? handleConversation : handleSelect}
     >
       <UserDataContainer>
-        <PictureContainer variant={type}>
-          <Picture src={interlocutorUser.photoURL} />
-        </PictureContainer>
+      <UserPicture type={type} imageSrc={interlocutorUser.photoURL}/>
         <TextData>
           <MediumText weight="bold" variant="dark">
             {interlocutorUser.displayName}
