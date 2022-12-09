@@ -77,6 +77,11 @@ function Conversation() {
     setInputMessage('');
   };
 
+  const handleKey = (e) => {
+    // eslint-disable-next-line no-unused-expressions
+    e.code === 'Enter' && sendMessage(e);
+  };
+
   return (
     <ConversationContainer>
       <MessagesContainer>
@@ -102,6 +107,7 @@ function Conversation() {
           type="textarea"
           value={inputMessage}
           onChange={(e) => setInputMessage(e.target.value)}
+          onKeyDown={handleKey}
         />
         <PrimaryButton size="small" variant="yellowAccent" type="submit">
           <MailOutlineRoundedIcon /> Wyślij

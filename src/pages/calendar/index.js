@@ -37,7 +37,7 @@ function Calendar({ showEventModal, setShowEventModal }) {
   //     }
   //   }
   // });
-
+  // https://codesandbox.io/s/material-ui-centered-scrollable-tabs-ud26w?file=/index.js:413-425
   // const classes = useStyles();
 
   const handleChange = (event, newValue) => {
@@ -54,7 +54,8 @@ function Calendar({ showEventModal, setShowEventModal }) {
         <Tabs
           value={value}
           onChange={handleChange}
-          allowScrollButtonsMobile
+          variant="scrollable"
+          scrollButtons="on"
           TabIndicatorProps={{
             sx: { backgroundColor: 'var(--accent-purple)' },
           }}
