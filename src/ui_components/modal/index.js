@@ -58,8 +58,10 @@ function Modal({ showModal, setShowModal, announcementType, announcement }) {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    const separatedTags =
-      formItem.current.tags.value.split(',').map((s) => s.trim()).filter(s=>!!s)
+    const separatedTags = formItem.current.tags.value
+      .split(',')
+      .map((s) => s.trim())
+      .filter((s) => !!s);
 
     const newAnnouncement = {
       type: announcementType.includes('tutor') ? 'tutor' : 'student',
@@ -79,7 +81,7 @@ function Modal({ showModal, setShowModal, announcementType, announcement }) {
     const schema = yup.object().shape({
       title: yup.string().required('Tytuł nie może być pusty'),
       description: yup.string().required('Opis nie może być pusty'),
-      tags: yup.array().min(1, "Cycki muszą być")
+      tags: yup.array().min(1, 'Tagi muszą być'),
     });
 
     schema
