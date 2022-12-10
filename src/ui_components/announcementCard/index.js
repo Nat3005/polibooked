@@ -179,7 +179,7 @@ function AnnouncementCard({
                 variant="purpleAccent"
                 onClick={() => openBookModal(announcement)}
               >
-                <EventRoundedIcon /> rezerwój
+                <EventRoundedIcon /> rezerwuj
               </PrimaryButton>
               {isFavorite ? (
                 <PrimaryButton
