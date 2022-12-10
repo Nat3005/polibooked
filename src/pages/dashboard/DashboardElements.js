@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { GridContainer } from '../../components/grid/GridElements';
+import { GridContainer } from '../../ui_elements/grid/GridElements';
 
 const handleScroll = (type) =>
   ({
@@ -36,8 +36,8 @@ export const CenterContainer = styled.div`
   display: flex;
   flex-direction: column;
   grid-column: 4/13;
-  border-right: var(--border-style);
-  border-left: var(--border-style);
+  border-right: var(--border-style-light);
+  border-left: var(--border-style-light);
   border-color: var(--primary-light);
 
   @media screen and (max-width: 768px) {

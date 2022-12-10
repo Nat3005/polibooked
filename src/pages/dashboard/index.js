@@ -1,20 +1,23 @@
 import { React, useState } from 'react';
 import { matchPath, useLocation } from 'react-router-dom';
-import LeftSidebar from '../../components/leftSidebar';
-import Navbar from '../../components/navbar';
+import LeftSidebar from '../../ui_components/leftSidebar';
+import Navbar from '../../ui_components/navbar';
 import {
   CenterContainer,
   DashboardContainer,
   MainContainer,
 } from './DashboardElements';
 import DashboardRouting from './DashboardRouting';
-import Modal from '../../components/modal';
-import MobileSidebar from '../../components/mobileSidebar';
+import Modal from '../../ui_components/modal';
+import MobileSidebar from '../../ui_components/mobileSidebar';
+import EventModal from '../../ui_components/eventModal';
+import BookModal from '../../ui_components/bookModal';
 
 function Dashboard() {
   const [showTutoringModal, setShowTutoringModal] = useState(false);
   const [showStudentModal, setShowStudentModal] = useState(false);
   const [showSidebar, setShowSidebar] = useState(false);
+  const [showEventModal, setShowEventModal] = useState(false);
 
   // Edit Modal managment
   const [editedAnnouncement, setEditedAnnouncement] = useState(null);
@@ -26,6 +29,13 @@ function Dashboard() {
   };
   // Edit Modal managment
 
+  const [bookFromAnnouncement, setBookFromAnnouncement] = useState(null);
+  const [showBookModal, setShowBookModal] = useState(false);
+  const toggleBookModal = (announcement = null) => {
+    setBookFromAnnouncement(announcement);
+    setShowBookModal(!!announcement);
+  };
+
   const { pathname } = useLocation();
   let type = 'scroll';
   if (!!matchPath('chat', pathname) || !!matchPath('chat/rozmowa', pathname)) {
@@ -33,6 +43,17 @@ function Dashboard() {
   }
   return (
     <>
+      {showBookModal && (
+        <BookModal
+          showModal={showBookModal}
+          setShowModal={setShowBookModal}
+          announcement={bookFromAnnouncement}
+        />
+      )}
+      <EventModal
+        showEventModal={showEventModal}
+        setShowEventModal={setShowEventModal}
+      />
       <Modal
         showModal={showTutoringModal}
         setShowModal={setShowTutoringModal}
@@ -69,7 +90,12 @@ function Dashboard() {
             setShowSidebar={setShowSidebar}
           />
           <MainContainer type={type}>
-            <DashboardRouting openEditModal={toggleEditModal} />
+            <DashboardRouting
+              openBookModal={toggleBookModal}
+              openEditModal={toggleEditModal}
+              setShowEventModal={setShowEventModal}
+              showEventModal={showEventModal}
+            />
           </MainContainer>
         </CenterContainer>
       </DashboardContainer>

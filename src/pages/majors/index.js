@@ -1,6 +1,6 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
-import MajorCard from '../../components/majorCard';
+import MajorCard from '../../ui_elements/majorCard';
 import { MajorsContainer } from './MajorsElements';
 
 function Majors() {

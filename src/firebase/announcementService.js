@@ -4,10 +4,10 @@ import {
   collection,
   orderBy,
   query,
-  getDocs,
   where,
   doc,
   updateDoc,
+  deleteDoc,
 } from 'firebase/firestore';
 import { firestore, auth } from './init';
 
@@ -32,12 +32,19 @@ export const editAnnouncement = async (announcement) => {
   });
 };
 
-export const getAnnouncements = async (abbreviation = null, major = null) => {
-  const myQuery = [collection(firestore, 'announcements'), orderBy('date')];
+export const getAnnouncements = (abbreviation = null, major = null) => {
+  const myQuery = [
+    collection(firestore, 'announcements'),
+    orderBy('date', 'desc'),
+  ];
 
   if (abbreviation) myQuery.push(where('abbreviation', '==', abbreviation));
   if (major) myQuery.push(where('major', '==', major));
 
-  const announcementsRef = query(...myQuery);
-  return getDocs(announcementsRef);
+  return query(...myQuery);
+};
+
+export const removeAnnouncement = async (announcementID) => {
+  const announcementRef = doc(firestore, 'announcements', announcementID);
+  return deleteDoc(announcementRef);
 };

@@ -10,7 +10,7 @@ import {
 import MailOutlineRoundedIcon from '@mui/icons-material/MailOutlineRounded';
 import { useLocation } from 'react-router-dom';
 import { v4 as uuid } from 'uuid';
-import ChatBubble from '../../components/chatBubble';
+import ChatBubble from '../../ui_elements/chatBubble';
 import {
   ConversationContainer,
   MessageInput,
@@ -18,14 +18,15 @@ import {
   SendMessageContainer,
 } from './ConversationElements';
 import { firestore } from '../../firebase/init';
-import { PrimaryButton } from '../../components/buttons/ButtonElements';
+import { PrimaryButton } from '../../ui_elements/buttons/ButtonElements';
 import { UserAuth } from '../../context/UserContext';
 
 function Conversation() {
   const { user: loggedInUser } = UserAuth();
+  const [messages, setMessages] = useState([]);
   const location = useLocation();
   const { conversationId, user } = location.state;
-  const [messages, setMessages] = useState([]);
+
   useEffect(() => {
     const getMessages = onSnapshot(
       doc(firestore, 'chats', conversationId),
@@ -76,6 +77,11 @@ function Conversation() {
     setInputMessage('');
   };
 
+  const handleKey = (e) => {
+    // eslint-disable-next-line no-unused-expressions
+    e.code === 'Enter' && sendMessage(e);
+  };
+
   return (
     <ConversationContainer>
       <MessagesContainer>
@@ -101,6 +107,7 @@ function Conversation() {
           type="textarea"
           value={inputMessage}
           onChange={(e) => setInputMessage(e.target.value)}
+          onKeyDown={handleKey}
         />
         <PrimaryButton size="small" variant="yellowAccent" type="submit">
           <MailOutlineRoundedIcon /> Wyślij
