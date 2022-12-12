@@ -67,7 +67,6 @@ function TutoringCard({
         <UserPicture type={type} imageSrc={interlocutorUser.photoURL} />
         <DetailsContainer>
           <MediumText weight="bold">{interlocutorUser.displayName}</MediumText>
-          <SmallText>{`${interlocutorUser.faculty} | ${interlocutorUser.major}`}</SmallText>
         </DetailsContainer>
       </UserDataContainer>
 

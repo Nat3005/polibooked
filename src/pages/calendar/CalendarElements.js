@@ -19,7 +19,7 @@ export const CalendarTabs = styled.div`
 export const TabPanelContainer = styled.div`
   width: auto;
   height: auto;
-  overflow-y: scrol;
+  overflow-y: auto;
   display: flex;
   flex-direction: column;
   row-gap: 1rem;

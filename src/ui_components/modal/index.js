@@ -81,7 +81,7 @@ function Modal({ showModal, setShowModal, announcementType, announcement }) {
     const schema = yup.object().shape({
       title: yup.string().required('Tytuł nie może być pusty'),
       description: yup.string().required('Opis nie może być pusty'),
-      tags: yup.array().min(1, 'Tagi muszą być'),
+      tags: yup.array().min(1, 'Wprowadź przynajmniej jeden tag'),
     });
 
     schema

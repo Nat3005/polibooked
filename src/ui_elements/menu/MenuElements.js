@@ -6,11 +6,7 @@ export const MenuContainer = styled.div`
   flex-direction: column;
   row-gap: 0.5rem;
   background-color: none;
-  align-items: flex-start;
-
-  @media screen and (max-width: 768px) {
-    align-items: center;
-  }
+  align-items: center;
 `;
 
 export const IconButton = styled(Link)`

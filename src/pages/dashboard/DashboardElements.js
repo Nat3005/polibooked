@@ -3,7 +3,7 @@ import { GridContainer } from '../../ui_elements/grid/GridElements';
 
 const handleScroll = (type) =>
   ({
-    scroll: 'scroll;',
+    scroll: 'auto;',
     noScroll: 'hidden;',
   }[type]);
 

@@ -15,6 +15,9 @@ function TextInput({
   onChange,
   variant,
   value,
+  step,
+  min,
+  max,
 }) {
   if (type === 'textarea') {
     return (
@@ -40,7 +43,9 @@ function TextInput({
         ref={refs}
         type={type}
         name={name}
-        min="0"
+        min={min}
+        max={max}
+        step={step}
         onChange={onChange}
         placeholder={placeholder}
         variant={variant}

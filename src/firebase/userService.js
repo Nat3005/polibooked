@@ -1,4 +1,12 @@
-import { doc, getDoc, setDoc } from 'firebase/firestore';
+import {
+  doc,
+  getDoc,
+  setDoc,
+  query,
+  where,
+  getDocs,
+  collection,
+} from 'firebase/firestore';
 import { firestore } from './init';
 
 export const initUser = async (user) => {
@@ -14,11 +22,6 @@ export const initUser = async (user) => {
       authProvider: 'google',
       email: user.email,
       photoURL: user.photoURL,
-      faculty: 'Placeholder na wydział',
-      major: 'Placeholder na kierunek',
-      description:
-        'Hiding behind the couch until lured out by a feathery toy murr i hate humans they are so annoying purr purr purr until owner pets why owner not pet me hiss scratch meow, yet sitting in a box for find empty spot in cupboard and sleep all day.',
-      tags: ['tag', 'troche dłuższy tag', 'krótki tag', 'drugi tag'],
       uid: user.uid,
     };
     const favouritesData = {
@@ -33,3 +36,17 @@ export const initUser = async (user) => {
 };
 
 export const getUser = (userRef) => getDoc(userRef);
+
+export const getSearchedUsers = async (username) => {
+  const userRef = query(
+    collection(firestore, 'users'),
+    where('displayName', '==', username)
+  );
+  const usersList = [];
+  const foundUsers = await getDocs(userRef);
+
+  foundUsers.forEach((u) => {
+    usersList.push(u.data());
+  });
+  return usersList;
+};

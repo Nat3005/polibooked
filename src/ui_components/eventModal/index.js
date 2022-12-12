@@ -100,6 +100,8 @@ function EventModal({ showEventModal, setShowEventModal }) {
             type="number"
             name="hours"
             placeholder="Np. 1"
+            step="1"
+            min="0"
           />
           <SmallText>h</SmallText>
         </Input>
@@ -112,6 +114,9 @@ function EventModal({ showEventModal, setShowEventModal }) {
             type="number"
             name="minutes"
             placeholder="Np. 30"
+            step="5"
+            min="0"
+            max="60"
           />
           <SmallText>min</SmallText>
         </Input>

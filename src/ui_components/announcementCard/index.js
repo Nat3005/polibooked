@@ -45,10 +45,12 @@ function AnnouncementCard({
   const navigate = useNavigate();
   const { user: loggedInUser } = UserAuth();
   const [favourites] = useFavourites();
+  const author = type === 'personal' ? loggedInUser : announcement.user;
+  // if (type === 'personal') announcement.user = loggedInUser;
 
   const chatID = useMemo(
-    () => assembleChatID(loggedInUser, announcement.user),
-    [loggedInUser, announcement.user]
+    () => assembleChatID(loggedInUser, author),
+    [loggedInUser, author]
   );
 
   const isFavorite = favourites.find(
@@ -89,8 +91,8 @@ function AnnouncementCard({
   };
 
   const handleConversation = async () => {
-    prepareChat(loggedInUser, announcement.user, chatID).then(() =>
-      navigateToChat(chatID, announcement.user, navigate, '/chat/rozmowa')
+    prepareChat(loggedInUser, author, chatID).then(() =>
+      navigateToChat(chatID, author, navigate, '/chat/rozmowa')
     );
   };
 
@@ -98,15 +100,12 @@ function AnnouncementCard({
     <AnnouncementContainer variant={announcement.type}>
       <HeaderContainer>
         <ProfileContainer>
-          <UserPicture
-            type={announcement.type}
-            imageSrc={announcement.user.photoURL}
-          />
+          <UserPicture type={announcement.type} imageSrc={author.photoURL} />
           <UserDataContainer>
             <MediumText weight="bold" variant="dark">
-              {announcement.user.displayName}
+              {author.displayName}
             </MediumText>
-            {type.includes('favourites') && (
+            {!type.includes('announcements') && (
               <BreadcrumbsContainer>
                 {' '}
                 <SmallText> Ogłoszenie w </SmallText>{' '}
@@ -116,13 +115,6 @@ function AnnouncementCard({
                   major={announcement.major}
                 />
               </BreadcrumbsContainer>
-            )}
-
-            {type.includes('announcements') && (
-              <SmallText>
-                {' '}
-                {`${announcement.user.faculty} | ${announcement.user.major}`}
-              </SmallText>
             )}
           </UserDataContainer>
         </ProfileContainer>
@@ -142,7 +134,7 @@ function AnnouncementCard({
         ))}
       </ChipsContainer>
 
-      {loggedInUser.uid === announcement.user.uid && (
+      {loggedInUser.uid === author.uid && (
         <ButtonsContainer>
           <IconManagementContainer>
             <TertiaryButton
@@ -163,7 +155,7 @@ function AnnouncementCard({
         </ButtonsContainer>
       )}
 
-      {loggedInUser.uid !== announcement.user.uid && (
+      {loggedInUser.uid !== author.uid && (
         <ButtonsContainer>
           {announcement.type.includes('tutor') ? (
             <>

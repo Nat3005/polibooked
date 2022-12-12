@@ -3,12 +3,12 @@
        "name":"Wydział Architektury",
        "abbreviation": "W1",
        "order": 1,
-       "icon_name": "BusinessRounded",
-       "majors_first_grade":[
+       "iconName": "BusinessRounded",
+       "majorsFirstGrade":[
           "Architektura",
           "Gospodarka Przestrzenna"
        ],
-       "majors_second_grade":[
+       "majorsSecondGrade":[
           "Architektura",
           "Gospodarka Przestrzenna",
           "Architektura w języku angielskim"
@@ -18,11 +18,11 @@
        "name":"Wydział Budownictwa Lądowego i Wodnego",
        "abbreviation": "W2",
        "order": 2,
-       "icon_name": "ConstructionRounded",
-       "majors_first_grade":[
+       "iconName": "ConstructionRounded",
+       "majorsFirstGrade":[
           "Budownictwo"
        ],
-       "majors_second_grade":[
+       "majorsSecondGrade":[
           "Budownictwo",
           "Budownictwo w języku angielskim"
        ]
@@ -31,15 +31,15 @@
        "name":"Wydział Chemiczny",
        "abbreviation" : "W3",
        "order": 3,
-       "icon_name": "ScienceRounded",
-       "majors_first_grade":[
+       "iconName": "ScienceRounded",
+       "majorsFirstGrade":[
           "Biotechnologia",
           "Chemia i analityka przemysłowa",
           "Chemia i inżynieria materiałów",
           "Inżynieria chemiczna i procesowa",
           "Technologia chemiczna"
        ],
-       "majors_second_grade":[
+       "majorsSecondGrade":[
           "Biotechnologia",
           "Biotechnologia w języku angielskim",
           "Chemia",
@@ -56,8 +56,8 @@
        "name":"Wydział Informatyki i telekomunikacji",
        "abbreviation": "W4",
        "order": 4,
-       "icon_name": "CodeRounded",
-       "majors_first_grade":[
+       "iconName": "CodeRounded",
+       "majorsFirstGrade":[
           "Cyberbezpieczeństwo",
           "Informatyczne systemy automatyki",
           "Informatyka algorytmiczna",
@@ -68,7 +68,7 @@
           "Teleinformatyka",
           "Telekomunikacja"
        ],
-       "majors_second_grade":[
+       "majorsSecondGrade":[
           "Cyberbezpieczeństwo",
           "Informatyczne systemy automatyki",
           "Informatyka algorytmiczna",
@@ -86,14 +86,14 @@
        "name":"Wydział Elektryczny",
        "abbreviation": "W5",
        "order": 5,
-       "icon_name": "TungstenRounded",
-       "majors_first_grade":[
+       "iconName": "TungstenRounded",
+       "majorsFirstGrade":[
           "Automatyka przemysłowa",
           "Elektromechatronika",
           "Elektromobilność",
           "Elektrotechnika"
        ],
-       "majors_second_grade":[
+       "majorsSecondGrade":[
           "Automatyka przemysłowa",
           "Elektrotechnika"
        ]
@@ -102,15 +102,15 @@
        "name":"Wydział Geoinżynierii, Górnictwa i Geologii",
        "abbreviation": "W6",
        "order": 6,
-       "icon_name": "PublicRounded",
-       "majors_first_grade":[
+       "iconName": "PublicRounded",
+       "majorsFirstGrade":[
           "Geodezja i kartografia",
           "Geoenergetyka",
           "Geoinformatyka",
           "Górnictwo i geologia",
           "Inżynieria surowców mineralnych"
        ],
-       "majors_second_grade":[
+       "majorsSecondGrade":[
           "Geodezja i kartografia",
           "Geodezja i kartografia w języku angielskim",
           "Górnictwo i geologia w języku angielskim",
@@ -122,12 +122,12 @@
        "name":"Wydział Inżynierii Środowiska",
        "abbreviation": "W7",
        "order": 7,
-       "icon_name": "EnergySavingsLeafRounded",
-       "majors_first_grade":[
+       "iconName": "EnergySavingsLeafRounded",
+       "majorsFirstGrade":[
           "Gospodarka o obiegu zamkniętym i ochrona klimatu",
           "Inżynieria środowiska"
        ],
-       "majors_second_grade":[
+       "majorsSecondGrade":[
           "Gospodarka o obiegu zamkniętym i ochrona klimatu",
           "Inżynieria środowiska",
           "Inżynieria środowiska w języku angielskim"
@@ -137,13 +137,13 @@
        "name":"Wydział Zarządzania",
        "abbreviation": "W8",
        "order": 8,
-       "icon_name": "GroupsRounded",
-       "majors_first_grade":[
+       "iconName": "GroupsRounded",
+       "majorsFirstGrade":[
           "Inżynieria zarządzania",
           "Zarządzanie",
           "Zarządzanie w języku angielskim"
        ],
-       "majors_second_grade":[
+       "majorsSecondGrade":[
           "Inżynieria zarządzania",
           "Zarządzanie",
           "Inżynieria zarządzania w języku angielskim"
@@ -153,14 +153,14 @@
        "name":"Wydział Mechaniczno-Energetyczny",
        "abbreviation": "W9",
        "order": 9,
-       "icon_name": "SolarPowerRounded",
-       "majors_first_grade":[
+       "iconName": "SolarPowerRounded",
+       "majorsFirstGrade":[
           "Energetyka",
           "Lotnictwo i kosmonautyka",
           "Mechanika i budowa maszyn energetycznych",
           "Odnawialne źródła energii"
        ],
-       "majors_second_grade":[
+       "majorsSecondGrade":[
           "Energetyka",
           "Energetyka w języku angielskim",
           "Mechanika i budowa maszyn energetycznych",
@@ -171,8 +171,8 @@
        "name":"Wydział Mechaniczny",
        "abbreviation": "W10",
        "order": 10,
-       "icon_name": "PrecisionManufacturingRounded",
-       "majors_first_grade":[
+       "iconName": "PrecisionManufacturingRounded",
+       "majorsFirstGrade":[
           "Biomechanika inżynierska",
           "Mechanika i budowa maszyn",
           "Mechanika i budowa maszyn w języku angielskim",
@@ -181,7 +181,7 @@
           "Transport",
           "Zarządzanie i inżynieria produkcji"
        ],
-       "majors_second_grade":[
+       "majorsSecondGrade":[
           "Biomechanika inżynierska",
           "Mechanika i budowa maszyn",
           "Mechanika i budowa maszyn w języku angielskim",
@@ -196,15 +196,15 @@
        "name":"Wydział Podstawowych Problemów Techniki",
        "abbreviation": "W1",
        "order": 11,
-       "icon_name": "BiotechRounded",
-       "majors_first_grade":[
+       "iconName": "BiotechRounded",
+       "majorsFirstGrade":[
           "Fizyka techniczna",
           "Inżynieria biomedyczna",
           "Inżynieria biomedyczna w j. angielskim",
           "Inżynieria kwantowa",
           "Optyka"
        ],
-       "majors_second_grade":[
+       "majorsSecondGrade":[
           "Fizyka techniczna",
           "Inżynieria biomedyczna",
           "Big Data Analytics",
@@ -216,8 +216,8 @@
        "name":"Wydział Elektroniki, Fotoniki i Mikrosystemów",
        "abbreviation": "W12",
        "order": 12,
-       "icon_name": "MemoryRounded",
-       "majors_first_grade":[
+       "iconName": "MemoryRounded",
+       "majorsFirstGrade":[
           "Automatyka i robotyka",
           "Electronic and Computer Engineering",
           "Elektronika",
@@ -225,7 +225,7 @@
           "Inteligentna elektronika",
           "Inżynieria mikrosystemów mechatronicznych"
        ],
-       "majors_second_grade":[
+       "majorsSecondGrade":[
           "Automatyka i robotyka",
           "Automatyka i robotyka w języku angielskim",
           "Elektronika",
@@ -238,12 +238,12 @@
        "name":"Wydział Matematyki",
        "abbreviation": "W13",
        "order": 13,
-       "icon_name": "FunctionsRounded",
-       "majors_first_grade":[
+       "iconName": "FunctionsRounded",
+       "majorsFirstGrade":[
           "Matematyka",
           "Matematyka stosowana"
        ],
-       "majors_second_grade":[
+       "majorsSecondGrade":[
           "Applied Mathematics"
        ]
     }

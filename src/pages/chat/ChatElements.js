@@ -76,7 +76,15 @@ export const NoResultsImage = styled.img`
 export const TabPanelContainer = styled.div`
   width: auto;
   height: auto;
-  overflow-y: scrol;
+  display: flex;
+  flex-direction: column;
+  row-gap: 1rem;
+`;
+
+export const TabContentContainer = styled.section`
+  width: auto;
+  height: 70vh;
+  overflow-y: auto;
   display: flex;
   flex-direction: column;
   row-gap: 1rem;

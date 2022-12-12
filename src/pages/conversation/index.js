@@ -61,16 +61,12 @@ function Conversation() {
     });
 
     await updateDoc(doc(firestore, 'userChats', uid), {
-      [`${conversationId}.lastMessage`]: {
-        inputMessage,
-      },
+      [`${conversationId}.lastMessage`]: inputMessage,
       [`${conversationId}.date`]: serverTimestamp(),
     });
 
     await updateDoc(doc(firestore, 'userChats', user.uid), {
-      [`${conversationId}.lastMessage`]: {
-        inputMessage,
-      },
+      [`${conversationId}.lastMessage`]: inputMessage,
       [`${conversationId}.date`]: serverTimestamp(),
     });
 

@@ -63,6 +63,7 @@ export const TextAreaInput = styled.textarea`
   padding: 0.5rem;
   height: auto;
   min-height: 140px;
+  resize: none;
 
   &:focus {
     outline: none;

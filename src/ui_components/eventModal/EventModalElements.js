@@ -57,7 +57,7 @@ export const SubmitButtons = styled.form`
 
 export const FormsContainer = styled.div`
   height: 55vh;
-  overflow-y: scroll;
+  overflow-y: auto;
 `;
 
 export const EventFormContainer = styled.div`

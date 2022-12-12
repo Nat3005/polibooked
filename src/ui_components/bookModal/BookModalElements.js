@@ -75,7 +75,7 @@ export const DateContainer = styled.div`
 export const FreeEventsContainer = styled.div`
   height: auto;
   max-height: 45vh;
-  overflow-y: scroll;
+  overflow-y: auto;
   display: flex;
   flex-direction: row;
   row-wrap: wrap;

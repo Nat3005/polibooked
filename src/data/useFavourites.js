@@ -29,6 +29,7 @@ export const useFavourites = () => {
   useEffect(() => {
     const fetchedAnnouncements = [];
     const favouritesPromises = references.map((reference) => getDoc(reference));
+
     Promise.all(favouritesPromises).then((favors) => {
       const userPromises = favors.map((document) =>
         getUser(document.data().userRef).then((u) => {

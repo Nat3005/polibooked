@@ -7,7 +7,7 @@ export const LeftSidebarContainer = styled.div`
   grid-row: 1/3;
   display: flex;
   flex-direction: column;
-  align-items: left;
+  align-items: center;
   justify-content: space-between;
   padding-top: 2rem;
 
@@ -16,19 +16,10 @@ export const LeftSidebarContainer = styled.div`
   }
 `;
 
-export const ChipsContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-  row-gap: 0.5rem;
-  column-gap: 0.5rem;
-  flex-wrap: wrap;
-`;
-
 export const Logo = styled.img`
-  align-self: flex-start;
-  width: 70%;
+  align-self: center;
+  width: 100%;
   height: auto;
-  margin-left: -20px;
 `;
 
 export const UserContainer = styled.div`
@@ -37,4 +28,5 @@ export const UserContainer = styled.div`
   row-gap: 1rem;
   justify-content: center;
   align-items: center;
+  padding-top: 2rem;
 `;

@@ -11,7 +11,7 @@ export const ConversationContainer = styled.div`
 
 export const MessagesContainer = styled.div`
   height: 70vh;
-  overflow-y: scroll;
+  overflow-y: auto;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -33,6 +33,7 @@ export const SendMessageContainer = styled.form`
 `;
 
 export const MessageInput = styled.textarea`
+  resize: none;
   width: 100%;
   padding: 0.5rem;
   border: none;
