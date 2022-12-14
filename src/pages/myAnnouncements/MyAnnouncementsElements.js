@@ -8,7 +8,7 @@ export const PersonalAnnouncementsContainer = styled.section`
   padding: 1.25rem;
 `;
 
-export const NoAnnouncementsContainer = styled.div`
+export const NoAnnouncementsContainer = styled.figure`
   display: flex;
   flex-direction: column;
   justify-content: center;

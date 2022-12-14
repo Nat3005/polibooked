@@ -5,6 +5,7 @@ import {
   RadioContainerLabel,
   RadioButton,
   RangeContainer,
+  RangePartContainer,
 } from './RadioInputElements';
 import TextInput from '../textInput';
 
@@ -32,29 +33,34 @@ function RadioInput({ label, refs, placeholder, variant }) {
 
   const displayRange = () => (
     <RangeContainer>
-      od
-      <TextInput
-        refs={(ref) => {
-          costFromRef.current = ref;
-        }}
-        type="number"
-        name="costFrom"
-        placeholder="np.: 10"
-        onChange={handleInsert}
-        variant={variant}
-      />{' '}
-      zł do
-      <TextInput
-        refs={(ref) => {
-          costToRef.current = ref;
-        }}
-        type="number"
-        name="costTo"
-        placeholder="np.: 30"
-        onChange={handleInsert}
-        variant={variant}
-      />{' '}
-      zł
+      <RangePartContainer>
+        od
+        <TextInput
+          refs={(ref) => {
+            costFromRef.current = ref;
+          }}
+          type="number"
+          name="costFrom"
+          placeholder="np.: 10"
+          onChange={handleInsert}
+          variant={variant}
+        />{' '}
+        zł
+      </RangePartContainer>
+      <RangePartContainer>
+        do
+        <TextInput
+          refs={(ref) => {
+            costToRef.current = ref;
+          }}
+          type="number"
+          name="costTo"
+          placeholder="np.: 30"
+          onChange={handleInsert}
+          variant={variant}
+        />{' '}
+        zł
+      </RangePartContainer>
     </RangeContainer>
   );
 
@@ -84,7 +90,7 @@ function RadioInput({ label, refs, placeholder, variant }) {
               name="cost"
               checked={selected === 0}
               onChange={() => handleSelection(0)}
-            />
+            />{' '}
             bezpłatne
           </label>
         </RadioButton>
@@ -97,7 +103,7 @@ function RadioInput({ label, refs, placeholder, variant }) {
               name="cost2"
               checked={selected === 1}
               onChange={() => handleSelection(1)}
-            />
+            />{' '}
             przedział
           </label>
         </RadioButton>
@@ -110,7 +116,7 @@ function RadioInput({ label, refs, placeholder, variant }) {
               name="cost3"
               checked={selected === 2}
               onChange={() => handleSelection(2)}
-            />
+            />{' '}
             inne
           </label>
         </RadioButton>

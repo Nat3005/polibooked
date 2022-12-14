@@ -13,8 +13,8 @@ export const DashboardContainer = styled(GridContainer)`
   overflow: hidden;
 `;
 
-export const MainContainer = styled.div`
-  height: 90vh;
+export const MainContainer = styled.section`
+  height: 86vh;
   background: var(--neutral-purple);
   display: flex;
   flex-direction: column;
@@ -32,7 +32,7 @@ export const MainContainer = styled.div`
   }
 `;
 
-export const CenterContainer = styled.div`
+export const CenterContainer = styled.section`
   display: flex;
   flex-direction: column;
   grid-column: 4/13;

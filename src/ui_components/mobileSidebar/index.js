@@ -12,7 +12,7 @@ import {
   CloseContainer,
   SidebarContent,
 } from './MobileSidebarElements';
-import { SmallText } from '../../ui_elements/text/TextElements';
+import { MediumText } from '../../ui_elements/text/TextElements';
 import ProfilePicture from '../../ui_elements/profilePicture';
 import horizontalLogo from '../../images/logo_horizontal.svg';
 import { TertiaryButton } from '../../ui_elements/buttons/ButtonElements';
@@ -43,12 +43,20 @@ function MobileSidebar({
 
   const buttons = (
     <ButtonsContainer>
-      <TertiaryButton onClick={openTutoringModal} variant="purpleAccent">
+      <TertiaryButton
+        onClick={openTutoringModal}
+        variant="purpleAccent"
+        aria-label="Zostań korepetytorem"
+      >
         {' '}
         <SchoolRoundedIcon />
         Zostań korepetytorem{' '}
       </TertiaryButton>
-      <TertiaryButton onClick={openStudentModal} variant="yellowAccent">
+      <TertiaryButton
+        onClick={openStudentModal}
+        variant="yellowAccent"
+        aria-label="Znajdź korepetytora"
+      >
         {' '}
         <EmojiPeopleRoundedIcon />
         Znajdź korepetytora{' '}
@@ -66,21 +74,14 @@ function MobileSidebar({
       </CloseContainer>
       <SidebarContent>
         <ProfilePicture />
-        <SmallText variant="dark" weight="bold">
+        <MediumText variant="purpleAccent" weight="bold">
           {user?.displayName}
-        </SmallText>
-        <SmallText varint="dark" alignment="center" weight="bold">
-          {user?.major}
-          {' | '}
-          <em style={{ color: 'var(--accent-purple)', fontStyle: 'normal' }}>
-            {user?.faculty}
-          </em>
-        </SmallText>
+        </MediumText>
         {inMajorPath && buttons}
         <Menu style={{ alignSelf: 'flex-start' }} />
       </SidebarContent>
       <LogoContainer>
-        <Logo src={horizontalLogo} />
+        <Logo src={horizontalLogo} alt="logo" />
       </LogoContainer>
     </SidebarContainer>
   );

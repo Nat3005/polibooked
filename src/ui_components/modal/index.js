@@ -58,43 +58,63 @@ function Modal({ showModal, setShowModal, announcementType, announcement }) {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    const separatedTags = formItem.current.tags.value
-      .split(',')
-      .map((s) => s.trim())
-      .filter((s) => !!s);
+    const errorMessages = [];
+    if (
+      formItem.current.price.length === 2 &&
+      formItem.current.price[1] < formItem.current.price[0]
+    ) {
+      errorMessages.push('Wprowadzony przedział cenowy jest niepoprawny!');
+      setValidationErrors(errorMessages);
+    } else if (
+      formItem.current.price.length === 2 &&
+      (formItem.current.price[0] < 0 || formItem.current.price[1] < 0)
+    ) {
+      errorMessages.push('Wartości nie mogą być ujemne');
+      setValidationErrors(errorMessages);
+    } else {
+      const separatedTags = formItem.current.tags.value
+        .split(',')
+        .map((s) => s.trim())
+        .filter((s) => !!s);
 
-    const newAnnouncement = {
-      type: announcementType.includes('tutor') ? 'tutor' : 'student',
-      title: formItem.current.title.value.trim(),
-      description: formItem.current.description.value.trim(),
-      price: formItem.current.price,
-      tags: separatedTags,
-      abbreviation: announcementType.includes('Edit')
-        ? announcement.abbreviation
-        : urlParams.abbreviation,
-      major: announcementType.includes('Edit')
-        ? announcement.major
-        : urlParams.major,
-      ...(!!announcement && { id: announcement.id }),
-    };
+      const newAnnouncement = {
+        type: announcementType.includes('tutor') ? 'tutor' : 'student',
+        title: formItem.current.title.value.trim(),
+        description: formItem.current.description.value.trim(),
+        price: formItem.current.price,
+        tags: separatedTags,
+        abbreviation: announcementType.includes('Edit')
+          ? announcement.abbreviation
+          : urlParams.abbreviation,
+        major: announcementType.includes('Edit')
+          ? announcement.major
+          : urlParams.major,
+        ...(!!announcement && { id: announcement.id }),
+      };
 
-    const schema = yup.object().shape({
-      title: yup.string().required('Tytuł nie może być pusty'),
-      description: yup.string().required('Opis nie może być pusty'),
-      tags: yup.array().min(1, 'Wprowadź przynajmniej jeden tag'),
-    });
-
-    schema
-      .validate(newAnnouncement, { abortEarly: false })
-      .then(() => writeToFirestore(newAnnouncement))
-      .catch((err) => {
-        setValidationErrors(err.errors);
+      const schema = yup.object().shape({
+        title: yup.string().required('Tytuł nie może być pusty'),
+        description: yup.string().required('Opis nie może być pusty'),
+        tags: yup.array().min(1, 'Wprowadź przynajmniej jeden tag'),
       });
+
+      schema
+        .validate(newAnnouncement, { abortEarly: false })
+        .then(() => writeToFirestore(newAnnouncement))
+        .catch((err) => {
+          setValidationErrors(err.errors);
+        });
+    }
   };
 
   const validationErrorsHTML = validationErrors?.map((it) => (
     <ErrorMessage key={it} message={it} />
   ));
+
+  const handleClose = () => {
+    setValidationErrors([]);
+    setShowModal(!showModal);
+  };
 
   return (
     <ModalOverlay>
@@ -110,7 +130,7 @@ function Modal({ showModal, setShowModal, announcementType, announcement }) {
           </TitleContainer>
           <CloseRoundedIcon
             style={{ cursor: 'pointer' }}
-            onClick={() => setShowModal(!showModal)}
+            onClick={handleClose}
           />
         </HeadlineContainer>
         <BreadcrumbsContainer variant={announcementType}>
@@ -178,18 +198,27 @@ function Modal({ showModal, setShowModal, announcementType, announcement }) {
         <SubmitButtons onSubmit={handleSubmit}>
           <TertiaryButton
             variant="dark"
-            onClick={() => setShowModal(!showModal)}
+            onClick={handleClose}
+            aria-label="Anuluj"
           >
             Anuluj
           </TertiaryButton>
           {announcementType.includes('tutor') ? (
-            <PrimaryButton size="big" variant="purpleAccent">
+            <PrimaryButton
+              size="big"
+              variant="purpleAccent"
+              aria-label="Dodaj/Edytuj ogłoszenie"
+            >
               {announcementType.includes('Edit')
                 ? 'Edytuj ogłoszenie'
                 : 'Dodaj ogłoszenie'}
             </PrimaryButton>
           ) : (
-            <PrimaryButton size="big" variant="yellowAccent">
+            <PrimaryButton
+              size="big"
+              variant="yellowAccent"
+              aria-label="Dodaj/Edytuj ogłoszenie"
+            >
               {announcementType.includes('Edit')
                 ? 'Edytuj ogłoszenie'
                 : 'Dodaj ogłoszenie'}

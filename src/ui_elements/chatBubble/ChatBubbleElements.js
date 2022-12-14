@@ -18,7 +18,7 @@ const handleAlignment = (type) =>
     response: 'flex-start',
   }[type]);
 
-export const ChatBubbleContainer = styled.div`
+export const ChatBubbleContainer = styled.article`
   display: flex;
   flex-direction: column;
   align-items: ${(props) => handleAlignment(props.type)};

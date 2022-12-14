@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const LeftSidebarContainer = styled.div`
+export const LeftSidebarContainer = styled.aside`
   height: 100vh;
   background: var(--white);
   grid-column: 1/4;
@@ -22,7 +22,7 @@ export const Logo = styled.img`
   height: auto;
 `;
 
-export const UserContainer = styled.div`
+export const UserContainer = styled.section`
   display: flex;
   flex-direction: column;
   row-gap: 1rem;

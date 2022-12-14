@@ -2,14 +2,8 @@ import styled from 'styled-components';
 
 const handleSize = (variant) =>
   ({
-    big: '1rem 1.5rem',
+    big: '0.5rem 0.75rem',
     small: '0.375rem 0.5rem',
-  }[variant]);
-
-const handleRadius = (variant) =>
-  ({
-    big: 'var(--outer-radius)',
-    small: 'var(--inner-radius)',
   }[variant]);
 
 const handleColor = (variant) =>
@@ -48,7 +42,7 @@ export const PrimaryButton = styled.button`
   background-color: ${(props) => handleColor(props.variant)};
   color: ${(props) => handleFont(props.variant)};
   padding: ${(props) => handleSize(props.size)};
-  border-radius: ${(props) => handleRadius(props.size)};
+  border-radius: var(--inner-radius);
   border: none;
   cursor: pointer;
   font-size: var(--basic-text);
@@ -70,7 +64,7 @@ export const SecondaryButton = styled.button`
   background-color: transparent;
   color: ${(props) => handleColor(props.variant)};
   padding: ${(props) => handleSize(props.size)};
-  border-radius: ${(props) => handleRadius(props.size)};
+  border-radius: var(--inner-radius)};
   border: var(--border-style-bold);
   border-color: ${(props) => handleColor(props.variant)};
   cursor: pointer;

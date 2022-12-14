@@ -28,7 +28,7 @@ function Announcements({ openEditModal, openBookModal }) {
         ))}
       {announcements.length === 0 && (
         <NoAnnouncementsContainer>
-          <NoAnnouncementsImage src={NoAnnouncementsImg} />{' '}
+          <NoAnnouncementsImage src={NoAnnouncementsImg} alt="" />{' '}
           <MediumText>Brak ogłoszeń</MediumText>
         </NoAnnouncementsContainer>
       )}

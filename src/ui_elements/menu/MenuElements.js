@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { NavLink as Link } from 'react-router-dom';
 
-export const MenuContainer = styled.div`
+export const MenuContainer = styled.section`
   display: flex;
   flex-direction: column;
   row-gap: 0.5rem;

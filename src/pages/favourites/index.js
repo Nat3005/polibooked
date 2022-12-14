@@ -25,7 +25,7 @@ function Favourites({ openEditModal }) {
         ))}
       {favourites.length === 0 && (
         <ImageContainer>
-          <NoFavouritesImgage src={NoResultsImg} />
+          <NoFavouritesImgage src={NoResultsImg} alt="" />
           <MediumText>Brak ulubionych ogłoszeń</MediumText>
         </ImageContainer>
       )}

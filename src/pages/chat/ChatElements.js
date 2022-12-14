@@ -56,7 +56,7 @@ export const SearchInput = styled.input`
     color: var(--accent-purple);
   }
 `;
-export const ImageContainer = styled.div`
+export const ImageContainer = styled.figure`
   display: flex;
   flex-direction: column;
   justify-content: center;

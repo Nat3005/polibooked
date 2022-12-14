@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
-export const NavbarContainer = styled.div`
-  height: 13vh;
+export const NavbarContainer = styled.nav`
+  height: 14vh;
   background: var(--white);
   border-bottom: 5px solid transparent;
   border-image: var(--gradient-horizontal);
@@ -11,7 +11,7 @@ export const NavbarContainer = styled.div`
   row-gap: 2rem;
   justify-content: space-between;
   align-items: center;
-  padding: 0rem 2rem;
+  padding: 0rem 1.25rem;
 
   @media screen and (max-width: 768px) {
     grid-column: 1/9;
@@ -36,12 +36,6 @@ export const IconButton = styled.button`
   }
 `;
 
-export const DropDownButton = styled(IconButton)`
-  @media screen and (max-width: 768px) {
-    display: none;
-  }
-`;
-
 export const SidebarButton = styled(IconButton)`
   display: none;
   @media screen and (max-width: 768px) {
@@ -49,16 +43,9 @@ export const SidebarButton = styled(IconButton)`
   }
 `;
 
-export const DropdownToggle = styled.div`
-  display: flex;
+export const MobileDropdownToggle = styled.section`
   flex-direction: column;
   align-items: flex-end;
-  @media screen and (max-width: 768px) {
-    display: none;
-  }
-`;
-
-export const MobileDropdownToggle = styled(DropdownToggle)`
   display: none;
   @media screen and (max-width: 768px) {
     display: flex;
@@ -69,4 +56,20 @@ export const BreadcrumbsContainer = styled.div`
   display: flex;
   flex-direction: column;
   row-gap: 0.375rem;
+`;
+
+export const AddButtonsContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  column-gap: 0.5rem;
+  justify-content: center;
+
+  @media screen and (max-width: 1400px) {
+    flex-direction: column;
+    row-gap: 0.25rem;
+  }
+
+  @media screen and (max-width: 768px) {
+    display: none;
+  }
 `;

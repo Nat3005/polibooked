@@ -55,6 +55,7 @@ function UserChatCard({ user: interlocutorUser, type, lastMsg }) {
         variant={type.includes('search') ? 'yellowAccent' : 'purpleAccent'}
         type="submit"
         style={{ justifySelf: 'flex-end' }}
+        aria-label="Wyszukaj użytkownika"
       >
         <MailOutlineRoundedIcon />
       </PrimaryButton>

@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import profileBackgroundPicture from '../../images/profile_image_background.svg';
 
-export const ProfilePictureContainer = styled.div`
+export const ProfilePictureContainer = styled.figure`
   height: 100px;
   width: 100px;
   background-image: url(${profileBackgroundPicture});

@@ -81,7 +81,7 @@ function Chat() {
             ))
           ) : (
             <ImageContainer>
-              <NoResultsImage src={NoRecentsImg} />
+              <NoResultsImage src={NoRecentsImg} alt="" />
               <SmallText>Brak ostatnich rozmów</SmallText>
             </ImageContainer>
           )}
@@ -103,7 +103,7 @@ function Chat() {
           users.map((u) => <UserChatCard key={u.uid} user={u} type="search" />)
         ) : (
           <ImageContainer>
-            <NoResultsImage src={NoResultsImg} />
+            <NoResultsImage src={NoResultsImg} alt="" />
           </ImageContainer>
         )}
       </TabPanel>

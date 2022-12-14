@@ -22,7 +22,7 @@ function LeftSidebar() {
         </MediumText>
       </UserContainer>
       <Menu />
-      <Logo src={horizontalLogo} />
+      <Logo src={horizontalLogo} alt="logo" />
     </LeftSidebarContainer>
   );
 }

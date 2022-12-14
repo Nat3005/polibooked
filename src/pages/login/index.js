@@ -33,13 +33,18 @@ function LoginPage() {
   return (
     <LoginContainer>
       <LoginFormContainer>
-        <LogoImage src={logoVertical} />
-        <PrimaryButton size="big" variant="yellowAccent" onClick={handleLogIn}>
+        <LogoImage src={logoVertical} alt="logo" />
+        <PrimaryButton
+          size="big"
+          variant="yellowAccent"
+          onClick={handleLogIn}
+          aria-label="Zaloguj się"
+        >
           Zaloguj się mailem z domeny PWR
         </PrimaryButton>
       </LoginFormContainer>
       <LoginImageContainer>
-        <LoginImage src={fullScreenImage} />
+        <LoginImage src={fullScreenImage} alt="" />
       </LoginImageContainer>
     </LoginContainer>
   );

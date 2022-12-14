@@ -38,7 +38,7 @@ function Dashboard() {
 
   const { pathname } = useLocation();
   let type = 'scroll';
-  if (!!matchPath('chat', pathname) || !!matchPath('chat/rozmowa', pathname)) {
+  if (!!matchPath('czat', pathname) || !!matchPath('czat/rozmowa', pathname)) {
     type = 'noScroll';
   }
   return (

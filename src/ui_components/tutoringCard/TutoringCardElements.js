@@ -18,7 +18,7 @@ const handleFont = (variant) =>
     tutor: 'var(--white)',
   }[variant]);
 
-export const TutoringCardContainer = styled.div`
+export const TutoringCardContainer = styled.article`
   display: flex;
   flex-direction: column;
   width: 48%;
@@ -37,7 +37,7 @@ export const TutoringCardContainer = styled.div`
   }
 `;
 
-export const DetailsContainer = styled.div`
+export const DetailsContainer = styled.section`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -59,7 +59,7 @@ export const EventDetailsContainer = styled.div`
   justify-content: center;
   align-items: center;
 `;
-export const ButtonsContainer = styled.div`
+export const ButtonsContainer = styled.article`
   display: flex;
   flex-drection: row;
 `;

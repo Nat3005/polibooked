@@ -14,7 +14,7 @@ export const LoginContainer = styled(GridContainer)`
   }
 `;
 
-export const LoginImageContainer = styled.div`
+export const LoginImageContainer = styled.figure`
   display: flex;
   flex-grow: 1 1 0;
   height: 100vh;
@@ -32,7 +32,7 @@ export const LoginImage = styled.img`
   height: 100%;
   object-fit: cover;
 `;
-export const LoginFormContainer = styled.div`
+export const LoginFormContainer = styled.section`
   display: flex;
   flex-direction: column;
   height: 70vh;

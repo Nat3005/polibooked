@@ -36,7 +36,7 @@ function DashboardRouting({
           />
         }
       />
-      <Route path="chat" element={<Chat />} />
+      <Route path="czat" element={<Chat />} />
       <Route
         path="ulubione"
         element={<Favourites openEditModal={openEditModal} />}
@@ -51,7 +51,7 @@ function DashboardRouting({
           />
         }
       />
-      <Route path="/chat/rozmowa" element={<Conversation />} />
+      <Route path="/czat/rozmowa" element={<Conversation />} />
       <Route exact path="/" element={<Navigate to="home" />} />
     </Routes>
   );

@@ -26,8 +26,8 @@ function Menu() {
       <IconButton to="/moje ogłoszenia">
         <ArticleOutlinedIcon /> moje ogłoszenia
       </IconButton>
-      <IconButton to="/chat">
-        <MailOutlineRoundedIcon /> chat
+      <IconButton to="/czat">
+        <MailOutlineRoundedIcon /> czat
       </IconButton>
       <IconButton to="/kalendarz">
         <CalendarMonthRoundedIcon /> kalendarz

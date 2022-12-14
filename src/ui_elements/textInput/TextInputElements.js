@@ -27,7 +27,7 @@ const handleCopyColor = (variant) =>
     userEvent: 'var(--greyish-purple)',
   }[variant]);
 
-export const InputContainer = styled.div`
+export const InputContainer = styled.article`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -44,6 +44,7 @@ export const Input = styled.input`
   border-radius: var(--inner-radius);
   color: var(--primary-dark);
   padding: 0.5rem;
+  min-width: 150px;
 
   &:focus {
     outline: none;

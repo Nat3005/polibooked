@@ -12,7 +12,7 @@ const handleShade = (variant) =>
     student: 'var(--greyish-yellow)',
   }[variant]);
 
-export const AnnouncementContainer = styled.div`
+export const AnnouncementContainer = styled.article`
   display: flex;
   flex-direction: column;
   background-color: var(--white);
@@ -33,32 +33,20 @@ export const ProfileContainer = styled.div`
   flex-direction: row;
   column-gap: 1rem;
   align-items: center;
-
-  @media screen and (max-width: 768px) {
-    column-gap: 0.5rem;
-    align-items: flex-start;
-  }
 `;
 export const UserDataContainer = styled.div`
   display: flex;
   flex-direction: column;
   row-gap: 0.125rem;
-
-  @media screen and (max-width: 768px) {
-    > p {
-      font-size: var(--basic-text);
-      line-height: 1.125rem;
-    }
-  }
 `;
-export const ChipsContainer = styled.div`
+export const ChipsContainer = styled.article`
   color: ${(props) => handleShade(props.variant)};
   display: flex;
   flex-direction: row;
   row-wrap: wrap;
   column-gap: 0.5rem;
 `;
-export const ButtonsContainer = styled.div`
+export const ButtonsContainer = styled.article`
   display: flex;
   flex-direction: row;
   column-gap: 0.3rem;
@@ -86,7 +74,7 @@ export const BreadcrumbsContainer = styled.div`
   }
 `;
 
-export const IconManagementContainer = styled.div`
+export const IconManagementContainer = styled.article`
   display: flex;
   flex-direction: row;
   column-gap: 0.25rem;

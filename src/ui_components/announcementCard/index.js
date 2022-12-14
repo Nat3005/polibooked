@@ -46,7 +46,6 @@ function AnnouncementCard({
   const { user: loggedInUser } = UserAuth();
   const [favourites] = useFavourites();
   const author = type === 'personal' ? loggedInUser : announcement.user;
-  // if (type === 'personal') announcement.user = loggedInUser;
 
   const chatID = useMemo(
     () => assembleChatID(loggedInUser, author),
@@ -92,7 +91,7 @@ function AnnouncementCard({
 
   const handleConversation = async () => {
     prepareChat(loggedInUser, author, chatID).then(() =>
-      navigateToChat(chatID, author, navigate, '/chat/rozmowa')
+      navigateToChat(chatID, author, navigate, '/czat/rozmowa')
     );
   };
 
@@ -141,6 +140,7 @@ function AnnouncementCard({
               size="small"
               onClick={() => openEditModal(announcement)}
               variant="dark"
+              aria-label="Edytuj"
             >
               <BorderColorRoundedIcon /> Edytuj
             </TertiaryButton>
@@ -148,6 +148,7 @@ function AnnouncementCard({
               size="small"
               onClick={handleRemoveAnnouncement}
               variant="dark"
+              aria-label="Usuń"
             >
               <DeleteSweepRoundedIcon /> Usuń
             </TertiaryButton>
@@ -163,6 +164,7 @@ function AnnouncementCard({
                 onClick={handleConversation}
                 size="small"
                 variant="purpleAccent"
+                aria-label="Napisz"
               >
                 <MailOutlineRoundedIcon /> napisz
               </PrimaryButton>
@@ -170,6 +172,7 @@ function AnnouncementCard({
                 size="small"
                 variant="purpleAccent"
                 onClick={() => openBookModal(announcement)}
+                aria-label="Rezerwuj"
               >
                 <EventRoundedIcon /> rezerwuj
               </PrimaryButton>
@@ -178,6 +181,7 @@ function AnnouncementCard({
                   size="small"
                   variant="purpleAccent"
                   onClick={handleRemoveFavourites}
+                  aria-label="Usuń z ulubionych"
                 >
                   <FavoriteIcon /> usuń z ulubionych
                 </PrimaryButton>
@@ -186,6 +190,7 @@ function AnnouncementCard({
                   size="small"
                   variant="purpleAccent"
                   onClick={handleAddFavourites}
+                  aria-label="Dodaj do ulubionych"
                 >
                   <FavoriteBorderRoundedIcon /> dodaj do ulubionych
                 </PrimaryButton>
@@ -197,6 +202,7 @@ function AnnouncementCard({
                 onClick={handleConversation}
                 size="small"
                 variant="yellowAccent"
+                aria-label="Napisz"
               >
                 <MailOutlineRoundedIcon /> napisz
               </PrimaryButton>
@@ -205,6 +211,7 @@ function AnnouncementCard({
                   size="small"
                   variant="yellowAccent"
                   onClick={handleRemoveFavourites}
+                  aria-label="Usuń z ulubionych"
                 >
                   <FavoriteIcon /> usuń z ulubionych
                 </PrimaryButton>
@@ -213,6 +220,7 @@ function AnnouncementCard({
                   size="small"
                   variant="yellowAccent"
                   onClick={handleAddFavourites}
+                  aria-label="Dodaj do ulubionych"
                 >
                   <FavoriteBorderRoundedIcon /> dodaj do ulubionych
                 </PrimaryButton>

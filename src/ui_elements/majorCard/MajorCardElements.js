@@ -29,7 +29,7 @@ export const ArrowButtonContainer = styled.div`
   align-items: center;
 `;
 
-export const MajorCardContainer = styled.div`
+export const MajorCardContainer = styled.article`
   background: var(--white);
   border-radius: var(--outer-radius);
   border-left: 2px solid ${(props) => handleColor(props.variant)};

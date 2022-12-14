@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const AnnouncementsContainer = styled.div`
+export const AnnouncementsContainer = styled.section`
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
@@ -8,7 +8,7 @@ export const AnnouncementsContainer = styled.div`
   padding: 1.25rem;
 `;
 
-export const NoAnnouncementsContainer = styled.div`
+export const NoAnnouncementsContainer = styled.figure`
   display: flex;
   flex-direction: column;
   justify-content: center;

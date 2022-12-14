@@ -6,7 +6,7 @@ function ProfilePicture({ className }) {
   const { user } = UserAuth();
   return (
     <ProfilePictureContainer className={className}>
-      <Picture src={user?.photoURL} />
+      <Picture src={user?.photoURL} alt="user photo" />
     </ProfilePictureContainer>
   );
 }

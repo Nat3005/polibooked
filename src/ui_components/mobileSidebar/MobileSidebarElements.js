@@ -29,7 +29,7 @@ export const CloseContainer = styled.div`
   }
 `;
 
-export const SidebarContent = styled.div`
+export const SidebarContent = styled.section`
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -49,16 +49,8 @@ export const SidebarContent = styled.div`
     }
 `;
 
-export const ChipsContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-  row-gap: 0.5rem;
-  column-gap: 0.5rem;
-  flex-wrap: wrap;
-  justify-content: center;
-`;
 export const Logo = styled.img`
-  width: 50%;
+  width: 90%;
   height: auto;
   align-self: end;
 `;
@@ -76,9 +68,10 @@ export const LogoContainer = styled.div`
     grid-column: 1/5;
   }
 `;
-export const ButtonsContainer = styled.div`
+export const ButtonsContainer = styled.article`
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  row-gap: 0.5rem;
 `;

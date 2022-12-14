@@ -35,7 +35,7 @@ export const TabContentContainer = styled.div`
   padding: 1rem 0rem;
 `;
 
-export const NoEventsContainer = styled.div`
+export const NoEventsContainer = styled.figure`
   display: flex;
   flex-direction: column;
   justify-content: center;
