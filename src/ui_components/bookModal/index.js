@@ -76,7 +76,7 @@ function BookModal({ showModal, setShowModal, announcement }) {
             Rezerwujesz zajęcia z {announcement.user.displayName}
           </SmallText>
           <ImageContainer>
-            <NoFreeEventsContainer src={noFreeEventsImg} />
+            <NoFreeEventsContainer src={noFreeEventsImg} alt="" />
             <SmallText>
               Niestety, {announcement.user.displayName} nie ma wolnych terminów.{' '}
             </SmallText>
@@ -118,6 +118,9 @@ function BookModal({ showModal, setShowModal, announcement }) {
               />
             ))}
         </FreeEventsContainer>
+        <SmallText variant="purpleAccent" weight="bold">
+          Komentarz (opcjonalny)
+        </SmallText>
         <TextInput
           variant="userEvent"
           refs={(ref) => {
@@ -126,11 +129,11 @@ function BookModal({ showModal, setShowModal, announcement }) {
           type="textarea"
           name="comment"
           wrap="soft"
-          placeholder="Zostaw tutaj opcjonalny komentarz, dla osoby która udzieli Ci korepetycji"
+          placeholder="W tym miejscu możesz napisać osobie, z którą rezerwujesz zajęcia jaki zakres tematyczny Cię interesuje, a także które zagadnienia sprawiają Ci szczególną trudność."
         />
         <SubmitButtons onSubmit={handleSubmit}>
           <TertiaryButton variant="dark">Anuluj</TertiaryButton>
-          <PrimaryButton size="big" variant="purpleAccent">
+          <PrimaryButton size="big" variant="purpleAccent" aria-label="Zapisz">
             Zapisz
           </PrimaryButton>
         </SubmitButtons>

@@ -8,13 +8,13 @@ const handleColor = (variant) =>
     studentEdit: 'var(--accent-yellow)',
   }[variant]);
 
-export const RadioInputContainer = styled.div`
+export const RadioInputContainer = styled.article`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   row-gap: 0.5rem;
 `;
-export const RadioButtonsContainer = styled.div`
+export const RadioButtonsContainer = styled.article`
   display: flex;
   flex-direction: row;
   justify-content: space-around;
@@ -54,11 +54,16 @@ export const RangeContainer = styled.div`
   align-self: center;
   width: 80%;
 
-  @media screen and (max-width: 456px) {
+  @media screen and (max-width: 550px) {
     width: 100%;
-
-    > div {
-      max-width: 30vw;
-    }
+    flex-direction: column;
   }
+`;
+
+export const RangePartContainer = styled.div`
+  display: flex;
+  justify-self: center;
+  flex-direction: row;
+  column-gap: 0.25rem;
+  align-items: center;
 `;

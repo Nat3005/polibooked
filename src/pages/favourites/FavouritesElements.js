@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const FavouritesContainer = styled.div`
+export const FavouritesContainer = styled.section`
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
@@ -8,7 +8,7 @@ export const FavouritesContainer = styled.div`
   padding: 1.25rem;
 `;
 
-export const ImageContainer = styled.div`
+export const ImageContainer = styled.figure`
   display: flex;
   flex-direction: column;
   justify-content: center;

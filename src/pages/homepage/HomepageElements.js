@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const HomepageContainer = styled.div`
+export const HomepageContainer = styled.section`
     display: grid;
     grid-template-columns: repeat(9,1fr);
     column-gap: 1.25rem;

@@ -56,7 +56,7 @@ export const SearchInput = styled.input`
     color: var(--accent-purple);
   }
 `;
-export const ImageContainer = styled.div`
+export const ImageContainer = styled.figure`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -76,7 +76,15 @@ export const NoResultsImage = styled.img`
 export const TabPanelContainer = styled.div`
   width: auto;
   height: auto;
-  overflow-y: scrol;
+  display: flex;
+  flex-direction: column;
+  row-gap: 1rem;
+`;
+
+export const TabContentContainer = styled.section`
+  width: auto;
+  height: 70vh;
+  overflow-y: auto;
   display: flex;
   flex-direction: column;
   row-gap: 1rem;

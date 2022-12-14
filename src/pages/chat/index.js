@@ -1,15 +1,7 @@
 import { Tabs, Tab } from '@mui/material';
-import { React, useState, useEffect } from 'react';
+import { React, useState } from 'react';
 import AccessTimeRoundedIcon from '@mui/icons-material/AccessTimeRounded';
 import PersonSearchRoundedIcon from '@mui/icons-material/PersonSearchRounded';
-import {
-  collection,
-  getDocs,
-  query,
-  where,
-  onSnapshot,
-  doc,
-} from 'firebase/firestore';
 import SearchRoundedIcon from '@mui/icons-material/SearchRounded';
 import {
   ChatContainer,
@@ -19,14 +11,16 @@ import {
   SearchContainer,
   SearchInput,
   ImageContainer,
+  TabContentContainer,
 } from './ChatElements';
 import UserChatCard from '../../ui_components/userChatCard';
 import TabPanel from './tabPanel';
-import { firestore } from '../../firebase/init';
 import { UserAuth } from '../../context/UserContext';
 import NoResultsImg from '../../images/no_results.png';
 import NoRecentsImg from '../../images/no_recents.png';
 import { SmallText } from '../../ui_elements/text/TextElements';
+import { getSearchedUsers } from '../../firebase/userService';
+import { useChats } from '../../data/useChats';
 
 function Chat() {
   const { user: loggedInUser } = UserAuth();
@@ -34,53 +28,23 @@ function Chat() {
 
   const [username, setUsername] = useState('');
   const [users, setUsers] = useState(null);
-
+  const [chats] = useChats(loggedInUser.uid);
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
 
-  const handleSearch = async (e) => {
+  const handleSearch = (e) => {
     e?.preventDefault();
     if (username === '') {
       return;
     }
-
-    const q = query(
-      collection(firestore, 'users'),
-      where('displayName', '==', username)
-    );
-
-    const querySnapshot = await getDocs(q);
-    const fetchedUser = [];
-    querySnapshot.forEach((document) => {
-      fetchedUser.push(document.data());
-    });
-    setUsers(fetchedUser);
+    getSearchedUsers(username).then((usersList) => setUsers(usersList));
   };
 
   const handleKey = (e) => {
     // eslint-disable-next-line no-unused-expressions
     e.code === 'Enter' && handleSearch();
   };
-
-  const [chats, setChats] = useState([]);
-
-  useEffect(() => {
-    const getChats = () => {
-      const userChats = onSnapshot(
-        doc(firestore, 'userChats', loggedInUser.uid),
-        (document) => {
-          setChats(document.data());
-        }
-      );
-
-      return () => {
-        userChats();
-      };
-    };
-    // eslint-disable-next-line no-unused-expressions
-    loggedInUser.uid && getChats();
-  }, [loggedInUser.uid]);
 
   return (
     <ChatContainer>
@@ -105,21 +69,23 @@ function Chat() {
         </Tabs>
       </ChatTabs>
       <TabPanel value={value} index={0}>
-        {Object.keys(chats).length !== 0 ? (
-          Object.entries(chats)?.map((chat) => (
-            <UserChatCard
-              key={chat[0]}
-              user={chat[1].userInfo}
-              lastMsg={chat[1].lastMessage.inputMessage}
-              type="latest"
-            />
-          ))
-        ) : (
-          <ImageContainer>
-            <NoResultsImage src={NoRecentsImg} />
-            <SmallText>Brak ostatnich rozmów</SmallText>
-          </ImageContainer>
-        )}
+        <TabContentContainer>
+          {Object.keys(chats).length !== 0 ? (
+            Object.entries(chats)?.map((chat) => (
+              <UserChatCard
+                key={chat[0]}
+                user={chat[1].interlocutorUser}
+                lastMsg={chat[1].lastMessage}
+                type="latest"
+              />
+            ))
+          ) : (
+            <ImageContainer>
+              <NoResultsImage src={NoRecentsImg} alt="" />
+              <SmallText>Brak ostatnich rozmów</SmallText>
+            </ImageContainer>
+          )}
+        </TabContentContainer>
       </TabPanel>
       <TabPanel value={value} index={1}>
         <SearchContainer onSubmit={handleSearch}>
@@ -137,7 +103,7 @@ function Chat() {
           users.map((u) => <UserChatCard key={u.uid} user={u} type="search" />)
         ) : (
           <ImageContainer>
-            <NoResultsImage src={NoResultsImg} />
+            <NoResultsImage src={NoResultsImg} alt="" />
           </ImageContainer>
         )}
       </TabPanel>

@@ -30,15 +30,6 @@ function Calendar({ showEventModal, setShowEventModal }) {
   const [bookedEvents] = useBookedEvents(user.uid);
   const [subscribedEvents] = useSubscribedEvents(user.uid);
   const [value, setValue] = useState(0);
-  // const useStyles = makeStyles({
-  //   scrollButtons: {
-  //     "&.Mui-disabled": {
-  //       opacity: 0.3
-  //     }
-  //   }
-  // });
-  // https://codesandbox.io/s/material-ui-centered-scrollable-tabs-ud26w?file=/index.js:413-425
-  // const classes = useStyles();
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -92,7 +83,7 @@ function Calendar({ showEventModal, setShowEventModal }) {
             ))
           ) : (
             <NoEventsContainer>
-              <NoEventsImage src={noBookedEventsImg} />
+              <NoEventsImage src={noBookedEventsImg} alt="" />
               <SmallText>Nie udzielasz żadnych korepetycji</SmallText>
             </NoEventsContainer>
           )}
@@ -115,7 +106,7 @@ function Calendar({ showEventModal, setShowEventModal }) {
             ))
           ) : (
             <NoEventsContainer>
-              <NoEventsImage src={noSubscribedEvents} />
+              <NoEventsImage src={noSubscribedEvents} alt="" />
               <SmallText>Nie uczestniczysz w żadnych korepetycjach</SmallText>
             </NoEventsContainer>
           )}
@@ -127,6 +118,7 @@ function Calendar({ showEventModal, setShowEventModal }) {
           size="big"
           variant="purpleAccent"
           onClick={openEventModal}
+          aria-label="Dodaj termin korepetycji"
         >
           {' '}
           <SchoolRoundedIcon />
@@ -148,7 +140,7 @@ function Calendar({ showEventModal, setShowEventModal }) {
             ))
           ) : (
             <NoEventsContainer>
-              <NoEventsImage src={noEventsImg} />
+              <NoEventsImage src={noEventsImg} alt="" />
               <SmallText>Nie udostępniasz żadnych terminów</SmallText>
             </NoEventsContainer>
           )}

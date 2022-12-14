@@ -1,18 +1,19 @@
-import { React, useState } from 'react';
+import { React } from 'react';
 import MenuRoundedIcon from '@mui/icons-material/MenuRounded';
 import { useLocation, matchPath } from 'react-router-dom';
+import EmojiPeopleRoundedIcon from '@mui/icons-material/EmojiPeopleRounded';
+import SchoolRoundedIcon from '@mui/icons-material/SchoolRounded';
 import {
-  DropDownButton,
   NavbarContainer,
   SidebarButton,
-  DropdownToggle,
   MobileDropdownToggle,
   BreadcrumbsContainer,
+  AddButtonsContainer,
 } from './NavbarElements';
 import { UserAuth } from '../../context/UserContext';
 import { LargeText } from '../../ui_elements/text/TextElements';
-import Dropdown from '../../ui_elements/dropdown';
 import BreadcrumbsBar from '../breadcrumbs';
+import { PrimaryButton } from '../../ui_elements/buttons/ButtonElements';
 
 function Navbar({
   showTutoringModal,
@@ -23,7 +24,6 @@ function Navbar({
   setShowSidebar,
 }) {
   const { user } = UserAuth();
-  const [showDropdown, setShowDropdown] = useState(false);
   const { pathname } = useLocation();
   const inMajorPath = !!matchPath('home/:abbreviation/:major', pathname);
 
@@ -35,29 +35,41 @@ function Navbar({
     return '';
   };
 
-  const openDropDown = () => {
-    setShowDropdown(!showDropdown);
-  };
-
   const openSidebar = () => {
     setShowSidebar(!showSidebar);
   };
 
-  const dropdown = (
-    <DropdownToggle>
-      <DropDownButton onClick={openDropDown}>
-        <MenuRoundedIcon />
-      </DropDownButton>
-      <Dropdown
-        type="modalDropdown"
-        showDropdown={showDropdown}
-        setShowDropdown={setShowDropdown}
-        showTutoringModal={showTutoringModal}
-        setShowTutoringModal={setShowTutoringModal}
-        showStudentModal={showStudentModal}
-        setShowStudentModal={setShowStudentModal}
-      />
-    </DropdownToggle>
+  const openTutoringModal = () => {
+    setShowTutoringModal(!showTutoringModal);
+  };
+
+  const openStudentModal = () => {
+    setShowStudentModal(!showStudentModal);
+  };
+
+  const addButtons = (
+    <AddButtonsContainer>
+      <PrimaryButton
+        size="big"
+        onClick={openTutoringModal}
+        variant="purpleAccent"
+        aria-label="Zostań korepetytorem"
+      >
+        {' '}
+        <SchoolRoundedIcon />
+        Zostań korepetytorem{' '}
+      </PrimaryButton>
+      <PrimaryButton
+        size="big"
+        onClick={openStudentModal}
+        variant="yellowAccent"
+        aria-label="Znajdź korepetytora"
+      >
+        {' '}
+        <EmojiPeopleRoundedIcon />
+        Znajdź korepetytora{' '}
+      </PrimaryButton>
+    </AddButtonsContainer>
   );
 
   return (
@@ -71,11 +83,9 @@ function Navbar({
         </LargeText>
         <BreadcrumbsBar />
       </BreadcrumbsContainer>
-
-      {inMajorPath && dropdown}
-
+      {inMajorPath && addButtons}
       <MobileDropdownToggle>
-        <SidebarButton onClick={openSidebar}>
+        <SidebarButton onClick={openSidebar} aria-label="Menu">
           <MenuRoundedIcon />
         </SidebarButton>
       </MobileDropdownToggle>

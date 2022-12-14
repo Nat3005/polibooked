@@ -23,7 +23,7 @@ export const ModalOverlay = styled(GridContainer)`
   }
 `;
 
-export const ModalContainer = styled.div`
+export const ModalContainer = styled.section`
   background: var(--white);
   padding: 1.5rem;
   grid-column: 4/10;
@@ -44,7 +44,7 @@ export const ModalContainer = styled.div`
   }
 `;
 
-export const TitleContainer = styled.div`
+export const TitleContainer = styled.article`
   display: flex;
   flex-direction: row;
   column-gap: 0.5rem;
@@ -55,7 +55,7 @@ export const TitleContainer = styled.div`
   font-size: var(--medium-text);
 `;
 
-export const HeadlineContainer = styled.div`
+export const HeadlineContainer = styled.section`
   align-items: center;
   display: flex;
   justify-content: space-between;
@@ -78,6 +78,7 @@ export const BreadcrumbsContainer = styled.div`
 export const SubmitButtons = styled.form`
   display: flex;
   flex-direction: row;
+  padding-top: 0.5rem;
   column-gap: 0.5rem;
   justify-content: flex-end;
   align-items: center;

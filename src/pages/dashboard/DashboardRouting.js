@@ -1,7 +1,7 @@
 import React from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import Homepage from '../homepage';
-import Profile from '../profile';
+import MyAnnouncements from '../myAnnouncements';
 import Calendar from '../calendar';
 import Majors from '../majors';
 import Announcements from '../announcements';
@@ -18,7 +18,15 @@ function DashboardRouting({
   return (
     <Routes>
       <Route path="home" element={<Homepage />} />
-      <Route path="profil" element={<Profile />} />
+      <Route
+        path="moje ogłoszenia"
+        element={
+          <MyAnnouncements
+            openEditModal={openEditModal}
+            openBookModal={openBookModal}
+          />
+        }
+      />
       <Route
         path="kalendarz"
         element={
@@ -28,7 +36,7 @@ function DashboardRouting({
           />
         }
       />
-      <Route path="chat" element={<Chat />} />
+      <Route path="czat" element={<Chat />} />
       <Route
         path="ulubione"
         element={<Favourites openEditModal={openEditModal} />}
@@ -43,9 +51,8 @@ function DashboardRouting({
           />
         }
       />
-      <Route path="/chat/rozmowa" element={<Conversation />} />
+      <Route path="/czat/rozmowa" element={<Conversation />} />
       <Route exact path="/" element={<Navigate to="home" />} />
-      {/* <Route path = "*" element={no page found} /> */}
     </Routes>
   );
 }

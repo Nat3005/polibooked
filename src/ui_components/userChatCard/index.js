@@ -46,11 +46,7 @@ function UserChatCard({ user: interlocutorUser, type, lastMsg }) {
           <MediumText weight="bold" variant="dark">
             {interlocutorUser.displayName}
           </MediumText>
-          {type.includes('search') ? (
-            <SmallText>{`${interlocutorUser.faculty} | ${interlocutorUser.major}`}</SmallText>
-          ) : (
-            <SmallText>{lastMsg}</SmallText>
-          )}
+          {!type.includes('search') && <SmallText>{lastMsg}</SmallText>}
           <SmallText />
         </TextData>
       </UserDataContainer>
@@ -59,6 +55,7 @@ function UserChatCard({ user: interlocutorUser, type, lastMsg }) {
         variant={type.includes('search') ? 'yellowAccent' : 'purpleAccent'}
         type="submit"
         style={{ justifySelf: 'flex-end' }}
+        aria-label="Wyszukaj użytkownika"
       >
         <MailOutlineRoundedIcon />
       </PrimaryButton>

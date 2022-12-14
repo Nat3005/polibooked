@@ -30,30 +30,6 @@ export const getFreeEvents = (publisherID = null) => {
   return query(...myQuery);
 };
 
-// export const getFreeEvents = async (publisherID = null) => {
-//   const ref = doc(firestore, 'users', publisherID);
-
-//   const myQuery = [collection(firestore, 'events'), orderBy('eventStartTime')];
-
-//   if (publisherID) myQuery.push(where('publisherRef', '==', ref));
-//   myQuery.push(where('subscriberRef', '==', null));
-
-//   const eventsRef = query(...myQuery);
-//   return getDocs(eventsRef);
-// };
-
-// export const getBookedEvents = async (publisherID = null) => {
-//   const ref = doc(firestore, 'users', publisherID);
-
-//   const myQuery = [collection(firestore, 'events'), orderBy('subscriberRef')];
-
-//   if (publisherID) myQuery.push(where('publisherRef', '==', ref));
-//   myQuery.push(where('subscriberRef', '!=', null));
-//   myQuery.push(orderBy('eventStartTime'));
-//   const eventsRef = query(...myQuery);
-//   return getDocs(eventsRef);
-// };
-
 export const getBookedEvents = (publisherID = null) => {
   const ref = doc(firestore, 'users', publisherID);
 

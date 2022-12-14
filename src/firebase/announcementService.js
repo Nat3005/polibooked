@@ -44,6 +44,17 @@ export const getAnnouncements = (abbreviation = null, major = null) => {
   return query(...myQuery);
 };
 
+export const getPersonalAnnouncements = (userID) => {
+  const myQuery = [
+    collection(firestore, 'announcements'),
+    orderBy('date', 'desc'),
+  ];
+  const userRef = doc(firestore, 'users', userID);
+  if (userID) myQuery.push(where('userRef', '==', userRef));
+
+  return query(...myQuery);
+};
+
 export const removeAnnouncement = async (announcementID) => {
   const announcementRef = doc(firestore, 'announcements', announcementID);
   return deleteDoc(announcementRef);

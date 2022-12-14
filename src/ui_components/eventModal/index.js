@@ -50,40 +50,54 @@ function EventModal({ showEventModal, setShowEventModal }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const hoursToMin =
-      parseInt(userEvents.current.hours.value * 60, 10) +
-      parseInt(userEvents.current.minutes.value, 10);
-    const calculatedEndDate = dayjs(dateValue).add(hoursToMin, 'm').toDate();
-    const newEvent = {
-      eventStartTime: dayjs(dateValue).toDate(),
-      eventEndTime: calculatedEndDate,
-      subscriberRef: null,
-    };
+    const errorMessages = [];
+    if (
+      userEvents.current.hours.value < 0 ||
+      userEvents.current.minutes.value < 0
+    ) {
+      errorMessages.push('Wartości nie mogą być ujemne');
+      setValidationErrors(errorMessages);
+    } else {
+      const hoursToMin =
+        parseInt(userEvents.current.hours.value * 60, 10) +
+        parseInt(userEvents.current.minutes.value, 10);
+      const calculatedEndDate = dayjs(dateValue).add(hoursToMin, 'm').toDate();
+      const newEvent = {
+        eventStartTime: dayjs(dateValue).toDate(),
+        eventEndTime: calculatedEndDate,
+        subscriberRef: null,
+      };
 
-    const schema = yup.object().shape({
-      eventStartTime: yup
-        .date()
-        .nullable()
-        .required()
-        .typeError('Data rozpoczęcia nie może być pusta'),
-      eventEndTime: yup
-        .date()
-        .nullable()
-        .required()
-        .typeError('Długość trwania zajęć nie może być pusta'),
-    });
-
-    schema
-      .validate(newEvent, { abortEarly: false })
-      .then(() => writeToFirestore(newEvent))
-      .catch((err) => {
-        setValidationErrors(err.errors);
+      const schema = yup.object().shape({
+        eventStartTime: yup
+          .date()
+          .nullable()
+          .required()
+          .typeError('Data rozpoczęcia nie może być pusta'),
+        eventEndTime: yup
+          .date()
+          .nullable()
+          .required()
+          .typeError('Długość trwania zajęć nie może być pusta'),
       });
+
+      schema
+        .validate(newEvent, { abortEarly: false })
+        .then(() => writeToFirestore(newEvent))
+        .catch((err) => {
+          setValidationErrors(err.errors);
+        });
+    }
   };
 
   const validationErrorsHTML = validationErrors?.map((it) => (
     <ErrorMessage key={it} message={it} />
   ));
+
+  const handleClose = () => {
+    setValidationErrors([]);
+    setShowEventModal(!showEventModal);
+  };
 
   const eventForm = (
     <EventFormContainer>
@@ -100,6 +114,8 @@ function EventModal({ showEventModal, setShowEventModal }) {
             type="number"
             name="hours"
             placeholder="Np. 1"
+            step="1"
+            min="0"
           />
           <SmallText>h</SmallText>
         </Input>
@@ -112,6 +128,9 @@ function EventModal({ showEventModal, setShowEventModal }) {
             type="number"
             name="minutes"
             placeholder="Np. 30"
+            step="5"
+            min="0"
+            max="60"
           />
           <SmallText>min</SmallText>
         </Input>
@@ -153,7 +172,7 @@ function EventModal({ showEventModal, setShowEventModal }) {
           </TitleContainer>
           <CloseRoundedIcon
             style={{ cursor: 'pointer' }}
-            onClick={() => setShowEventModal(!showEventModal)}
+            onClick={handleClose}
           />
         </HeadlineContainer>
         <SmallText variant="dark" weight="normal">
@@ -162,12 +181,13 @@ function EventModal({ showEventModal, setShowEventModal }) {
         {eventForm}
         <SubmitButtons onSubmit={handleSubmit}>
           <TertiaryButton
-            onClick={() => setShowEventModal(!showEventModal)}
+            onClick={handleClose}
             variant="dark"
+            aria-label="Anuluj"
           >
             Anuluj
           </TertiaryButton>
-          <PrimaryButton size="big" variant="purpleAccent">
+          <PrimaryButton size="big" variant="purpleAccent" aria-label="Zapisz">
             Zapisz
           </PrimaryButton>
         </SubmitButtons>

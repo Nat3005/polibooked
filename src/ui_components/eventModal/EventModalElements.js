@@ -15,7 +15,7 @@ export const ModalOverlay = styled(GridContainer)`
   }
 `;
 
-export const ModalContainer = styled.div`
+export const ModalContainer = styled.section`
   background: var(--white);
   padding: 1.5rem;
   grid-column: 4/10;
@@ -36,7 +36,7 @@ export const ModalContainer = styled.div`
   }
 `;
 
-export const TitleContainer = styled.div`
+export const TitleContainer = styled.article`
   display: flex;
   flex-direction: row;
   column-gap: 0.5rem;
@@ -55,12 +55,12 @@ export const SubmitButtons = styled.form`
   align-items: center;
 `;
 
-export const FormsContainer = styled.div`
+export const FormsContainer = styled.section`
   height: 55vh;
-  overflow-y: scroll;
+  overflow-y: auto;
 `;
 
-export const EventFormContainer = styled.div`
+export const EventFormContainer = styled.section`
   display: flex;
   flex-direction: column;
   align-items: centerl;

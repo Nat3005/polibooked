@@ -61,16 +61,12 @@ function Conversation() {
     });
 
     await updateDoc(doc(firestore, 'userChats', uid), {
-      [`${conversationId}.lastMessage`]: {
-        inputMessage,
-      },
+      [`${conversationId}.lastMessage`]: inputMessage,
       [`${conversationId}.date`]: serverTimestamp(),
     });
 
     await updateDoc(doc(firestore, 'userChats', user.uid), {
-      [`${conversationId}.lastMessage`]: {
-        inputMessage,
-      },
+      [`${conversationId}.lastMessage`]: inputMessage,
       [`${conversationId}.date`]: serverTimestamp(),
     });
 
@@ -109,7 +105,12 @@ function Conversation() {
           onChange={(e) => setInputMessage(e.target.value)}
           onKeyDown={handleKey}
         />
-        <PrimaryButton size="small" variant="yellowAccent" type="submit">
+        <PrimaryButton
+          size="small"
+          variant="yellowAccent"
+          type="submit"
+          aria-label="Wyślij"
+        >
           <MailOutlineRoundedIcon /> Wyślij
         </PrimaryButton>
       </SendMessageContainer>

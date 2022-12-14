@@ -43,7 +43,7 @@ function TutoringCard({
 
   const handleConversation = async () => {
     prepareChat(loggedInUser, interlocutorUser, chatID).then(() =>
-      navigateToChat(chatID, interlocutorUser, navigate, '/chat/rozmowa')
+      navigateToChat(chatID, interlocutorUser, navigate, '/czat/rozmowa')
     );
   };
 
@@ -67,7 +67,6 @@ function TutoringCard({
         <UserPicture type={type} imageSrc={interlocutorUser.photoURL} />
         <DetailsContainer>
           <MediumText weight="bold">{interlocutorUser.displayName}</MediumText>
-          <SmallText>{`${interlocutorUser.faculty} | ${interlocutorUser.major}`}</SmallText>
         </DetailsContainer>
       </UserDataContainer>
 
@@ -89,10 +88,16 @@ function TutoringCard({
             onClick={handleConversation}
             size="small"
             variant="dark"
+            aria-label="Napisz"
           >
             <MailOutlineRoundedIcon /> Napisz
           </TertiaryButton>
-          <TertiaryButton onClick={handleCancel} size="small" variant="dark">
+          <TertiaryButton
+            onClick={handleCancel}
+            size="small"
+            variant="dark"
+            aria-label="Odwołaj"
+          >
             <DeleteSweepRoundedIcon /> Odwołaj
           </TertiaryButton>
         </ButtonsContainer>

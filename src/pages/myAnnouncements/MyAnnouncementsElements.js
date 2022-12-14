@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const AnnouncementsContainer = styled.section`
+export const PersonalAnnouncementsContainer = styled.section`
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
