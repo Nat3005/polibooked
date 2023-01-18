@@ -40,7 +40,6 @@ export const getAnnouncements = (abbreviation = null, major = null) => {
 
   if (abbreviation) myQuery.push(where('abbreviation', '==', abbreviation));
   if (major) myQuery.push(where('major', '==', major));
-
   return query(...myQuery);
 };
 

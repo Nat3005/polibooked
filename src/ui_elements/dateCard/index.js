@@ -11,7 +11,7 @@ function DateCard({ eventID, startDate, endDate, type, onClick, status }) {
     e.preventDefault();
 
     removeEvent(eventID).then(() => {
-      console.warn('O la Boga! To też sie Udao się!');
+      console.warn('Wydarzenie usunięte');
     });
   };
 

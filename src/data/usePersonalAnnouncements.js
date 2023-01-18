@@ -4,9 +4,9 @@ import { getPersonalAnnouncements } from '../firebase/announcementService';
 
 export const usePersonalAnnouncements = (userID = null) => {
   const [announcements, setAnnouncements] = useState([]);
-  const personalAnnouncementsRef = getPersonalAnnouncements(userID);
 
   useEffect(() => {
+    const personalAnnouncementsRef = getPersonalAnnouncements(userID);
     const getAnnouncements = onSnapshot(
       personalAnnouncementsRef,
       (querySnapshot) => {
@@ -23,7 +23,7 @@ export const usePersonalAnnouncements = (userID = null) => {
     return () => {
       getAnnouncements();
     };
-  }, [personalAnnouncementsRef, userID]);
+  }, [userID]);
 
   return [announcements];
 };

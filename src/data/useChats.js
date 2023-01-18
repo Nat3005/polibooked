@@ -6,9 +6,9 @@ import { getChats } from '../firebase/chatService';
 export const useChats = (userID = null) => {
   const [chats, setChats] = useState([]);
   const [userChats, setUserChats] = useState([]);
-  const chatRef = getChats(userID);
 
   useEffect(() => {
+    const chatRef = getChats(userID);
     const getReferences = () => {
       const chatReferences = onSnapshot(chatRef, (document) => {
         setChats(document.data());
@@ -20,7 +20,7 @@ export const useChats = (userID = null) => {
 
     // eslint-disable-next-line no-unused-expressions
     userID && getReferences();
-  }, [userID, chatRef]);
+  }, [userID]);
 
   useEffect(() => {
     const uChats = [];

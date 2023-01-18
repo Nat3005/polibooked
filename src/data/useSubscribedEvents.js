@@ -5,9 +5,9 @@ import { getSubscribedEvents } from '../firebase/eventsService';
 
 export const useSubscribedEvents = (subscriberID = null) => {
   const [events, setEvents] = useState([]);
-  const eventsRef = getSubscribedEvents(subscriberID);
 
   useEffect(() => {
+    const eventsRef = getSubscribedEvents(subscriberID);
     const getBooked = onSnapshot(eventsRef, (querySnapshot) => {
       const promises = querySnapshot.docs.map((document) =>
         getUser(document.data().publisherRef).then((u) => {
@@ -27,7 +27,7 @@ export const useSubscribedEvents = (subscriberID = null) => {
     return () => {
       getBooked();
     };
-  }, [eventsRef, subscriberID]);
+  }, [subscriberID]);
 
   return [events];
 };

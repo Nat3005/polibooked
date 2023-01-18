@@ -85,7 +85,7 @@ function AnnouncementCard({
   const handleRemoveAnnouncement = (e) => {
     e.preventDefault();
     removeAnnouncement(announcement.id).then(() => {
-      console.warn('O la Boga! Udao się!');
+      console.warn('Ogłoszenie usunięte');
     });
   };
 

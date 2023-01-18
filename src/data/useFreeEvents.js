@@ -5,8 +5,8 @@ import { getFreeEvents } from '../firebase/eventsService';
 export const useFreeEvents = (publisherUID) => {
   const [events, setEvents] = useState([]);
 
-  const eventsRef = getFreeEvents(publisherUID);
   useEffect(() => {
+    const eventsRef = getFreeEvents(publisherUID);
     const getEvents = onSnapshot(eventsRef, (querySnapshot) => {
       const docs = [];
       querySnapshot.forEach((doc) => {
@@ -20,7 +20,7 @@ export const useFreeEvents = (publisherUID) => {
     return () => {
       getEvents();
     };
-  }, [eventsRef, publisherUID]);
+  }, [publisherUID]);
 
   return [events];
 };

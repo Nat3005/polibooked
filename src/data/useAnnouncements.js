@@ -5,9 +5,9 @@ import { getUser } from '../firebase/userService';
 
 export const useAnnouncements = (abbreviation = null, major = null) => {
   const [announcements, setAnnouncements] = useState([]);
-  const announcementsRef = getAnnouncements(abbreviation, major);
 
   useEffect(() => {
+    const announcementsRef = getAnnouncements(abbreviation, major);
     const getAnn = onSnapshot(announcementsRef, (retrievedDocuments) => {
       const promises = retrievedDocuments.docs.map((document) =>
         getUser(document.data().userRef).then((u) => {
@@ -27,6 +27,6 @@ export const useAnnouncements = (abbreviation = null, major = null) => {
     return () => {
       getAnn();
     };
-  }, [announcementsRef, abbreviation, major]);
+  }, [abbreviation, major]);
   return [announcements];
 };

@@ -7,9 +7,9 @@ import { getBookedEvents } from '../firebase/eventsService';
 
 export const useBookedEvents = (publisherID = null) => {
   const [events, setEvents] = useState([]);
-  const eventsRef = getBookedEvents(publisherID);
 
   useEffect(() => {
+    const eventsRef = getBookedEvents(publisherID);
     const getBooked = onSnapshot(eventsRef, (querySnapshot) => {
       const promises = querySnapshot.docs.map((document) =>
         getUser(document.data().subscriberRef).then((u) => {
@@ -29,7 +29,7 @@ export const useBookedEvents = (publisherID = null) => {
     return () => {
       getBooked();
     };
-  }, [eventsRef, publisherID]);
+  }, [publisherID]);
 
   return [events];
 };
