@@ -1,22 +1,50 @@
-import { PropTypes } from 'prop-types';
-import { useContext, createContext, useEffect, useState, React } from 'react';
+import { PropTypes } from "prop-types";
+import React, { useContext, createContext, useEffect, useState } from "react";
 import {
   GoogleAuthProvider,
   signOut,
   signInWithRedirect,
+  signInWithPopup,
   onAuthStateChanged,
-} from 'firebase/auth';
+} from "firebase/auth";
 
-import { auth } from '../firebase/init';
-import { initUser } from '../firebase/userService';
+import { auth } from "../firebase/init";
+import { initUser } from "../firebase/userService";
 
 const UserContext = createContext();
+
 export function UserContextProvider({ children }) {
   const [user, setUser] = useState({});
   const [loading, setLoading] = useState(true);
+
   const googleLogIn = () => {
     const googleProvider = new GoogleAuthProvider();
-    signInWithRedirect(auth, googleProvider);
+    googleProvider.addScope(
+      "https://www.googleapis.com/auth/contacts.readonly"
+    );
+
+    console.log("Logging");
+    // signInWithRedirect(auth, googleProvider);
+    signInWithPopup(auth, googleProvider)
+      .then((result) => {
+        // This gives you a Google Access Token. You can use it to access the Google API.
+        const credential = GoogleAuthProvider.credentialFromResult(result);
+        const token = credential.accessToken;
+        // The signed-in user info.
+        const user = result.user;
+        // IdP data available using getAdditionalUserInfo(result)
+        // ...
+      })
+      .catch((error) => {
+        // Handle Errors here.
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        // The email of the user's account used.
+        const email = error.customData.email;
+        // The AuthCredential type that was used.
+        const credential = GoogleAuthProvider.credentialFromError(error);
+        // ...
+      });
   };
 
   const logOut = () => {
@@ -25,6 +53,7 @@ export function UserContextProvider({ children }) {
 
   useEffect(() => {
     const stateChange = onAuthStateChanged(auth, (currentUser) => {
+      console.log({ currentUser });
       initUser(currentUser).then((myUser) => {
         setUser(myUser);
         setLoading(false);

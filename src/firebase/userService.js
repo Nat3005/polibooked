@@ -6,20 +6,21 @@ import {
   where,
   getDocs,
   collection,
-} from 'firebase/firestore';
-import { firestore } from './init';
+} from "firebase/firestore";
+import { firestore } from "./init";
 
 export const initUser = async (user) => {
   if (user === null) return null;
 
-  const docRef = doc(firestore, 'users', user.uid);
-  const chatRef = doc(firestore, 'userChats', user.uid);
-  const favouritesRef = doc(firestore, 'favourites', user.uid);
+  const docRef = doc(firestore, "users", user.uid);
+  const chatRef = doc(firestore, "userChats", user.uid);
+  const favouritesRef = doc(firestore, "favourites", user.uid);
   const document = await getDoc(docRef);
+
   if (!document.exists()) {
     const defaultData = {
       displayName: user.displayName,
-      authProvider: 'google',
+      authProvider: "google",
       email: user.email,
       photoURL: user.photoURL,
       uid: user.uid,
@@ -39,8 +40,8 @@ export const getUser = (userRef) => getDoc(userRef);
 
 export const getSearchedUsers = async (username) => {
   const userRef = query(
-    collection(firestore, 'users'),
-    where('displayName', '==', username)
+    collection(firestore, "users"),
+    where("displayName", "==", username)
   );
   const usersList = [];
   const foundUsers = await getDocs(userRef);
