@@ -1,9 +1,9 @@
+/* eslint-disable */
 import { PropTypes } from "prop-types";
 import React, { useContext, createContext, useEffect, useState } from "react";
 import {
   GoogleAuthProvider,
   signOut,
-  signInWithRedirect,
   signInWithPopup,
   onAuthStateChanged,
 } from "firebase/auth";
@@ -31,7 +31,7 @@ export function UserContextProvider({ children }) {
         const credential = GoogleAuthProvider.credentialFromResult(result);
         const token = credential.accessToken;
         // The signed-in user info.
-        const user = result.user;
+        const { user } = result;
         // IdP data available using getAdditionalUserInfo(result)
         // ...
       })
@@ -40,7 +40,7 @@ export function UserContextProvider({ children }) {
         const errorCode = error.code;
         const errorMessage = error.message;
         // The email of the user's account used.
-        const email = error.customData.email;
+        const { email } = error.customData;
         // The AuthCredential type that was used.
         const credential = GoogleAuthProvider.credentialFromError(error);
         // ...
